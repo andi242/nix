@@ -43,6 +43,7 @@
     wget
     curl
     kitty
+    zsh
   ];
 
   # services.openssh.enable = true;
