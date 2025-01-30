@@ -15,6 +15,7 @@
 	      modules = [
 	        ./configuration.nix
           ./modules/zsh
+          ./modules/starship
 	      ];
 	    };
 	  };

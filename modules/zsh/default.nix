@@ -19,6 +19,12 @@ in
     # historySubstringSearch = {
     #   enable = false;
     # };
+    initExtra = ''
+      if [ $commands[starship] ]; then
+        echo "starship init"
+        eval "$(starship init zsh)"
+      fi
+    '';
     
   };
 }
