@@ -16,6 +16,8 @@
 	        ./configuration.nix
           ./modules/zsh
           ./modules/starship
+          ./modules/sys
+          ./modules/hyprland
 	      ];
 	    };
 	  };
