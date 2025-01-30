@@ -1,6 +1,6 @@
 { config, pkgs, lib, ...} :
 let
-  configFile = ./starship.toml
+  configFile = ./starship.toml;
 in 
 {
   environment.systemPackages = with pkgs; [
