@@ -5,21 +5,20 @@
 	  nixpkgs.url = "nixpkgs/nixos-24.11";
 	};
 
-	outputs = { self, nixpkgs, ... }:
+	outputs = { self, nixpkgs, ... }@inputs:
 	  let
 	    lib = nixpkgs.lib;
+      system = "x86_64-linux";
 	  in {
 	  nixosConfigurations = {
 	    nixos = lib.nixosSystem {
-	      system = "x86_64-linux";
+        specialArgs = { inherit inputs system; };
 	      modules = [
 	        ./configuration.nix
-          ./modules/zsh
-          ./modules/starship
-          ./modules/sys
-          ./modules/hyprland
+          ./sys
+          ./hyprland
 	      ];
 	    };
 	  };
-	};
+   	};
 }

@@ -1,0 +1,159 @@
+@import "./mocha.css";
+
+@define-color background @crust;
+@define-color active @text;
+@define-color bttn @surface2;
+@define-color inactive @surface2;
+@define-color hover @surface2;
+@define-color accent @blue;
+
+* {
+  font-family: GeistMono NFP;
+  border: none;
+  border-radius: 0px;
+  font-style: normal;
+  min-height: 0;
+  font-size: 1rem;
+}
+
+/* #window { */
+/*   font-size: 1rem; */
+/* } */
+
+window.DP-3 * {
+  font-size: 1.6rem;
+}
+
+window#waybar {
+  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: @background; */
+  border-bottom: 0px solid #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.8s;
+  opacity: 1;
+}
+
+.modules-left {
+  padding-left: 14px;
+  padding-right: 14px;
+  background: @background;
+  border-radius: 0px 15px 15px 0px;
+}
+
+.modules-right {
+  padding-right: 14px;
+  padding-left: 14px;
+  background: @background;
+  border-radius: 15px 0px 0px 15px;
+}
+
+#workspaces {
+  background: @background;
+  /* color: @text; */
+  margin: 2px 1px 3px 1px;
+  padding: 0px 6px;
+  border-radius: 15px;
+  border: 0px;
+  font-weight: bold;
+  font-style: normal;
+  /* opacity: 1; */
+}
+
+#workspaces button {
+  padding: 0px 5px;
+  margin: 7px 15px;
+  border-radius: 15px;
+  min-width: 15px;
+  border: 0px;
+  background-color: @inactive;
+  color: @inactive;
+  transition: all 0.5s ease-in-out;
+  /* opacity: 0.8; */
+}
+
+#workspaces button.active {
+  /* color: @text; */
+  background: @active;
+  margin: 7px 15px;
+  border-radius: 15px;
+  min-width: 5rem;
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+
+#workspaces button:hover {
+  background: @bttn;
+  border-radius: 15px;
+  opacity: 1;
+}
+
+#pulseaudio-slider trough,
+#backlight-slider trough {
+  min-height: 11px;
+  min-width: 80px;
+  border-radius: 5px;
+  background-color: @surface1;
+}
+
+/* #pulseaudio { */
+/*   color: @text; */
+/*   margin-left: 0px; */
+/*   font-weight: bold; */
+/* } */
+/**/
+/* #pulseaudio.muted { */
+/*   color: @red; */
+/*   margin-left: 0px; */
+/*   font-weight: bold; */
+/* } */
+
+#pulseaudio-slider slider {
+  min-height: 0px;
+  min-width: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+#pulseaudio-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background-color: @accent;
+}
+
+#custom-rpm-updates,
+#clock,
+#cpu,
+#memory,
+#custom-apps,
+#custom-bottles,
+#custom-steam,
+#custom-discord,
+#custom-signal,
+#network,
+#pulseaudio,
+#temperature,
+#tray {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#custom-power,
+#custom-quit,
+#custom-reboot {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: @red;
+}
+
+#custom-lock {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: @green;
+}
+#idle_inhibitor {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: @accent;
+}

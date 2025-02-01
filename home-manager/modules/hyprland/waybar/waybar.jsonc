@@ -1,0 +1,186 @@
+{
+  "layer": "top",
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "spacing": 0,
+  // Modules Left
+  "modules-left": ["group/launch", "hyprland/window"],
+  // Modules Center
+  "modules-center": ["hyprland/workspaces"],
+  // Modules Right
+  "modules-right": [
+    // "tray",
+    // "group/hardware",
+    "custom/rpm-updates",
+    "cpu",
+    "memory",
+    // "disk",
+    "pulseaudio/slider",
+    // "bluetooth",
+    // "network",
+    // "group/tools",
+    "group/group-power",
+    "clock",
+  ],
+  // Workspaces
+  "hyprland/workspaces": {
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+    "on-click": "activate",
+    // "active-only": false,
+    // "all-outputs": false,
+    "format": "",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": "",
+    },
+    "persistent-workspaces": {
+      "DP-3": [1],
+      "HDMI-A-1": [2],
+    },
+  },
+  // Hyprland Window
+  "hyprland/window": {
+    "format": "{title}",
+    "separate-outputs": true,
+    "max-length": 30,
+  },
+  // System tray
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10,
+  },
+  "clock": {
+    "tooltip-format": "\n<span size='12pt'>{calendar}</span>",
+    "calendar": {
+      "weeks-pos": "left",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "start-activated": false,
+    "format-icons": {
+      // "activated": "",
+      "deactivated": "󰪓",
+      "activated": "",
+    },
+  },
+  // custom groups
+  //
+  "group/group-power": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power",
+      "transition-left-to-right": false,
+    },
+    "modules": [
+      "custom/power", // First element is the "group leader" and won't ever be hidden
+      "idle_inhibitor",
+      "custom/lock",
+      "custom/quit",
+      "custom/reboot",
+    ],
+  },
+  "custom/quit": {
+    "format": "󰗼",
+    "tooltip": false,
+    "on-click": "hyprctl dispatch exit",
+  },
+  "custom/reboot": {
+    "format": "󰜉",
+    "tooltip": false,
+    "on-click": "reboot",
+  },
+  "custom/lock": {
+    "format": "󰷛",
+    "tooltip": false,
+    "on-click": "loginctl lock-session",
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "poweroff",
+  },
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "not-memory",
+      "transition-left-to-right": false,
+    },
+    "modules": ["cpu", "memory"],
+  },
+
+  "memory": {
+    "format": " {icon}",
+    // "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    // "format-icons": ["󰄰", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪤", "󰪥"],
+    "format-icons": ["󰋙", "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈"],
+  },
+  "cpu": {
+    "format": "󰻠 {icon}",
+    // "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "format-icons": ["󰋙", "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈"],
+  },
+  "group/launch": {
+    "orientation": "inherit",
+    // "drawer": {
+    //   "transition-duration": 700,
+    //   // "children-class": "not-memory",
+    //   "transition-left-to-right": true,
+    // },
+    "modules": [
+      // "custom/apps",
+      "custom/steam",
+      "custom/discord",
+      "custom/signal",
+      "custom/bottles",
+    ],
+  },
+  "custom/apps": {
+    "format": "󰘔",
+    "tooltip": false,
+    "on-click": "",
+  },
+  "custom/steam": {
+    "format": "",
+    "tooltip-format": "steam",
+    "on-click": "steam",
+  },
+  "custom/bottles": {
+    "format": "󱄮",
+    "tooltip-format": "bottles",
+    "on-click": "flatpak run com.usebottles.bottles",
+  },
+  "custom/signal": {
+    "format": "󰭹",
+    "tooltip-format": "signal",
+    "on-click": "flatpak run org.signal.Signal",
+  },
+  "custom/discord": {
+    "format": "󰙯",
+    "tooltip-format": "discord",
+    "on-click": "flatpak run com.discordapp.Discord",
+  },
+
+  "custom/rpm-updates": {
+    "exec": "~/.config/waybar/scripts/ostree-updates.sh 2> /dev/null",
+    "format": "{}",
+    "return-type": "json",
+    "interval": 60,
+    // "exec-if": "[[ -f /tmp/rpm-ostree-updates.txt ]] && exit 0 || exit 1",
+    // "tooltip-format": "{1}",
+    // "on-click": "~/.config/waybar/scripts/ostree-updates.sh 2> /dev/null",
+  },
+}

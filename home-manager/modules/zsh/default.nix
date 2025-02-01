@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ inputs, config, pkgs, ...}:
 let
   aliases = {
     vi = "nvim";
@@ -13,13 +13,13 @@ in
     enable = true;
     shellAliases = aliases;
     enableCompletion = true;
-    # autosuggestion.enable = true;
-    # syntaxHighlighting.enable = true;
-    # defaultKeymap = "emacs";
-    # historySubstringSearch = {
-    #   enable = false;
-    # };
-    interactiveShellInit = ''
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    defaultKeymap = "emacs";
+    historySubstringSearch = {
+      enable = false;
+    };
+    initExtra = ''
       if [ $commands[starship] ]; then
         echo "starship init"
         eval "$(starship init zsh)"
