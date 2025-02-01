@@ -1,9 +1,7 @@
-{ home-manager, lib, services, pkgs, config, ...} :
+{ lib, services, pkgs, config, ...} :
 {
-  nixpkgs.config.allowUnfree = true;
-  
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
   # services.xserver.enable = true;
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
@@ -22,6 +20,7 @@
     ghostty
     dolphin
     distrobox
+    greetd.regreet
   ];
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -35,7 +34,17 @@
     };
     waybar.enable = true;
     xwayland.enable = true;
-
+    regreet = {
+      enable = true;
+      settings.GTK = lib.mkForce {
+        application_prefer_dark_theme = true;
+        font_name = "GeistMono 16";
+      };
+    };
   };
-
+  # allow greetd to save info
+  systemd.tmpfiles.rules = [
+    "d /var/log/regreet 0755 greeter greeter - -"
+    "d /var/cache/regreet 0755 greeter greeter - -"
+  ];
 }
