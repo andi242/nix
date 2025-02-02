@@ -15,9 +15,9 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
   imports = [
-    ./modules/starship
-    ./modules/zsh
-    ./modules/nvim
+    # ./modules/starship
+    # ./modules/zsh
+    # ./modules/nvim
   ];
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -48,11 +48,12 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    ".config/shell.inc".text = builtins.readFile ./modules/zsh/shell.inc;
     # ".config/home-manager/flake.nix".text = builtins.readFile ./flake.nix;
-    ".config/waybar/config.jsonc".text = builtins.readFile ./modules/hyprland/waybar/waybar.jsonc;
-    ".config/waybar/mocha.css".text = builtins.readFile ./modules/hyprland/waybar/mocha.css;
-    ".config/waybar/style.css".text = builtins.readFile ./modules/hyprland/waybar/style.css;
-    ".config/hypr/hyprland.conf".text = builtins.readFile ./modules/hyprland/hyprland.conf;
+    # ".config/waybar/config.jsonc".text = builtins.readFile ./modules/hyprland/waybar/waybar.jsonc;
+    # ".config/waybar/mocha.css".text = builtins.readFile ./modules/hyprland/waybar/mocha.css;
+    # ".config/waybar/style.css".text = builtins.readFile ./modules/hyprland/waybar/style.css;
+    # ".config/hypr/hyprland.conf".text = builtins.readFile ./modules/hyprland/hyprland.conf;
     # ".config/home-manager/home.nix".text = builtins.readFile ./home.nix;
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

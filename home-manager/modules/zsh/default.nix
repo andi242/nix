@@ -9,6 +9,10 @@ let
   };
 in 
 {
+  programs.git = {
+    userName = "andi242";
+    userEmail = "andi242@gmail.com";
+  };
   programs.zsh = {
     enable = true;
     shellAliases = aliases;

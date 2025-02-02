@@ -4,9 +4,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
     [ 
-      ./hardware-configuration.nix
-      ./mounts.nix # do when VM
-      # inputs.home-manager.nixosModules.home-manager
+      # ./libvirt-configuration.nix
+      # ./macbook-configuration.nix
+      # ./mounts.nix # do when VM
     ];
   
   boot.loader.systemd-boot.enable = true;
