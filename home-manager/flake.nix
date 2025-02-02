@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { nixpkgs, home-manager, ... }:
@@ -18,14 +19,19 @@
     in {
       homeConfigurations."ad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
         # extraSpecialArgs = { inherit nix-colors; };
       };
-      # catpuccin-mocha
+      homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ 
+          ./home.nix
+          ./modules/hyprland
+          ./modules/zsh
+          ./modules/starship
+        ];
+        # extraSpecialArgs = { inherit nix-colors; };
+      };
+
     };
 }

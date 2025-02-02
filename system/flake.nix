@@ -16,16 +16,12 @@
           specialArgs = { inherit inputs system; };
 	        modules = [
 	          ./vm-configuration.nix
-            # ./sys
-            # ./hyprland
 	        ] ++ defaultModules ;
 	      };
   	    nixos-mac = lib.nixosSystem {
           specialArgs = { inherit inputs system; };
 	        modules = [
 	          ./mac-configuration.nix
-            # ./sys
-            # ./hyprland
 	        ] ++ defaultModules;
 	      };
 	    };

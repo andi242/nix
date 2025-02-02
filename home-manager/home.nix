@@ -29,7 +29,6 @@
   #     monospace = ["GeistMono"];
   #   };
   # };
-  
   home.packages = with pkgs; [
     discord
     stow

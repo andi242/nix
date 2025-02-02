@@ -18,7 +18,7 @@
     dunst
     swww
     ghostty
-    dolphin
+    xfce.thunar
     distrobox
     greetd.regreet
   ];
