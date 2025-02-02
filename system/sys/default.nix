@@ -30,6 +30,7 @@ in
     gcc
     bat
     bitwarden-cli
+    openssl
   ];
   imports = [
     ./nvim.nix
