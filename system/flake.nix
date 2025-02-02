@@ -9,16 +9,25 @@
 	  let
 	    lib = nixpkgs.lib;
       system = "x86_64-linux";
+      defaultModules = [ ./sys ./hyprland ];
 	  in {
-	  nixosConfigurations = {
-	    nixos = lib.nixosSystem {
-        specialArgs = { inherit inputs system; };
-	      modules = [
-	        ./configuration.nix
-          ./sys
-          ./hyprland
-	      ];
+	    nixosConfigurations = {
+  	    nixos-vm = lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+	        modules = [
+	          ./vm-configuration.nix
+            # ./sys
+            # ./hyprland
+	        ] ++ defaultModules ;
+	      };
+  	    nixos-mac = lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+	        modules = [
+	          ./mac-configuration.nix
+            # ./sys
+            # ./hyprland
+	        ] ++ defaultModules;
+	      };
 	    };
-	  };
-   	};
+    };
 }

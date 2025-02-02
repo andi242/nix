@@ -4,16 +4,15 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
     [ 
-      # ./libvirt-configuration.nix
-      # ./macbook-configuration.nix
-      # ./mounts.nix # do when VM
+      ./hw/libvirt-hardware.nix
+      ./mounts.nix
     ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.checkJournalingFS = false;
 
-  networking.hostName = "nixos";
+  networking.hostName = "nixos-vm";
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
