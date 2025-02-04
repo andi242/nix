@@ -1,21 +1,25 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+
+##
+# does not work rn
+##
 
 let
-  # We point directly to 'gnugrep' instead of 'grep'
   grep = pkgs.gnugrep;
 
   # 1. Declare the Flatpaks you *want* on your system
   desiredFlatpaks = [
     "org.mozilla.firefox"
-    "org.mozilla.thunderbird"
+    "org.mozilla.Thunderbird"
     "com.github.tchx84.Flatseal"
     "io.github.ungoogled_software.ungoogled_chromium"
     "org.virt_manager.virt-manager"
+    "com.core447.StreamController"
   ];
 in
 {
-  system.activationScripts.flatpakManagement = {
-    text = ''
+  home.activation = {
+    flatpakManagement = lib.hm.dag.entryAfter ["installPackages"] ''
       # 2. Ensure the Flathub repo is added
       ${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub \
         https://flathub.org/repo/flathub.flatpakrepo

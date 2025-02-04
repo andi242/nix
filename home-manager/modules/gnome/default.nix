@@ -1,8 +1,8 @@
 { lib, config, pkgs, home,... }:
 {
-  imports = [
-    ./flatpaks.nix
-  ];
+  # imports = [
+  #   ./flatpaks.nix
+  # ];
 
   home.packages = with pkgs; [
     dconf2nix
@@ -41,7 +41,7 @@
         forge.extensionUuid
         space-bar.extensionUuid
         tweaks-in-system-menu.extensionUuid
-        user-theme.extensionUuid
+        # user-theme.extensionUuid
         launch-new-instance.extensionUuid
       ];
     };

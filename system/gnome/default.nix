@@ -4,6 +4,8 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  programs.steam.enable = true;
+
   environment.systemPackages =
     ( with pkgs; [
       btop
@@ -11,6 +13,7 @@
       kitty
       jq
       distrobox
+      steam
       mesa
       gnome-tweaks
     ]) ++

@@ -36,7 +36,7 @@ in
   imports = [
     ./nvim.nix
     ./fonts.nix
-    # ./flatpak.nix
+    ./flatpak.nix
   ];
   system.autoUpgrade = {
     enable = true;
