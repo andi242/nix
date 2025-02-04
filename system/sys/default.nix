@@ -1,4 +1,4 @@
-{ config, pkgs, ... } : 
+{ config, pkgs, inputs, ... } : 
 let
   aliases = {
     cat = "bat --paging=never";
@@ -37,5 +37,16 @@ in
     ./fonts.nix
     ./flatpak.nix
   ];
-
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
+  
 }

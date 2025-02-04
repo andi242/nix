@@ -4,16 +4,16 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
     [ 
-      # ./hw/libvirt-hardware.nix
-      # ./mounts.nix
-      /etc/nixos/hardware-configuration.nix
+      # ./hw/pc-hardware.nix # install first!
+      ./sys
+      ./hyprland
     ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.checkJournalingFS = false;
 
-  networking.hostName = "nixos-vm";
+  networking.hostName = "nixos-mac";
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;

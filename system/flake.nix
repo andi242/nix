@@ -3,27 +3,41 @@
 
 	inputs = {
 	  nixpkgs.url = "nixpkgs/nixos-24.11";
+	  # nixpkgs.url = "nixpkgs/nixos-unstable";
+	  nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 	};
 
-	outputs = { self, nixpkgs, ... }@inputs:
+	outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
 	  let
-	    lib = nixpkgs.lib;
       system = "x86_64-linux";
-      defaultModules = [ ./sys ./hyprland ];
+	    lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      defaultModules = [ ./sys ];
 	  in {
 	    nixosConfigurations = {
   	    nixos-vm = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
+          specialArgs = { inherit inputs system pkgs-unstable; };
 	        modules = [
 	          ./vm-configuration.nix
-	        ] ++ defaultModules ;
+            ./gnome
+	        ]++ defaultModules;
 	      };
   	    nixos-mac = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
+          specialArgs = { inherit inputs system pkgs-unstable; };
 	        modules = [
 	          ./mac-configuration.nix
+            ./hyprland
 	        ] ++ defaultModules;
 	      };
+        nixos-pc = lib.nixosSystem {
+          specialArgs = { inherit inputs system pkgs-unstable; };
+	        modules = [
+	          ./pc-configuration.nix
+            ./hyprland 
+	        ] ++ defaultModules;
+	      };
+
 	    };
     };
 }

@@ -19,7 +19,10 @@
     in {
       homeConfigurations."ad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [ 
+          ./home.nix
+          ./modules/gnome
+        ];
         # extraSpecialArgs = { inherit nix-colors; };
       };
       homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {
