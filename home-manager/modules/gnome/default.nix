@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     dconf2nix
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.blur-my-shell
   ];
   dconf = {
     enable = true;
@@ -10,8 +12,8 @@
       disable-user-extensions = false;
       enabled-extensions = with pkgs.gnomeExtensions; [
         blur-my-shell.extensionUuid
-        gsconnect.extensionUuid
         system-monitor.extensionUuid
+        dash-to-dock.extensionUuid
         # apps-menu.extensionUuid
       ];
     };

@@ -35,6 +35,8 @@
     gnome-weather
     gnome-calendar
     gnome-remote-desktop
+    gnome-connections
+    gnome-contacts
     gnome-maps
     gnome-tour
     hitori # sudoku game
