@@ -26,7 +26,7 @@
   # user config
   users.users.ad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "libvirtd"];
     uid = 1000;
   };
   users.users.ad.extraGroups = [ "libvirtd" ];
