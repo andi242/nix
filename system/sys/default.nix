@@ -9,13 +9,15 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
+  
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   programs.zsh = {
     enable = true;
     shellAliases = aliases;
   };
-  security.sudo.extraRules = [
-    { groups = [ "wheel" ]; commands = [ {command = "ALL" ; options = [ "NOPASSWD" ]; } ]; }
-  ];
+
   # system packages 
   environment.systemPackages = with pkgs; [
     unzip
@@ -31,7 +33,7 @@ in
     bat
     bitwarden-cli
     openssl
-    libvirt
+    # libvirt
   ];
   imports = [
     ./nvim.nix

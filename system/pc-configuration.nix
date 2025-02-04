@@ -23,11 +23,16 @@
     pulse.enable = true;
   };
 
+  # user config
   users.users.ad = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     uid = 1000;
   };
+  users.users.ad.extraGroups = [ "libvirtd" ];
+  security.sudo.extraRules = [
+    { groups = [ "wheel" ]; commands = [ {command = "ALL" ; options = [ "NOPASSWD" ]; } ]; }
+  ];
 
   system.stateVersion = "24.11"; 
 }
