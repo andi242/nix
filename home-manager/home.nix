@@ -32,6 +32,7 @@
   home.packages = with pkgs; [
     discord
     stow
+    steam
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -47,7 +48,7 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".config/shell.inc".text = builtins.readFile ./modules/zsh/shell.inc;
+    # ".config/shell.inc".text = builtins.readFile ./modules/zsh/shell.inc;
     # ".config/home-manager/flake.nix".text = builtins.readFile ./flake.nix;
     # ".config/waybar/config.jsonc".text = builtins.readFile ./modules/hyprland/waybar/waybar.jsonc;
     # ".config/waybar/mocha.css".text = builtins.readFile ./modules/hyprland/waybar/mocha.css;
@@ -79,7 +80,6 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    VARVAR = "bla";
   };
 
   # Let Home Manager install and manage itself.

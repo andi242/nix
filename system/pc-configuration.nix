@@ -4,16 +4,14 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
     [ 
-      # ./hw/pc-hardware.nix # install first!
-      ./sys
-      ./hyprland
+      ./hw/pc-hardware.nix # install first!
     ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.checkJournalingFS = false;
 
-  networking.hostName = "nixos-mac";
+  networking.hostName = "nixos-pc";
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;

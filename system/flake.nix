@@ -34,7 +34,7 @@
           specialArgs = { inherit inputs system pkgs-unstable; };
 	        modules = [
 	          ./pc-configuration.nix
-            ./hyprland 
+            ./gnome
 	        ] ++ defaultModules;
 	      };
 
