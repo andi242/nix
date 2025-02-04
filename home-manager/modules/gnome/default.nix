@@ -1,7 +1,7 @@
 { lib, config, pkgs, home,... }:
 {
   imports = [
-    ./flatpak.nix
+    ./flatpaks.nix
   ];
 
   home.packages = with pkgs; [
