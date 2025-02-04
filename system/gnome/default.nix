@@ -12,6 +12,7 @@
       jq
       distrobox
       mesa
+      gnome-tweaks
     ]) ++
     ( with pkgs-unstable; [
       # add

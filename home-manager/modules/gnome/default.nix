@@ -2,8 +2,14 @@
 {
   home.packages = with pkgs; [
     dconf2nix
+    vimix-gtk-themes
+    vimix-icon-theme
+    bibata-cursors
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
+    gnomeExtensions.forge
+    gnomeExtensions.space-bar
+    gnomeExtensions.tweaks-in-system-menu
   ];
   dconf = {
     enable = true;
@@ -14,7 +20,9 @@
         blur-my-shell.extensionUuid
         system-monitor.extensionUuid
         dash-to-dock.extensionUuid
-        # apps-menu.extensionUuid
+        forge.extensionUuid
+        space-bar.extensionUuid
+        tweaks-in-system-menu.extensionUuid
       ];
     };
   };
