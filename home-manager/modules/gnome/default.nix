@@ -6,9 +6,6 @@
 
   home.packages = with pkgs; [
     dconf2nix
-    vimix-gtk-themes
-    vimix-icon-theme
-    bibata-cursors
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
@@ -47,17 +44,6 @@
         launch-new-instance.extensionUuid
         status-icons.extensionUuid
         launch-new-instance.extensionUuid
-        # enabled-extensions=[
-        # 'blur-my-shell@aunetx', 
-        # 'system-monitor@gnome-shell-extensions.gcampax.github.com', 
-        # 'dash-to-dock@micxgx.gmail.com', 
-        # 'forge@jmmaranan.com', 
-        # 'space-bar@luchrioh', 
-        # 'tweaks-system-menu@extensions.gnome-shell.fifi.org', 
-        # 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 
-        # 'user-theme@gnome-shell-extensions.gcampax.github.com',
-        # 'native-window-placement@gnome-shell-extensions.gcampax.github.com',
-        # 'status-icons@gnome-shell-extensions.gcampax.github.com']
       ];
     };
   };
