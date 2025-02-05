@@ -28,8 +28,7 @@
       mesa
       gnome-tweaks
       gnome-themes-extra
-      vimix-gtk-themes
-      vimix-icon-theme
+      nordzy-icon-theme
       bibata-cursors
       wl-clipboard
     ]) ++

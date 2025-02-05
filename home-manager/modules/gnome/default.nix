@@ -12,6 +12,7 @@
     gnomeExtensions.space-bar
     gnomeExtensions.tweaks-in-system-menu
     gnomeExtensions.appindicator
+    gnomeExtensions.quick-settings-audio-panel
   ];
 
   dconf = {
@@ -40,9 +41,10 @@
         forge.extensionUuid
         space-bar.extensionUuid
         tweaks-in-system-menu.extensionUuid
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        # "user-theme@gnome-shell-extensions.gcampax.github.com"
         launch-new-instance.extensionUuid
         status-icons.extensionUuid
+        quick-settings-audio-panel.extensionUuid
         launch-new-instance.extensionUuid
       ];
     };
