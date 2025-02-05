@@ -3,9 +3,10 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.steam.enable = true;
 
+  services.udev.packages = [ pkgs.gnome-settings-daemon ];
   environment.systemPackages =
     ( with pkgs; [
       btop
@@ -20,7 +21,7 @@
     ( with pkgs-unstable; [
       # add
     ]);
-
+  services.xserver.excludePackages = [ pkgs.xterm ];
   environment.gnome.excludePackages = (with pkgs; [
     atomix # puzzle game
     cheese # webcam tool
@@ -31,7 +32,6 @@
     gnome-characters
     gnome-text-editor
     gnome-user-docs
-    xterm
     gnome-music
     gnome-photos
     gnome-terminal
@@ -48,6 +48,4 @@
     tali # poker game
     totem # video player
   ]);
-
-  
 }

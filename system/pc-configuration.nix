@@ -4,7 +4,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
     [ 
-      ./hw/pc-hardware.nix # install first!
+      ./hw/pc-hardware.nix # install os first, then copy, then uncomment!
+      # or with --impure
+      # /etc/nixos/hardware-configuration.nix 
     ];
   
   boot.loader.systemd-boot.enable = true;
@@ -29,7 +31,6 @@
     extraGroups = [ "wheel" "libvirtd"];
     uid = 1000;
   };
-  users.users.ad.extraGroups = [ "libvirtd" ];
   security.sudo.extraRules = [
     { groups = [ "wheel" ]; commands = [ {command = "ALL" ; options = [ "NOPASSWD" ]; } ]; }
   ];

@@ -1,8 +1,8 @@
 { lib, config, pkgs, home,... }:
 {
-  # imports = [
-  #   ./flatpaks.nix
-  # ];
+  imports = [
+    # ./finalscript.nix
+  ];
 
   home.packages = with pkgs; [
     dconf2nix
@@ -14,7 +14,9 @@
     gnomeExtensions.forge
     gnomeExtensions.space-bar
     gnomeExtensions.tweaks-in-system-menu
+    gnomeExtensions.appindicator
   ];
+
   dconf = {
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -41,8 +43,21 @@
         forge.extensionUuid
         space-bar.extensionUuid
         tweaks-in-system-menu.extensionUuid
-        # user-theme.extensionUuid
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
         launch-new-instance.extensionUuid
+        status-icons.extensionUuid
+        launch-new-instance.extensionUuid
+        # enabled-extensions=[
+        # 'blur-my-shell@aunetx', 
+        # 'system-monitor@gnome-shell-extensions.gcampax.github.com', 
+        # 'dash-to-dock@micxgx.gmail.com', 
+        # 'forge@jmmaranan.com', 
+        # 'space-bar@luchrioh', 
+        # 'tweaks-system-menu@extensions.gnome-shell.fifi.org', 
+        # 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 
+        # 'user-theme@gnome-shell-extensions.gcampax.github.com',
+        # 'native-window-placement@gnome-shell-extensions.gcampax.github.com',
+        # 'status-icons@gnome-shell-extensions.gcampax.github.com']
       ];
     };
   };

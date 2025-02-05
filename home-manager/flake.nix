@@ -8,8 +8,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
-    catppuccin.url = "github:catppuccin/nix";
+    # nix-colors.url = "github:misterio77/nix-colors";
+    # catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { nixpkgs, home-manager, ... }:
