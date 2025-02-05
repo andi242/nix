@@ -31,18 +31,19 @@
       vimix-gtk-themes
       vimix-icon-theme
       bibata-cursors
+      wl-clipboard
     ]) ++
     ( with pkgs-unstable; [
       # add
     ]);
   services.xserver.excludePackages = [ pkgs.xterm ];
   environment.gnome.excludePackages = (with pkgs; [
-    atomix # puzzle game
-    cheese # webcam tool
-    epiphany # web browser
-    evince # document viewer
-    geary # email reader
-    gedit # text editor
+    atomix
+    cheese
+    epiphany
+    evince
+    geary
+    gedit
     gnome-characters
     gnome-text-editor
     gnome-user-docs
@@ -57,9 +58,9 @@
     gnome-contacts
     gnome-maps
     gnome-tour
-    hitori # sudoku game
-    iagno # go game
-    tali # poker game
-    totem # video player
+    hitori
+    iagno
+    tali
+    totem
   ]);
 }
