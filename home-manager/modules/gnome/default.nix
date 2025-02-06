@@ -2,6 +2,7 @@
 {
   imports = [
     # ./finalscript.nix
+    ./theme-tweaks.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,7 +30,7 @@
           space-bar.extensionUuid
           tweaks-in-system-menu.extensionUuid
           clipboard-history.extensionUuid
-          # "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
           # launch-new-instance.extensionUuid
           status-icons.extensionUuid
           quick-settings-audio-panel.extensionUuid
@@ -45,6 +46,9 @@
         show-download = false;
         show-swap = false;
         show-upload = false;
+      };
+      "org/gnome/shell/extensions/user-theme" = {
+        name = "theme-tweaks";
       };
       "org/gnome/mutter" = {
         dynamic-workspaces = true;
