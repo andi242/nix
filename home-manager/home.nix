@@ -22,7 +22,14 @@
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
+    (pkgs.writeShellScriptBin "nix-clean" ''
+       echo "cleaning HM generations"
+       home-manager expire-generations -10
+       echo "collecting nix garbage"
+       sudo nix-store --gc
+       sudo nix-collect-garbage --delete-older-than 10d
+    '')
+   # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
