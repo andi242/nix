@@ -13,11 +13,29 @@
     gnomeExtensions.tweaks-in-system-menu
     gnomeExtensions.appindicator
     gnomeExtensions.quick-settings-audio-panel
+    gnomeExtensions.clipboard-history
   ];
 
   dconf = {
     enable = true;
     settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+          system-monitor.extensionUuid
+          dash-to-dock.extensionUuid
+          forge.extensionUuid
+          space-bar.extensionUuid
+          tweaks-in-system-menu.extensionUuid
+          clipboard-history.extensionUuid
+          # "user-theme@gnome-shell-extensions.gcampax.github.com"
+          # launch-new-instance.extensionUuid
+          status-icons.extensionUuid
+          quick-settings-audio-panel.extensionUuid
+          launch-new-instance.extensionUuid
+        ];
+      };
       "org/gnome/desktop/input-sources" = {
         show-all-sources = true;
         sources = [ (lib.hm.gvariant.mkTuple[ "xkb" "eu" ]) ];
@@ -86,22 +104,6 @@
         picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/morphogenesis-d.svg";
         primary-color = "#e18477";
         secondary-color = "#000000";
-      };
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
-        enabled-extensions = with pkgs.gnomeExtensions; [
-          blur-my-shell.extensionUuid
-          system-monitor.extensionUuid
-          dash-to-dock.extensionUuid
-          forge.extensionUuid
-          space-bar.extensionUuid
-          tweaks-in-system-menu.extensionUuid
-          # "user-theme@gnome-shell-extensions.gcampax.github.com"
-          # launch-new-instance.extensionUuid
-          status-icons.extensionUuid
-          quick-settings-audio-panel.extensionUuid
-          launch-new-instance.extensionUuid
-        ];
       };
     };
   };

@@ -1,6 +1,7 @@
 { lib, services, pkgs, config, pkgs-unstable, ...} :
 {
   services.xserver.enable = true;
+  services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -26,6 +27,7 @@
       steam
       lutris
       mesa
+      lact
       gnome-tweaks
       gnome-themes-extra
       nordzy-icon-theme
@@ -35,7 +37,10 @@
     ( with pkgs-unstable; [
       # add
     ]);
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  # lact 
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
+
   environment.gnome.excludePackages = (with pkgs; [
     atomix
     cheese
