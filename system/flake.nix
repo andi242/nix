@@ -27,7 +27,7 @@
           specialArgs = { inherit inputs system pkgs-unstable; };
 	        modules = [
 	          ./mac-configuration.nix
-            ./hyprland
+            ./gnome
 	        ] ++ defaultModules;
 	      };
         nixos-pc = lib.nixosSystem {

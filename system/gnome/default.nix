@@ -47,7 +47,6 @@
     epiphany
     evince
     geary
-    # gedit
     gnome-characters
     gnome-text-editor
     gnome-user-docs

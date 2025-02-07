@@ -8,8 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-colors.url = "github:misterio77/nix-colors";
-    # catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { nixpkgs, home-manager, ... }:
@@ -23,18 +21,17 @@
           ./home.nix
           ./modules/gnome
         ];
-        # extraSpecialArgs = { inherit nix-colors; };
       };
-      homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ 
-          ./home.nix
-          ./modules/hyprland
-          ./modules/zsh
-          ./modules/starship
-        ];
-        # extraSpecialArgs = { inherit nix-colors; };
-      };
+      # homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {
+      #   inherit pkgs;
+      #   modules = [ 
+      #     ./home.nix
+      #     ./modules/hyprland
+      #     ./modules/zsh
+      #     ./modules/starship
+      #   ];
+      #   # extraSpecialArgs = { inherit nix-colors; };
+      # };
 
     };
 }

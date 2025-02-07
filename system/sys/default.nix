@@ -17,6 +17,7 @@ in
     enable = true;
     shellAliases = aliases;
   };
+  services.flatpak.enable = true;
 
   # system packages 
   environment.systemPackages = with pkgs; [
@@ -33,23 +34,40 @@ in
     bat
     bitwarden-cli
     openssl
-    # libvirt
+    neovim
   ];
-  imports = [
-    ./nvim.nix
-    ./fonts.nix
-    ./flatpak.nix
+  fonts.fontconfig.useEmbeddedBitmaps = true;
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })
+    # in nixos-unstable/25.05:
+    # nerd-fonts.geist-mono
+    
   ];
-  system.autoUpgrade = {
+  programs.neovim = {
     enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-    ];
-    dates = "02:00";
-    randomizedDelaySec = "45min";
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
   };
-  
+  imports = [
+  ];
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   flake = inputs.self.outPath;
+  #   flags = [
+  #     "--update-input"
+  #     "nixpkgs"
+  #     "-L" # print build logs
+  #   ];
+  #   dates = "02:00";
+  #   randomizedDelaySec = "45min";
+  # };
+  users.users.ad = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "libvirtd"];
+    uid = 1000;
+  };
+  security.sudo.extraRules = [
+    { groups = [ "wheel" ]; commands = [ {command = "ALL" ; options = [ "NOPASSWD" ]; } ]; }
+  ];
 }

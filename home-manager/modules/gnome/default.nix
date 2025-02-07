@@ -60,7 +60,7 @@
         color-scheme = "prefer-dark";
         cursor-theme = "Bibata-Modern-Classic";
         document-font-name = "GeistMono Nerd Font Propo 12";
-        enable-hot-corners = false;
+        enable-hot-corners = true;
         font-antialiasing = "rgba";
         font-name = "GeistMono Nerd Font Propo 10";
         gtk-theme = "Adwaita-dark";
