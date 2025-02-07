@@ -1,4 +1,4 @@
-{ lib, config, pkgs, home,... }:
+{ lib, config, pkgs, home, ... }:
 {
   imports = [
     # ./finalscript.nix
@@ -39,7 +39,7 @@
       };
       "org/gnome/desktop/input-sources" = {
         show-all-sources = true;
-        sources = [ (lib.hm.gvariant.mkTuple[ "xkb" "eu" ]) ];
+        sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "eu" ]) ];
         xkb-options = "";
       };
       "org/gnome/shell/extensions/system-monitor" = {
@@ -99,7 +99,7 @@
         button-layout = "appmenu:minimize,maximize,close";
         focus-mode = "mouse";
         resize-with-right-button = true;
-        workspace-names = [];
+        workspace-names = [ ];
       };
       "org/gnome/desktop/background" = {
         color-shading-type = "solid";

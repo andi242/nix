@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ...}:
+{ inputs, config, pkgs, ... }:
 let
   aliases = {
     vi = "nvim";
@@ -7,7 +7,7 @@ let
     ngc = "nix-env --delete-generations old";
     cleanup = "nix-store --gc";
   };
-in 
+in
 {
   programs.git = {
     userName = "andi242";
@@ -29,6 +29,6 @@ in
         eval "$(starship init zsh)"
       fi
     '';
-    
+
   };
 }

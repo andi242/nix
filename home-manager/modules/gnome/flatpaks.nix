@@ -19,7 +19,7 @@ let
 in
 {
   home.activation = {
-    flatpakManagement = lib.hm.dag.entryAfter ["installPackages"] ''
+    flatpakManagement = lib.hm.dag.entryAfter [ "installPackages" ] ''
       # 2. Ensure the Flathub repo is added
       ${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub \
         https://flathub.org/repo/flathub.flatpakrepo

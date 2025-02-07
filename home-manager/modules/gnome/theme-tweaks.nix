@@ -1,7 +1,7 @@
- { config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-   home.file = {
+  home.file = {
     ".themes/theme-tweaks/gnome-shell/gnome-shell.css".text = ''
        #panel {
         font-size: 20px;

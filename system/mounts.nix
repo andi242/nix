@@ -1,4 +1,4 @@
-{ config, pkgs, ... } : 
+{ config, pkgs, ... }:
 {
   # fileSystems."/data" = {
   #   fsType = "virtiofs";
@@ -8,7 +8,7 @@
   fileSystems."/shared" = {
     fsType = "9p";
     device = "/shared";
-    options = ["rw" "trans=virtio"];
+    options = [ "rw" "trans=virtio" ];
   };
 
 }

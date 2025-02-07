@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 {
-home.file = {
-  ".config/waybar/config.jsonc".text = builtins.readFile ./waybar/waybar.jsonc;
-  ".config/waybar/mocha.css".text = builtins.readFile ./waybar/mocha.css;
-  ".config/waybar/style.css".text = builtins.readFile ./waybar/style.css;
-  ".config/hypr/hyprland.conf".text = builtins.readFile ./hyprland.conf;
+  home.file = {
+    ".config/waybar/config.jsonc".text = builtins.readFile ./waybar/waybar.jsonc;
+    ".config/waybar/mocha.css".text = builtins.readFile ./waybar/mocha.css;
+    ".config/waybar/style.css".text = builtins.readFile ./waybar/style.css;
+    ".config/hypr/hyprland.conf".text = builtins.readFile ./hyprland.conf;
   };
   gtk = {
     enable = true;

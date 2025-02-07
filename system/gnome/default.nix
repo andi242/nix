@@ -1,13 +1,18 @@
-{ lib, services, pkgs, config, pkgs-unstable, ...} :
+{ lib, services, pkgs, config, pkgs-unstable, ... }:
 {
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.graphics = {
+    enable = true;
+  };
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.GTK_THEME_VARIANT= "dark";
+  environment.sessionVariables.GTK_THEME_VARIANT = "dark";
   programs.steam.enable = true;
-
+  # programs.steam.gamescopeSession.enable = true; #optional for scaling
+  programs.gamemode.enable = true;
   # xdg.portal = {
   #   enable = true;
   #   extraPortals = with pkgs; [
@@ -18,14 +23,17 @@
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
   environment.systemPackages =
-    ( with pkgs; [
+    (with pkgs; [
       btop
       ghostty
       kitty
       jq
       distrobox
       steam
+      mangohud
       lutris
+      #heroic
+      #bottles
       mesa
       lact
       gnome-tweaks
@@ -34,12 +42,12 @@
       bibata-cursors
       wl-clipboard
     ]) ++
-    ( with pkgs-unstable; [
+    (with pkgs-unstable; [
       # add
     ]);
   # lact 
   systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   environment.gnome.excludePackages = (with pkgs; [
     atomix

@@ -1,4 +1,4 @@
-{ lib, services, pkgs, config, pkgs-unstable, ...} :
+{ lib, services, pkgs, config, pkgs-unstable, ... }:
 {
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -9,23 +9,23 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   environment.systemPackages =
-    ( with pkgs; [
-    btop
-    kitty
-    libnotify
-    jq
-    wofi
-    waybar
-    dunst
-    swww
-    ghostty
-    xfce.thunar
-    distrobox
-    mesa
-    hyprland
-    # greetd.regreet
+    (with pkgs; [
+      btop
+      kitty
+      libnotify
+      jq
+      wofi
+      waybar
+      dunst
+      swww
+      ghostty
+      xfce.thunar
+      distrobox
+      mesa
+      hyprland
+      # greetd.regreet
     ]) ++
-    ( with pkgs-unstable; [
+    (with pkgs-unstable; [
     ]);
 
   environment.sessionVariables = {

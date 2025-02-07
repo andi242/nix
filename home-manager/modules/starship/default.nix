@@ -1,7 +1,7 @@
-{ inputs, config, pkgs, lib, ...} :
+{ inputs, config, pkgs, lib, ... }:
 let
   configFile = ./starship.toml;
-in 
+in
 {
   #environment.systemPackages = with pkgs; [
   home.packages = with pkgs; [

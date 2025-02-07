@@ -1,15 +1,15 @@
-{ config, pkgs, inputs, ... } : 
+{ config, pkgs, inputs, ... }:
 let
   aliases = {
     cat = "bat --paging=never";
   };
-in 
-  {
+in
+{
   # some config
   nixpkgs.config.allowUnfree = true;
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
-  
+
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
@@ -26,22 +26,30 @@ in
     fontconfig
     git
     wget
+    # nix helpers
+    nh
+    nix-output-monitor
+    nvd
+
     curl
     unzip
     zsh
+    starship
     home-manager
     gcc
     bat
     bitwarden-cli
     openssl
     neovim
+    lazygit
+    kubectl
   ];
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })
     # in nixos-unstable/25.05:
     # nerd-fonts.geist-mono
-    
+
   ];
   programs.neovim = {
     enable = true;
@@ -64,10 +72,10 @@ in
   # };
   users.users.ad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd"];
+    extraGroups = [ "wheel" "libvirtd" ];
     uid = 1000;
   };
   security.sudo.extraRules = [
-    { groups = [ "wheel" ]; commands = [ {command = "ALL" ; options = [ "NOPASSWD" ]; } ]; }
+    { groups = [ "wheel" ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }
   ];
 }

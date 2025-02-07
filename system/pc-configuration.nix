@@ -1,14 +1,14 @@
 { inputs, config, lib, pkgs, ... }:
 
-{ 
+{
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
-    [ 
+    [
       ./hw/pc-hardware.nix # install os first, then copy, then uncomment!
       # or with --impure
       # /etc/nixos/hardware-configuration.nix 
     ];
-  
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -24,6 +24,6 @@
     pulse.enable = true;
   };
 
-  system.stateVersion = "24.11"; 
+  system.stateVersion = "24.11";
 }
 
