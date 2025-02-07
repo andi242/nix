@@ -18,11 +18,18 @@
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Europe/Berlin";
+  
+  security.rtkit.enable = true;
 
+  # disable pipewire/wireplumber crap
   services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+    enable = lib.mkForce false;
+    # pulse.enable = false;
   };
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+  nixpkgs.config.pulseaudio = true;
+  # hardware.pulseaudio.extraConfig = "load-module module-combine-sink";
 
   system.stateVersion = "24.11";
 }

@@ -26,6 +26,7 @@ in
     fontconfig
     git
     wget
+    fzf
     # nix helpers
     nh
     nix-output-monitor
@@ -49,7 +50,6 @@ in
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })
     # in nixos-unstable/25.05:
     # nerd-fonts.geist-mono
-
   ];
   programs.neovim = {
     enable = true;
@@ -59,20 +59,16 @@ in
   };
   imports = [
   ];
-  # system.autoUpgrade = {
-  #   enable = true;
-  #   flake = inputs.self.outPath;
-  #   flags = [
-  #     "--update-input"
-  #     "nixpkgs"
-  #     "-L" # print build logs
-  #   ];
-  #   dates = "02:00";
-  #   randomizedDelaySec = "45min";
-  # };
+  # garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 10d";
+  };
+
   users.users.ad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" ];
+    extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
   };
   security.sudo.extraRules = [

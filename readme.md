@@ -6,5 +6,5 @@ neuer versuch...
 `sudo nixos-rebuild switch --flake .#<system>` - rebuild system
 
 
-`sudo nixos-rebuild switch --upgrade --flake ./nix/system#nixos-pc`
+`sudo nixos-rebuild switch --upgrade --flake ./nix/system#nixos-pc`  
 `home-manager switch --flake ./nix/home-manager#ad`  

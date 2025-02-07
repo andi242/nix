@@ -17,29 +17,30 @@
     discord
     stow
     nvtopPackages.amd
-    (pkgs.writeShellScriptBin "nix-clean" ''
-      echo "cleaning HM generations"
-      home-manager expire-generations -10
-      echo "collecting nix garbage"
-      sudo nix-store --gc
-      sudo nix-collect-garbage --delete-older-than 10d
-    '')
-    (pkgs.writeShellScriptBin "nix-apply" ''
-      # if [ -z "$1" ]; then
-      #   echo 'path to flake not set!'
-      #   exit 1
-      # fi
-      # echo building $1
-      sudo nixos-rebuild switch --upgrade --flake /home/ad/gits/nix/system#$HOST # how $self?
-    '')
-    (pkgs.writeShellScriptBin "ha-apply" ''
-      # if [ -z "$1" ]; then
-      #   echo 'path to flake not set!'
-      #   exit 1
-      # fi
-      # echo building $1
-      home-manager switch --flake /home/ad/gits/nix/home-manager#$USER
-    '')
+    # use nh tool
+    # (pkgs.writeShellScriptBin "nix-clean" ''
+    #   echo "cleaning HM generations"
+    #   home-manager expire-generations -10
+    #   echo "collecting nix garbage"
+    #   sudo nix-store --gc
+    #   sudo nix-collect-garbage --delete-older-than 10d
+    # '')
+    # (pkgs.writeShellScriptBin "nix-apply" ''
+    #   # if [ -z "$1" ]; then
+    #   #   echo 'path to flake not set!'
+    #   #   exit 1
+    #   # fi
+    #   # echo building $1
+    #   sudo nixos-rebuild switch --upgrade --flake /home/ad/gits/nix/system#$HOST # how $self?
+    # '')
+    # (pkgs.writeShellScriptBin "ha-apply" ''
+    #   # if [ -z "$1" ]; then
+    #   #   echo 'path to flake not set!'
+    #   #   exit 1
+    #   # fi
+    #   # echo building $1
+    #   home-manager switch --flake /home/ad/gits/nix/home-manager#$USER
+    # '')
   ];
 
   home.file = {
