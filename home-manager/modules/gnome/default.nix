@@ -15,6 +15,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.clipboard-history
+    gnomeExtensions.just-perfection
   ];
 
   dconf = {
@@ -35,12 +36,26 @@
           status-icons.extensionUuid
           quick-settings-audio-panel.extensionUuid
           launch-new-instance.extensionUuid
+          "just-perfection-desktop@just-perfection"
         ];
       };
       "org/gnome/desktop/input-sources" = {
         show-all-sources = true;
         sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "eu" ]) ];
         xkb-options = "";
+      };
+      "org/gnome/shell/extensions/just-perfection" = {
+        clock-menu = true;
+        clock-menu-position = 1;
+        clock-menu-position-offset = 6;
+      };
+      "org/gnome/desktop/wm/keybindings" = {
+        close = ["<Super>q"];
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        binding = "<Super>Return";
+        command = "kitty";
+        name = "Open Terminal";
       };
       "org/gnome/shell/extensions/system-monitor" = {
         show-download = false;
