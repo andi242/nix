@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 let
   aliases = {
     cat = "bat --paging=never";
@@ -19,7 +19,7 @@ in
   };
   services.flatpak.enable = true;
 
-  # system packages 
+  # system packages
   environment.systemPackages = with pkgs; [
     unzip
     podman
@@ -29,8 +29,8 @@ in
     fzf
     # nix helpers
     nh
-    nix-output-monitor
-    nvd
+    nix-output-monitor # for nh
+    nvd # for nh
 
     curl
     unzip

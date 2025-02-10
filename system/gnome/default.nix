@@ -25,7 +25,6 @@
   environment.systemPackages =
     (with pkgs; [
       btop
-      ghostty
       kitty
       jq
       distrobox
