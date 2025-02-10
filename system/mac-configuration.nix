@@ -6,7 +6,6 @@
     [
       ./hw/macbook-hardware.nix
       ./sys
-      ./hyprland
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -33,4 +32,3 @@
 
   system.stateVersion = "24.11";
 }
-
