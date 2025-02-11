@@ -11,11 +11,18 @@ in
   users.defaultUserShell = pkgs.zsh;
 
   virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    shellAliases = aliases;
+  programs = {
+    virt-manager.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    zsh = {
+      enable = true;
+      shellAliases = aliases;
+    };
   };
   services.flatpak.enable = true;
 
@@ -51,12 +58,7 @@ in
     # in nixos-unstable/25.05:
     # nerd-fonts.geist-mono
   ];
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
+
   imports = [
   ];
   # garbage collection
