@@ -16,18 +16,11 @@
     stow
     nvtopPackages.amd
     inputs.nixvim.packages.${system}.default
-    # use nh tool instead
-    # (pkgs.writeShellScriptBin "nix-clean" ''
-    #   echo "cleaning HM generations"
-    #   home-manager expire-generations -10
-    #   echo "collecting nix garbage"
-    #   sudo nix-store --gc
-    #   sudo nix-collect-garbage --delete-older-than 10d
-    # '')
   ];
 
   home.file = {
     # ".screenrc".source = dotfiles/screenrc;
+    ".config/nvim/snippets/nix.json".source = ./modules/misc/snippets-nix.json;
   };
 
   home.sessionVariables = {

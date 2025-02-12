@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:andi242/nixvim";
+      url = "git+ssh://git@github.com/andi242/nixvim.git"; # private repo uses .ssh key
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -23,7 +23,7 @@
       homeConfigurations."ad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
-            inherit inputs;
+          inherit inputs;
         };
         modules = [
           ./home.nix
