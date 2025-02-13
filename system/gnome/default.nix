@@ -27,7 +27,6 @@
       btop
       kitty
       jq
-      distrobox
       steam
       mangohud
       lutris

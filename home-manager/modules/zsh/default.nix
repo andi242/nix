@@ -1,15 +1,17 @@
 { inputs, config, pkgs, ... }:
 let
   aliases = {
-    vi = "nvim";
     d1 = "du -h -d1";
-    rebuild = "sudo nixos-rebuild switch --flake .";
-    ngc = "nix-env --delete-generations old";
-    cleanup = "nix-store --gc";
+    ll = "ls -lah";
+    gd = "git diff";
+    gs = "git status";
+    grep = "grep --color";
+    mkdir = "mkdir -p";
   };
 in
 {
   programs.git = {
+    enable = true;
     userName = "andi242";
     userEmail = "andi242@gmail.com";
   };
@@ -17,18 +19,66 @@ in
     enable = true;
     shellAliases = aliases;
     enableCompletion = true;
-    autosuggestion.enable = true;
+    autosuggestion = {
+      enable = true;
+      strategy = [ "history" ];
+    };
     syntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
     historySubstringSearch = {
-      enable = false;
+      enable = true;
     };
     initExtra = ''
-      if [ $commands[starship] ]; then
-        echo "starship init"
-        eval "$(starship init zsh)"
+      function gall(){
+        echo "commit message: ''${@}"
+        git pull && git add --all && git commit -m ''${@} && git push && git log --oneline --decorate -n5
+      }
+      # Use emacs key bindings
+      bindkey -e
+      # Start typing + [Up-Arrow] - fuzzy find history forward
+      if [[ -n "''${terminfo[kcuu1]}" ]]; then
+        autoload -U up-line-or-beginning-search
+        zle -N up-line-or-beginning-search
+
+        bindkey -M emacs "''${terminfo[kcuu1]}" up-line-or-beginning-search
+        bindkey -M viins "''${terminfo[kcuu1]}" up-line-or-beginning-search
+        bindkey -M vicmd "''${terminfo[kcuu1]}" up-line-or-beginning-search
+      fi
+      # Start typing + [Down-Arrow] - fuzzy find history backward
+      if [[ -n "''${terminfo[kcud1]}" ]]; then
+        autoload -U down-line-or-beginning-search
+        zle -N down-line-or-beginning-search
+
+        bindkey -M emacs "''${terminfo[kcud1]}" down-line-or-beginning-search
+        bindkey -M viins "''${terminfo[kcud1]}" down-line-or-beginning-search
+        bindkey -M vicmd "''${terminfo[kcud1]}" down-line-or-beginning-search
+      fi
+
+      # [Home] - Go to beginning of line
+      if [[ -n "''${terminfo[khome]}" ]]; then
+        bindkey -M emacs "''${terminfo[khome]}" beginning-of-line
+        bindkey -M viins "''${terminfo[khome]}" beginning-of-line
+        bindkey -M vicmd "''${terminfo[khome]}" beginning-of-line
+      fi
+      # [End] - Go to end of line
+      if [[ -n "''${terminfo[kend]}" ]]; then
+        bindkey -M emacs "''${terminfo[kend]}"  end-of-line
+        bindkey -M viins "''${terminfo[kend]}"  end-of-line
+        bindkey -M vicmd "''${terminfo[kend]}"  end-of-line
+      fi
+
+      setopt HIST_FCNTL_LOCK
+      unsetopt APPEND_HISTORY
+      setopt HIST_IGNORE_DUPS
+      setopt HIST_IGNORE_ALL_DUPS
+      setopt HIST_IGNORE_SPACE
+      unsetopt HIST_EXPIRE_DUPS_FIRST
+      setopt SHARE_HISTORY
+      unsetopt EXTENDED_HISTORY
+      if [ $commands[nh] ]; then
+        echo "nh init"
+        eval "$(nh completions --shell=zsh)"
       fi
     '';
-
   };
 }

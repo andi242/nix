@@ -2,13 +2,14 @@
 {
   home.username = "ad";
   home.homeDirectory = "/home/ad";
-  nixpkgs.config.allowUnfree = true;
   home.stateVersion = "24.05";
+  nixpkgs.config.allowUnfree = true;
 
   imports = [
     # ./modules/nvim
-    # ./modules/starship
-    # ./modules/zsh
+    ./modules/starship
+    ./modules/zsh
+    ./modules/misc/kitty.nix
   ];
 
   home.packages = with pkgs; [
@@ -26,6 +27,13 @@
   home.sessionVariables = {
     FLAKE = "/home/ad/gits/nix/system";
   };
+  # xdg.configFile = {
+  #   "dotfiles" = {
+  #     enable = true;
+  #     # recursive = true;
+  #     source = builtins.fetchGit "git+ssh://git@github.com/andi242/dotfiles.git"; # fetch with .ssh key
+  #   };
+  # };
 
   programs = {
     home-manager.enable = true;
