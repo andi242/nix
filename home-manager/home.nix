@@ -6,10 +6,10 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    # ./modules/nvim
     ./modules/starship
     ./modules/zsh
     ./modules/misc/kitty.nix
+    # ./modules/obs
   ];
 
   home.packages = with pkgs; [
