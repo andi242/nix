@@ -8,6 +8,7 @@
       background_opacity = 0.90;
       background_blur = 1;
       include = "theme.conf";
+      confirm_os_window_close = "0";
     };
   };
   # download current theme

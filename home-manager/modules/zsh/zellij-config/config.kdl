@@ -3,9 +3,11 @@ theme "catppuccin-mocha"
 
 default_mode "locked"
 
-copy_command "wl-copy"
-
-//on_force_close "quit"
+// copy_command "wl-copy"
+copy_clipboard "primary"
+// copy_on_select false
+session_serialization false
+on_force_close "quit"
 
 ui {
   pane_frames {
@@ -13,4 +15,33 @@ ui {
     hide_session_name true
   }
 }
-keybinds clear-defaults=true {}
+// keybinds clear-defaults=true {}
+plugins {
+    // Define the "autolock" plugin.
+    autolock location="file:~/.config/zellij/plugins/zellij-autolock.wasm" {
+        // Enabled at start?
+        is_enabled true
+        // Lock when any open these programs open.
+        triggers "nvim|vim|lazygit|git|fzf|zoxide|atuin"
+        // Reaction to input occurs after this many seconds. (default=0.3)
+        // (An existing scheduled reaction prevents additional reactions.)
+        reaction_seconds "0.3"
+        // Print to Zellij log? (default=false)
+        print_to_log true
+    }
+    datetime location="file:~/.config/zellij/plugins/zellij-datetime.wasm" {
+      default_timezone "GMT/+1"
+      timezone1 "GMT/+1"
+      text_align "center"
+      date_format "%a %d. %h"
+      time_format "%H:%M"
+      arrow_separator1 ""
+      arrow_separator2 ""
+      arrow_separator3 ""
+    }
+}
+// Load this "headless" plugin on start.
+load_plugins {
+    autolock
+    datetime
+}

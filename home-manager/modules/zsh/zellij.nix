@@ -1,16 +1,15 @@
 # { ... }:
 {
-  # init nixfile: git add!
+  imports = [ ./zellij-plugins ];
+
   programs = {
     zellij = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
     };
   };
-  xdg.configFile."zellij".source = ./zellij-config;
-  # home.file.zellij = {
-  #   target = ".config/zellij/config.kdl";
-  #   text = ''
-  #     theme "catppuccin-macchiato"
-  #   '';
+  xdg.configFile."zellij" = {
+    source = ./zellij-config;
+    recursive = true;
+  };
 }
