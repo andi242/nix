@@ -10,6 +10,7 @@ let
   };
 in
 {
+  imports = [ ./zellij.nix ];
   programs.git = {
     enable = true;
     userName = "andi242";

@@ -1,0 +1,16 @@
+default_mode "normal"
+theme "catppuccin-mocha"
+
+default_mode "locked"
+
+copy_command "wl-copy"
+
+//on_force_close "quit"
+
+ui {
+  pane_frames {
+    rounded_corners true
+    hide_session_name true
+  }
+}
+keybinds clear-defaults=true {}
