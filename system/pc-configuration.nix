@@ -6,7 +6,7 @@
     [
       ./hw/pc-hardware.nix # install os first, then copy, then uncomment!
       # or with --impure
-      # /etc/nixos/hardware-configuration.nix 
+      # /etc/nixos/hardware-configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +18,7 @@
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Europe/Berlin";
-  
+
   security.rtkit.enable = true;
 
   # disable pipewire/wireplumber crap
@@ -33,4 +33,3 @@
 
   system.stateVersion = "24.11";
 }
-

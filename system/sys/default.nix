@@ -34,6 +34,7 @@ in
     git
     wget
     fzf
+    tree
     # nix helpers
     nh
     nix-output-monitor # for nh
