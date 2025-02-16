@@ -30,6 +30,20 @@
           ./modules/gnome
         ];
       };
+      homeConfigurations."wsl" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./modules/starship
+          ./modules/zsh
+          ./modules/misc/kitty.nix
+        ];
+        home.packages = with pkgs; [
+          inputs.nixvim.packages.${system}.default
+        ];
+      };
       # homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {
       #   inherit pkgs;
       #   modules = [ 

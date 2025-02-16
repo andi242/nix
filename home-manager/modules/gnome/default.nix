@@ -18,7 +18,20 @@
     gnomeExtensions.just-perfection
     gnomeExtensions.gamemode-shell-extension
   ];
-
+  xdg.desktopEntries = {
+    zellij = {
+      name = "Zellij";
+      exec = "kitty zellij";
+      terminal = false;
+      categories = [ "Application" ];
+      icon = "/home/ad/.local/share/applications/zellij-icon.png";
+      actions = {
+        kitty = {
+          exec = "kitty";
+        };
+      };
+    };
+  };
   dconf = {
     enable = true;
     settings = {

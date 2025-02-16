@@ -39,7 +39,7 @@ in
     nh
     nix-output-monitor # for nh
     nvd # for nh
-
+    microfetch
     curl
     unzip
     zsh

@@ -26,7 +26,11 @@ layout {
   tab name="main" {
     pane split_direction="vertical" {
         pane size="60%"
-        pane size="40%"
+        pane size="40%" split_direction="horizontal" {
+          pane
+          pane command="microfetch" size="25%"
+        }
+
     }
   }
   tab name="second" {
