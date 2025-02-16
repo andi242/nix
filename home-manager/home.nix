@@ -34,7 +34,20 @@
   #     source = builtins.fetchGit "git+ssh://git@github.com/andi242/dotfiles.git"; # fetch with .ssh key
   #   };
   # };
-
+  xdg.desktopEntries = {
+    zellij = {
+      name = "Zellij";
+      exec = "kitty zellij";
+      terminal = false;
+      categories = [ "Application" ];
+      icon = "/home/ad/.local/share/applications/zellij-icon.png";
+      actions = {
+        kitty = {
+          exec = "kitty";
+        };
+      };
+    };
+  };
   programs = {
     home-manager.enable = true;
   };
