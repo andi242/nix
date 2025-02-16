@@ -10,6 +10,6 @@
   };
   xdg.configFile."zellij" = {
     source = ./zellij-config;
-    recursive = true;
+    recursive = true; # because we inject zellij plugins as well
   };
 }
