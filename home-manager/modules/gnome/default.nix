@@ -16,6 +16,7 @@
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.clipboard-history
     gnomeExtensions.just-perfection
+    gnomeExtensions.gamemode-shell-extension
   ];
 
   dconf = {
@@ -37,6 +38,7 @@
           quick-settings-audio-panel.extensionUuid
           launch-new-instance.extensionUuid
           "just-perfection-desktop@just-perfection"
+          "gamemodeshellextension@trsnaqe.com"
         ];
       };
       "org/gnome/desktop/input-sources" = {
@@ -50,11 +52,11 @@
         clock-menu-position-offset = 6;
       };
       "org/gnome/desktop/wm/keybindings" = {
-        close = ["<Super>q"];
+        close = [ "<Super>q" ];
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "kitty";
+        command = "kitty zellij";
         name = "Open Terminal";
       };
       "org/gnome/shell/extensions/system-monitor" = {
@@ -79,7 +81,7 @@
         font-antialiasing = "rgba";
         font-name = "GeistMono Nerd Font Propo 10";
         gtk-theme = "Adwaita-dark";
-        icon-theme = "Nordzy-purple-dark";
+        icon-theme = "Nordzy-dark";
         monospace-font-name = "GeistMono Nerd Font Propo Medium 12";
         toolkit-accessibility = false;
       };
