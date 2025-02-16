@@ -38,10 +38,7 @@
         modules = [
           ./modules/starship
           ./modules/zsh
-          ./modules/misc/kitty.nix
-        ];
-        home.packages = with pkgs; [
-          inputs.nixvim.packages.${system}.default
+          ./home.nix
         ];
       };
       # homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {

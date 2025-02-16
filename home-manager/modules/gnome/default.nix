@@ -3,9 +3,13 @@
   imports = [
     # ./finalscript.nix
     ./theme-tweaks.nix
+    ../misc/kitty.nix
   ];
 
   home.packages = with pkgs; [
+    discord
+    stow
+    nvtopPackages.amd
     dconf2nix
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell

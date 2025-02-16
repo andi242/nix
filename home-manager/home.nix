@@ -8,14 +8,9 @@
   imports = [
     ./modules/starship
     ./modules/zsh
-    ./modules/misc/kitty.nix
-    # ./modules/obs
   ];
 
   home.packages = with pkgs; [
-    discord
-    stow
-    nvtopPackages.amd
     inputs.nixvim.packages.${system}.default
   ];
 
