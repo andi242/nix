@@ -30,7 +30,7 @@
       steam
       mangohud
       lutris
-      #heroic
+      # heroic
       #bottles
       mesa
       lact

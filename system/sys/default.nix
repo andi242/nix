@@ -63,11 +63,11 @@ in
   imports = [
   ];
   # garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 10d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "daily";
+  #   options = "--delete-older-than 10d";
+  # };
 
   users.users.ad = {
     isNormalUser = true;
