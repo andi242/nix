@@ -1,7 +1,6 @@
 { lib, config, pkgs, home, ... }:
 {
   imports = [
-    # ./finalscript.nix
     ./theme-tweaks.nix
     ../misc/kitty.nix
   ];
@@ -11,6 +10,8 @@
     stow
     nvtopPackages.amd
     dconf2nix
+    # rclone
+    # rclone-browser
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge

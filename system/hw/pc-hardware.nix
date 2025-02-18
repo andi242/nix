@@ -27,6 +27,12 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/home" =
+    {
+      device = "/dev/disk/by-uuid/29f48a52-32a2-44bd-83d7-fef76a6ae61c";
+      fsType = "ext4";
+    };
+
   fileSystems."/home/ad/data" =
     {
       device = "/dev/disk/by-uuid/b01a3100-d51f-4a85-970b-e6555219b3ca";
@@ -41,6 +47,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
