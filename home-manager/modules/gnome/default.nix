@@ -20,8 +20,9 @@
     gnomeExtensions.appindicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.clipboard-history
-    gnomeExtensions.just-perfection
+    # gnomeExtensions.just-perfection
     gnomeExtensions.gamemode-shell-extension
+    gnomeExtensions.vitals
   ];
   dconf = {
     enable = true;
@@ -41,9 +42,31 @@
           status-icons.extensionUuid
           quick-settings-audio-panel.extensionUuid
           launch-new-instance.extensionUuid
-          "just-perfection-desktop@just-perfection"
+          # "just-perfection-desktop@just-perfection"
           "gamemodeshellextension@trsnaqe.com"
+          "Vitals@CoreCoding.com"
         ];
+      };
+      "org/gnome/shell/extensions/vitals" = {
+        alphabetize = false;
+        fixed-widths = true;
+        hide-icons = false;
+        hide-zeros = false;
+        hot-sensors = [ "_memory_usage_" "_temperature_gigabyte_wmi_temp6_" "_processor_usage_" ];
+        icon-style = 1;
+        include-static-gpu-info = true;
+        menu-centered = false;
+        position-in-panel = 2;
+        show-fan = false;
+        show-gpu = true;
+        show-network = false;
+        show-processor = true;
+        show-storage = false;
+        show-system = true;
+        show-temperature = true;
+        show-voltage = false;
+        storage-measurement = 1;
+        storage-path = "/";
       };
       "org/gnome/desktop/input-sources" = {
         show-all-sources = true;
@@ -91,14 +114,21 @@
       };
       "shell/extensions/dash-to-dock" = {
         always-center-icons = true;
-        background-opacity = 0.8;
+        apply-custom-theme = false;
+        background-color = "rgb(0,0,0)";
+        background-opacity = 0.0;
         click-action = "cycle-windows";
+        custom-background-color = false;
+        custom-theme-running-dots-border-color = "rgb(255,255,255)";
+        custom-theme-running-dots-color = "rgb(255,255,255)";
+        custom-theme-shrink = true;
         dash-max-icon-size = 48;
         dock-position = "BOTTOM";
         extend-height = false;
         height-fraction = 0.9;
         hot-keys = false;
         icon-size-fixed = false;
+        intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
         isolate-monitors = true;
         isolate-workspaces = false;
         middle-click-action = "launch";
@@ -106,13 +136,17 @@
         # preferred-monitor = -2;
         # preferred-monitor-by-connector = "DP-3";
         preview-size-scale = 8.0e-2;
+        running-indicator-dominant-color = true;
+        running-indicator-style = "DASHES";
         scroll-action = "switch-workspace";
         shift-click-action = "minimize";
         shift-middle-click-action = "launch";
         show-favorites = true;
         show-mounts = false;
-        show-mounts-only-mounted = true;
+        # show-mounts-only-mounted = true;
         show-running = true;
+        transparency-mode = "DEFAULT";
+        unity-backlit-items = false;
       };
       "org/gnome/desktop/wm/preferences" = {
         action-double-click-titlebar = "toggle-maximize";

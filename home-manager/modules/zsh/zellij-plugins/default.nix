@@ -27,8 +27,12 @@ in
   xdg.configFile."zellij/plugins/zellij-autolock.wasm".source = plugins.autolock;
   xdg.configFile."zellij/plugins/zjstatus.wasm".source = plugins.zjstatus;
 
-  # how to patch config?
   # looping over plugins {}?
+  # autoGroups = lib.mapAttrs' (
+  #   event: mappings: lib.nameValuePair "nixvim_binds_${event}" { clear = true; }
+  # ) plugins;
+
+  # how to patch config?
   # xdg.configfile = {
   #   (map
   #     (plugin: lib.nameValuePair "zellij/plugins/zellij-${plugin}.wasm" {
