@@ -8,6 +8,7 @@
   imports = [
     ./modules/starship
     ./modules/zsh
+    ./modules/obs
   ];
 
   home.packages = with pkgs; [

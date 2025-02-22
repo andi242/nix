@@ -8,11 +8,12 @@ in
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-pipewire-audio-capture
+      # wlrobs
+      # obs-pipewire-audio-capture
+      obs-vaapi
+      obs-vkcapture
       obs-shaderfilter
       obs-source-switcher
-      obs-tuna
       advanced-scene-switcher
       obs-composite-blur
       obs-gradient-source

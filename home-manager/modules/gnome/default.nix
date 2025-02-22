@@ -4,14 +4,12 @@
     ./theme-tweaks.nix
     ../misc/kitty.nix
   ];
-
+  # services.pulseeffects.enable = true;
   home.packages = with pkgs; [
     discord
     stow
     nvtopPackages.amd
     dconf2nix
-    # rclone
-    # rclone-browser
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
