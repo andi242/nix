@@ -13,13 +13,13 @@
   programs.steam.enable = true;
   # programs.steam.gamescopeSession.enable = true; #optional for scaling
   programs.gamemode.enable = true;
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-gnome
-  #     xdg-desktop-portal-gtk
-  #   ];
-  # };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
   environment.systemPackages =
@@ -31,7 +31,8 @@
       mangohud
       lutris
       # heroic
-      #bottles
+      # bottles
+      # libcamera # pulse might want it
       mesa
       lact
       gnome-tweaks
@@ -43,7 +44,6 @@
     (with pkgs-unstable; [
       # add
     ]);
-  # lact 
   systemd.packages = with pkgs; [ lact ];
   systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
