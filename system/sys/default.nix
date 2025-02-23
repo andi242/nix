@@ -52,6 +52,7 @@ in
     neovim
     lazygit
     kubectl
+    pavucontrol # for pipewire
   ];
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
