@@ -5,6 +5,7 @@
     ../misc/kitty.nix
   ];
   # services.pulseeffects.enable = true;
+
   home.packages = with pkgs; [
     discord
     stow
@@ -21,6 +22,8 @@
     # gnomeExtensions.just-perfection
     gnomeExtensions.gamemode-shell-extension
     gnomeExtensions.vitals
+    streamcontroller
+    gnomeExtensions.streamcontroller-integration
   ];
   dconf = {
     enable = true;
@@ -40,6 +43,7 @@
           status-icons.extensionUuid
           quick-settings-audio-panel.extensionUuid
           launch-new-instance.extensionUuid
+          streamcontroller-integration.extensionUuid
           # "just-perfection-desktop@just-perfection"
           "gamemodeshellextension@trsnaqe.com"
           "Vitals@CoreCoding.com"
