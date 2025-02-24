@@ -2,12 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "obs-stroke-glow-shadow";
-  version = "1.0.2";
+  version = "1.5.0";
   projUrl = "https://github.com/FiniteSingularity/obs-stroke-glow-shadow";
 
   src = fetchurl {
     url = "${projUrl}/releases/download/v${version}/obs-stroke-glow-shadow-${version}-ubuntu-22.04.tar.gz.zip";
-    hash = "sha256-QPbuIPQaCAOKHCSWEEMaspE7DWY+StgRzDPakEPuZ94="; # ubuntu 22.04 hash 
+    hash = "sha256-tMSzZMXjpCYXrw06TlRGKTvR/PnxzRvUeTv+/d67XnM=";
+    # ubuntu 22.04 hash 
   };
   dontBuild = true;
   nativeBuildInputs = [

@@ -3,7 +3,7 @@
 
 stdenv.mkDerivation rec {
   pname = "obs-stroke-glow-shadow";
-  version = "1.0.2";
+  version = "1.5.0";
   projUrl = "https://github.com/FiniteSingularity/obs-stroke-glow-shadow";
   #
   # src = fetchurl {
@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
     owner = "FiniteSingularity";
     repo = pname;
     rev = "refs/tags/v${version}";
-    hash = "sha256-aYt3miY71aikIq0SqHXglC/c/tI8yGkIo1i1wXxiTek=";
+    hash = "sha256-OwLMAX7zIJoDfSvbRRM5em0bLo3c5X2FYYEk8wCOUvs=";
   };
   buildInputs = [
     obs-studio
