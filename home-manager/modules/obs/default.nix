@@ -1,9 +1,9 @@
 { pkgs, ... }:
 let
-  obs-retro-effects = pkgs.callPackage ./plugins/obs-retro-effects.nix { };
-  obs-noise = pkgs.callPackage ./plugins/obs-noise.nix { };
-  obs-stroke-glow-shadow = pkgs.callPackage ./plugins/obs-stroke-glow-shadow-compile.nix { };
-  obs-source-dock = pkgs.callPackage ./plugins/obs-source-dock.nix { };
+  obs-retro-effects = pkgs.callPackage ./plugins/obs-retro-effects { };
+  obs-noise = pkgs.callPackage ./plugins/obs-noise { };
+  obs-stroke-glow-shadow = pkgs.callPackage ./plugins/obs-stroke-glow-shadow { };
+  obs-source-dock = pkgs.callPackage ./plugins/obs-source-dock { };
 in
 {
   programs.obs-studio = {
