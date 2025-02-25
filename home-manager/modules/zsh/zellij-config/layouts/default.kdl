@@ -19,9 +19,9 @@ layout {
     }
     children
 
-   //pane size=1 borderless=true {
-   //    plugin location="zellij:status-bar"
-   //}
+   pane size=1 borderless=true {
+       plugin location="zellij:status-bar"
+   }
   }
   tab name="main" {
     pane split_direction="vertical" {

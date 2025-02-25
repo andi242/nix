@@ -1,5 +1,5 @@
 # https://github.com/fresh2dev/zellij-autolock
-# https://github.com/h1romas4/zellij-datetime
+# https://github.com/dj95/zjstatus
 
 { fetchurl, ... }:
 let
