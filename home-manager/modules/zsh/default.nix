@@ -7,6 +7,7 @@ let
     gs = "git status";
     grep = "grep --color";
     mkdir = "mkdir -p";
+    vc = "vi ~/gits/nix";
   };
 in
 {
