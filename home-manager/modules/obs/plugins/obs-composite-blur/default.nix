@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
     owner = "FiniteSingularity";
     repo = "obs-composite-blur";
     rev = "refs/tags/v${version}";
-    hash = "sha256-D9vGXCrmQ8IDRmL8qZ1ZBiOz9AjhKm45W37zC16kRCk=";
+    hash = "sha256-/fGLsbChaxhnBBwVJXEGRcjni80p9lI5no45nrp2csM=";
   };
 
   buildInputs = [

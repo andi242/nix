@@ -32,7 +32,7 @@
       lutris
       # heroic
       # bottles
-      # libcamera # pulse might want it
+      libcamera # pulse might want it
       mesa
       lact
       gnome-tweaks
