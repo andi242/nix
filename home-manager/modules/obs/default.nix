@@ -5,6 +5,7 @@ let
   obs-stroke-glow-shadow = pkgs.callPackage ./plugins/obs-stroke-glow-shadow { };
   obs-source-dock = pkgs.callPackage ./plugins/obs-source-dock { };
   obs-composite-blur = pkgs.callPackage ./plugins/obs-composite-blur { };
+  obs-advanced-masks = pkgs.callPackage ./plugins/obs-advanced-masks { };
 in
 {
   programs.obs-studio = {
@@ -29,6 +30,7 @@ in
       obs-stroke-glow-shadow
       obs-noise
       obs-source-dock
+      obs-advanced-masks
     ];
   };
-} 
+}
