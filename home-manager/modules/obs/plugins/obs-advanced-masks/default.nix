@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "A collection of OBS filters to give your stream that retro feel.";
+    description = " Advanced Masking Plugin for OBS.";
     homepage = "https://github.com/FiniteSingularity/obs-retro-effects";
     license = licenses.gpl2Only;
     maintainers = [ "andi242" ];

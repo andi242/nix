@@ -7,13 +7,14 @@
 }:
 stdenv.mkDerivation rec {
   pname = "obs-composite-blur";
-  version = "1.5.0";
+  version = "1.5.1";
 
   src = fetchFromGitHub {
     owner = "FiniteSingularity";
     repo = "obs-composite-blur";
     rev = "refs/tags/v${version}";
-    hash = "sha256-/fGLsbChaxhnBBwVJXEGRcjni80p9lI5no45nrp2csM=";
+    hash = "sha256-12wgzZxEoEUKqGGmccZKfcdE0libBJDZ1EzwxRPLURc=";
+    # hash = "sha256-/fGLsbChaxhnBBwVJXEGRcjni80p9lI5no45nrp2csM=";
   };
 
   buildInputs = [
@@ -29,7 +30,6 @@ stdenv.mkDerivation rec {
     mkdir -p "$out/share/obs"
     mv "$out/data/obs-plugins" "$out/share/obs"
     rm -rf "$out/obs-plugins" "$out/data"
-    ls -lahR $out/share/obs/obs-plugins
   '';
 
   meta = with lib; {
