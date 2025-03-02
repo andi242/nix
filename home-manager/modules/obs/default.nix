@@ -6,6 +6,7 @@ let
   obs-source-dock = pkgs.callPackage ./plugins/obs-source-dock { };
   obs-composite-blur = pkgs.callPackage ./plugins/obs-composite-blur { };
   obs-advanced-masks = pkgs.callPackage ./plugins/obs-advanced-masks { };
+  # nix-build -E 'with import <nixpkgs>  {}; callPackage ./obs-composite-blur {}'
 in
 {
   programs.obs-studio = {
