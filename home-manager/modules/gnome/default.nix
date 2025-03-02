@@ -47,7 +47,13 @@
           # "just-perfection-desktop@just-perfection"
           "gamemodeshellextension@trsnaqe.com"
           "Vitals@CoreCoding.com"
+          "appindicatorsupport@rgcjonas.gmail.com"
         ];
+      };
+      "org/gnome/shell/extensions/appindicator" = {
+        icon-size = 24;
+        legacy-tray-enabled = true;
+        tray-pos = "right";
       };
       "org/gnome/shell/extensions/vitals" = {
         alphabetize = false;
