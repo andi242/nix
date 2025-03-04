@@ -3,14 +3,14 @@
   imports = [
     ./theme-tweaks.nix
     ../misc/kitty.nix
+    ./firefox.nix
   ];
-  # services.pulseeffects.enable = true;
-
   home.packages = with pkgs; [
     discord
     stow
     nvtopPackages.amd
     dconf2nix
+    ytmdesktop
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
