@@ -30,17 +30,17 @@
           ./modules/gnome
         ];
       };
-      homeConfigurations."wsl" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./modules/starship
-          ./modules/zsh
-          ./home.nix
-        ];
-      };
+      # homeConfigurations."wsl" = home-manager.lib.homeManagerConfiguration {
+      #   inherit pkgs;
+      #   extraSpecialArgs = {
+      #     inherit inputs;
+      #   };
+      #   modules = [
+      #     ./modules/starship
+      #     ./modules/zsh
+      #     ./home.nix
+      #   ];
+      # };
       # homeConfigurations."ad-hl" = home-manager.lib.homeManagerConfiguration {
       #   inherit pkgs;
       #   modules = [ 
