@@ -10,6 +10,7 @@
     stow
     nvtopPackages.amd
     dconf2nix
+    ffmpeg-full
     ytmdesktop
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell

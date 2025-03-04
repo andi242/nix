@@ -52,8 +52,7 @@ in
     neovim
     lazygit
     kubectl
-    # pavucontrol # for pipewire
-    helvum
+    usbutils
   ];
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
@@ -63,6 +62,7 @@ in
   ];
 
   imports = [
+    # ./fprint.nix
   ];
   # garbage collection
   # nix.gc = {

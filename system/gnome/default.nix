@@ -4,6 +4,7 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.displayManager.gdm.enable = true;
@@ -30,18 +31,27 @@
       steam
       mangohud
       lutris
+      (lutris.override {
+        extraPkgs = pkgs: [
+          winetricks
+          wineWowPackages.stable
+        ];
+      })
       # heroic
       # bottles
-      libcamera # pulse might want it
+      libcamera # wireplumber might want it
       mesa
       lact
       gnome-tweaks
       gnome-themes-extra
+      gnome-extension-manager
       nordzy-icon-theme
       bibata-cursors
       wl-clipboard
+      easyeffects
     ]) ++
-    (with pkgs-unstable; [
+    (with pkgs-unstable;
+    [
       # add
     ]);
   systemd.packages = with pkgs; [ lact ];
