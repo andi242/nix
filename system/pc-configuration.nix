@@ -9,12 +9,19 @@
       # /etc/nixos/hardware-configuration.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
+    kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
+  };
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=30s
+  '';
   networking.hostName = "nixos-pc";
   networking.networkmanager.enable = true;
-
 
   time.timeZone = "Europe/Berlin";
 

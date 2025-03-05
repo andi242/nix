@@ -35,11 +35,10 @@ in
     wget
     fzf
     tree
-    # nix helpers
-    nh
+    nh # nix helper
     nix-output-monitor # for nh
     nvd # for nh
-    microfetch
+    # microfetch
     curl
     unzip
     zsh
