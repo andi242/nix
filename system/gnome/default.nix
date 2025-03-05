@@ -1,16 +1,20 @@
 { lib, services, pkgs, config, pkgs-unstable, ... }:
+let
+  lact = pkgs.callPackage ./lact.nix { };
+in
 {
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+    excludePackages = [ pkgs.xterm ];
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  services.xserver.excludePackages = [ pkgs.xterm ];
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.GTK_THEME_VARIANT = "dark";
+
   programs.steam.enable = true;
   # programs.steam.gamescopeSession.enable = true; #optional for scaling
   programs.gamemode.enable = true;
@@ -23,6 +27,10 @@
   };
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    GTK_THEME_VARIANT = "dark";
+  };
   environment.systemPackages =
     (with pkgs; [
       btop
@@ -42,6 +50,8 @@
       libcamera # wireplumber might want it
       mesa
       lact
+      # corectrl
+      furmark
       gnome-tweaks
       gnome-themes-extra
       gnome-extension-manager
@@ -54,15 +64,25 @@
     [
       # add
     ]);
-  systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
-
-  environment.gnome.excludePackages = (with pkgs; [
+  # systemd.packages = with pkgs; [ lact ];
+  # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  # for 0.7.0:
+  systemd.services.lactd = {
+    description = "AMDGPU Control Daemon";
+    enable = true;
+    serviceConfig = {
+      ExecStart = "/run/current-system/sw/bin/lact daemon";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+  # programs.corectrl.enable = true;
+  environment.gnome.excludePackages = with pkgs; [
     atomix
     cheese
     epiphany
     evince
-    geary
+    # geary
+    # gnome-calendar
     gnome-characters
     gnome-text-editor
     gnome-user-docs
@@ -71,7 +91,6 @@
     gnome-terminal
     gnome-console
     gnome-weather
-    gnome-calendar
     gnome-remote-desktop
     gnome-connections
     gnome-contacts
@@ -81,5 +100,5 @@
     iagno
     tali
     totem
-  ]);
+  ];
 }
