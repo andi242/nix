@@ -5,7 +5,6 @@ let
   };
 in
 {
-  # some config
   nixpkgs.config.allowUnfree = true;
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;

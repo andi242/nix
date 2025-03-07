@@ -1,7 +1,7 @@
 { lib, services, pkgs, config, pkgs-unstable, ... }:
-let
-  lact = pkgs.callPackage ./lact.nix { };
-in
+# let
+#   lact = pkgs.callPackage ./lact.nix { };
+# in
 {
   services.xserver = {
     enable = true;
@@ -38,7 +38,7 @@ in
       jq
       steam
       mangohud
-      lutris
+      # lutris
       (lutris.override {
         extraPkgs = pkgs: [
           winetricks
@@ -49,7 +49,7 @@ in
       # bottles
       libcamera # wireplumber might want it
       mesa
-      lact
+      (callPackage ./lact.nix { })
       # corectrl
       furmark
       gnome-tweaks
