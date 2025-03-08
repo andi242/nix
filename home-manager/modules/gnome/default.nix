@@ -3,7 +3,6 @@
   imports = [
     ./theme-tweaks.nix
     ../misc/kitty.nix
-    # ./firefox.nix
     ./librewolf.nix
   ];
   home.packages = with pkgs; [

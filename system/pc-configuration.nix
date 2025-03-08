@@ -29,28 +29,13 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    # pulseaudio = false;
   };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true; ### Optional, but awesome to have
+    jack.enable = true;
   };
-  # hardware.pulseaudio.enable = false;
-
-  # # https://discourse.nixos.org/t/pipewire-without-pulseaudio/58801/4
-  # # disable pipewire/wireplumber crap
-  # nixpkgs.config.allowUnfree = true;
-  # services.pipewire = {
-  #   enable = lib.mkForce false;
-  #   # pulse.enable = false;
-  # };
-  # hardware.pulseaudio.enable = true;
-  # hardware.pulseaudio.support32Bit = true;
-  # nixpkgs.config.pulseaudio = true;
-  # # # hardware.pulseaudio.extraConfig = "load-module module-combine-sink";
-
   system.stateVersion = "24.11";
 }

@@ -37,7 +37,6 @@ in
     nh # nix helper
     nix-output-monitor # for nh
     nvd # for nh
-    # microfetch
     curl
     unzip
     zsh
@@ -45,7 +44,6 @@ in
     home-manager
     gcc
     bat
-    bitwarden-cli
     openssl
     neovim
     lazygit

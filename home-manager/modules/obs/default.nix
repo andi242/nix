@@ -1,13 +1,6 @@
 { pkgs, ... }:
-let
-  obs-retro-effects = pkgs.callPackage ./plugins/obs-retro-effects { };
-  obs-noise = pkgs.callPackage ./plugins/obs-noise { };
-  obs-stroke-glow-shadow = pkgs.callPackage ./plugins/obs-stroke-glow-shadow { };
-  obs-source-dock = pkgs.callPackage ./plugins/obs-source-dock { };
-  obs-composite-blur = pkgs.callPackage ./plugins/obs-composite-blur { };
-  obs-advanced-masks = pkgs.callPackage ./plugins/obs-advanced-masks { };
-  # nix-build -E 'with import <nixpkgs>  {}; callPackage ./obs-composite-blur {}'
-in
+
+#   # nix-build -E 'with import <nixpkgs>  {}; callPackage ./obs-composite-blur {}'
 {
   programs.obs-studio = {
     enable = true;
@@ -26,12 +19,12 @@ in
       obs-source-record
       waveform
       # built plugins
-      obs-composite-blur
-      obs-retro-effects
-      obs-stroke-glow-shadow
-      obs-noise
-      obs-source-dock
-      obs-advanced-masks
+      (pkgs.callPackage ./plugins/obs-composite-blur { })
+      (pkgs.callPackage ./plugins/obs-retro-effects { })
+      (pkgs.callPackage ./plugins/obs-stroke-glow-shadow { })
+      (pkgs.callPackage ./plugins/obs-noise { })
+      (pkgs.callPackage ./plugins/obs-source-dock { })
+      (pkgs.callPackage ./plugins/obs-advanced-masks { })
     ];
   };
 }
