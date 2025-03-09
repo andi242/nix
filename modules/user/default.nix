@@ -1,17 +1,15 @@
 { lib, pkgs, inputs, ... }:
 {
   imports = [
-    ./misc/gnome-settings.nix
-    ./zsh
     ./obs
+    ./zsh
+    ./misc/gnome-settings.nix
     ./misc/kitty.nix
     ./misc/librewolf.nix
   ];
 
   home.packages = with pkgs; [
-    vesktop
     discord
-    stow
     nvtopPackages.amd
     dconf2nix
     ffmpeg-full

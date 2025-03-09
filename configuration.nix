@@ -5,12 +5,11 @@
   nixpkgs.config.allowUnfree = true;
   imports =
     [
-      # ./modules/system/vm # install os first, then copy, then uncomment!
+      # ./modules/system/vm # install os first, then copy hardware.nix , then uncomment!
       ./modules/system/gnome
       ./modules/system/pc
       # or with --impure
       # /etc/nixos/hardware-configuration.nix
-      # inputs.home-manager.nixosModules.default
     ];
 
   boot = {
