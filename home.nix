@@ -16,7 +16,7 @@
       ".config/nvim/snippets/nix.json".source = ./modules/user/misc/snippets-nix.json;
     };
     sessionVariables = {
-      FLAKE = "/home/ad/gits/nix/system";
+      FLAKE = "/home/ad/gits/nix";
       NIXOS_OZONE_WL = "1";
       GTK_THEME_VARIANT = "dark";
     };
