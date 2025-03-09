@@ -17,17 +17,17 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "lact";
-  version = "0.7.0";
+  version = "0.7.1";
 
   src = fetchFromGitHub {
     owner = "ilya-zlobintsev";
     repo = "LACT";
     rev = "v${version}";
-    hash = "sha256-9Enht9bwvk1jHYHRDPSUtwRxPGbPlU3V0hv0CuCOCls=";
+    hash = "sha256-zaN6CQSeeoYFxLO6E1AMKAjeNOcPi2OsGfYkvZLPKcw=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-Tw3yOu1pZJxjbg5fpOgWA46qbigq4hTIKh9eOXjAtBU=";
+  cargoHash = "sha256-Ipvu/eu0uI/WKYyVjjHLlg0O0EgzfuTvMmr4gTzDRxw=";
 
   nativeBuildInputs = [
     blueprint-compiler
@@ -44,6 +44,7 @@ rustPlatform.buildRustPackage rec {
     hwdata
   ];
 
+  # we do this here so that the binary is usable during integration tests
   RUSTFLAGS = lib.optionalString stdenv.targetPlatform.isElf (
     lib.concatStringsSep " " [
       "-C link-arg=-Wl,-rpath,${
@@ -62,17 +63,6 @@ rustPlatform.buildRustPackage rec {
     "--skip=app::pages::thermals_page::fan_curve_frame::tests::set_get_curve"
   ];
 
-  patchPhase = ''
-    # read() looks for the database in /usr/share
-    sed -i 's/Database::read()/Database::read_from_file("${
-      lib.replaceStrings [ "/" ] [ "\\/" ] "${hwdata}/share/hwdata/pci.ids"
-    }")/g' lact-daemon/src/server/handler.rs
-
-    # test data is probably incorrect for these since the other intel tests pass
-    rm -r lact-daemon/src/tests/data/intel/a380-xe
-    rm -r lact-daemon/src/tests/data/intel/a380-i915
-  '';
-
   postPatch = ''
     substituteInPlace lact-daemon/src/server/system.rs \
       --replace-fail 'Command::new("uname")' 'Command::new("${coreutils}/bin/uname")'
@@ -82,6 +72,10 @@ rustPlatform.buildRustPackage rec {
 
     substituteInPlace res/io.github.lact-linux.desktop \
       --replace-fail Exec={lact,$out/bin/lact}
+
+    # read() looks for the database in /usr/share so we use read_from_file() instead
+    substituteInPlace lact-daemon/src/server/handler.rs \
+      --replace-fail 'Database::read()' 'Database::read_from_file("${hwdata}/share/hwdata/pci.ids")'
   '';
 
   postInstall = ''
