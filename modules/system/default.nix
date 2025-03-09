@@ -1,29 +1,27 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   aliases = {
     cat = "bat --paging=never";
   };
 in
 {
-  nixpkgs.config.allowUnfree = true;
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
 
-  virtualisation.libvirtd.enable = true;
   programs = {
-    virt-manager.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-    };
     zsh = {
       enable = true;
       shellAliases = aliases;
     };
   };
   services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   # system packages
   environment.systemPackages = with pkgs; [
@@ -72,6 +70,7 @@ in
     extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
   };
+
   security.sudo.extraRules = [
     { groups = [ "wheel" ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }
   ];

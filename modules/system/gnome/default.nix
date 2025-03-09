@@ -1,7 +1,4 @@
-{ lib, services, pkgs, config, pkgs-unstable, ... }:
-# let
-#   lact = pkgs.callPackage ./lact.nix { };
-# in
+{ inputs, lib, pkgs, config, pkgs-unstable, ... }:
 {
   services.xserver = {
     enable = true;
@@ -14,23 +11,17 @@
     enable = true;
     enable32Bit = true;
   };
-
+  imports = [
+  ];
   programs.steam.enable = true;
   # programs.steam.gamescopeSession.enable = true; #optional for scaling
   programs.gamemode.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
-    ];
-  };
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    GTK_THEME_VARIANT = "dark";
-  };
+  # environment.sessionVariables = {
+  #   NIXOS_OZONE_WL = "1";
+  #   GTK_THEME_VARIANT = "dark";
+  # };
   environment.systemPackages =
     (with pkgs; [
       btop
@@ -50,7 +41,6 @@
       libcamera # wireplumber might want it
       mesa
       (callPackage ./lact.nix { })
-      # corectrl
       furmark
       gnome-tweaks
       gnome-themes-extra

@@ -1,17 +1,14 @@
-{ lib, config, pkgs, home, ... }:
+{ lib, pkgs, inputs, ... }:
 {
-  imports = [
-    ./theme-tweaks.nix
-    ../misc/kitty.nix
-    ./librewolf.nix
-  ];
+
+  home.file = {
+    ".themes/theme-tweaks/gnome-shell/gnome-shell.css".text = ''
+       #panel {
+        font-size: 20px;
+      }
+    '';
+  };
   home.packages = with pkgs; [
-    discord
-    stow
-    nvtopPackages.amd
-    dconf2nix
-    ffmpeg-full
-    ytmdesktop
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
@@ -23,7 +20,6 @@
     # gnomeExtensions.just-perfection
     gnomeExtensions.gamemode-shell-extension
     gnomeExtensions.vitals
-    streamcontroller
     gnomeExtensions.streamcontroller-integration
   ];
   dconf = {
@@ -35,7 +31,7 @@
           blur-my-shell.extensionUuid
           system-monitor.extensionUuid
           dash-to-dock.extensionUuid
-          forge.extensionUuid
+          # forge.extensionUuid
           space-bar.extensionUuid
           tweaks-in-system-menu.extensionUuid
           clipboard-history.extensionUuid

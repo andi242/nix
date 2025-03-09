@@ -11,7 +11,10 @@ let
   };
 in
 {
-  imports = [ ./zellij.nix ];
+  imports = [
+    ./zellij.nix
+    ./starship
+  ];
   programs.git = {
     enable = true;
     userName = "andi242";

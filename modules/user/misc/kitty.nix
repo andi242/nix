@@ -1,6 +1,5 @@
 { pkgs, inputs, ... }:
 {
-  # init nixfile: git add!
   programs.kitty = {
     enable = true;
     settings = {

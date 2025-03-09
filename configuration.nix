@@ -2,11 +2,15 @@
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
   imports =
     [
-      ./hw/pc-hardware.nix # install os first, then copy, then uncomment!
+      # ./modules/system/vm # install os first, then copy, then uncomment!
+      ./modules/system/gnome
+      ./modules/system/pc
       # or with --impure
       # /etc/nixos/hardware-configuration.nix
+      # inputs.home-manager.nixosModules.default
     ];
 
   boot = {
@@ -27,9 +31,6 @@
 
   security.rtkit.enable = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -37,5 +38,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
   system.stateVersion = "24.11";
 }
