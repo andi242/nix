@@ -6,6 +6,7 @@
     ./misc/gnome-settings.nix
     ./misc/kitty.nix
     ./misc/librewolf.nix
+    ./services/nix-optimize.nix
   ];
 
   home.packages = with pkgs; [
