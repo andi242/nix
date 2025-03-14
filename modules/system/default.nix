@@ -1,7 +1,8 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, pkgs-unstable, ... }:
 let
   aliases = {
-    cat = "bat --paging=never";
+    cat = "bat -pp";
+    dff = "${pkgs.duf}/bin/duf --hide-fs tmpfs,devtmpfs,efivarfs --hide-mp '/nix/store' --output mountpoint,avail,used,usage --theme ansi";
   };
 in
 {
@@ -24,7 +25,8 @@ in
   };
 
   # system packages
-  environment.systemPackages = with pkgs; [
+  documentation.doc.enable = false; # no html docs
+  environment.systemPackages = (with pkgs; [
     unzip
     podman
     fontconfig
@@ -35,8 +37,8 @@ in
     nh # nix helper
     nix-output-monitor # for nh
     nvd # for nh
+    duf # du in nice
     curl
-    unzip
     zsh
     starship
     home-manager
@@ -44,10 +46,16 @@ in
     bat
     openssl
     neovim
+    nfs-utils
     lazygit
     kubectl
     usbutils
-  ];
+  ]) ++
+  (with pkgs-unstable;
+  [
+    # add
+  ]);
+
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })

@@ -36,6 +36,7 @@
           wineWowPackages.stable
         ];
       })
+      #     winetricks
       # heroic
       # bottles
       libcamera # wireplumber might want it
