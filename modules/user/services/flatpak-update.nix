@@ -13,7 +13,11 @@
   systemd.user.services."flatpak-update" = {
     Unit.Description = "daily flatpak-update";
     Service = {
-      ExecStart = "${pkgs.flatpak}/bin/flatpak update --assumeyes";
+      # ExecStart = "${pkgs.flatpak}/bin/flatpak update --assumeyes";
+      ExecStart = "${ pkgs.writeShellScript "flatpak-update" ''
+        sleep 30
+        ${pkgs.flatpak}/bin/flatpak update --assumeyes
+      ''}";
       Type = "oneshot";
     };
     Install.WantedBy = [ "default.target" ];
