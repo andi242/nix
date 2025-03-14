@@ -1,7 +1,7 @@
 { inputs, lib, pkgs, config, pkgs-unstable, ... }:
 {
   services.xserver = {
-    enable = true;
+    enable = false;
     videoDrivers = [ "amdgpu" ];
     excludePackages = [ pkgs.xterm ];
     displayManager.gdm.enable = true;
@@ -13,9 +13,12 @@
   };
   imports = [
   ];
-  programs.steam.enable = true;
-  # programs.steam.gamescopeSession.enable = true; #optional for scaling
-  programs.gamemode.enable = true;
+  programs = {
+    steam.enable = true;
+    # programs.steam.gamescopeSession.enable = true; #optional for scaling
+    gamemode.enable = true;
+    evolution.enable = true;
+  };
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
   # environment.sessionVariables = {
@@ -29,14 +32,15 @@
       jq
       steam
       mangohud
-      # lutris
-      (lutris.override {
-        extraPkgs = pkgs: [
-          winetricks
-          wineWowPackages.stable
-        ];
-      })
+      lutris
+      winetricks
+      wineWowPackages.stable
+      # (lutris.override {
+      #   extraPkgs = pkgs: [
       #     winetricks
+      #     wineWowPackages.stable
+      #   ];
+      # })
       # heroic
       # bottles
       libcamera # wireplumber might want it
@@ -62,6 +66,7 @@
     description = "AMDGPU Control Daemon";
     enable = true;
     serviceConfig = {
+      # this path because we don't use pkgs.lact
       ExecStart = "/run/current-system/sw/bin/lact daemon";
     };
     wantedBy = [ "multi-user.target" ];
