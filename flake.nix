@@ -39,6 +39,7 @@
                   users.ad = import ./home.nix;
                   extraSpecialArgs = {
                     inherit inputs;
+                    inherit pkgs-unstable;
                   };
                 };
             }
