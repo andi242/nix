@@ -16,6 +16,9 @@ in
     };
   };
   services.flatpak.enable = true;
+  services.journald.extraConfig = ''
+    SystemMaxUse=1G
+  '';
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
