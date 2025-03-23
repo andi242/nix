@@ -54,10 +54,12 @@
       bibata-cursors
       wl-clipboard
       easyeffects
+      helvum
     ]) ++
     (with pkgs-unstable;
     [
       # add
+      # mesa
     ]);
   # systemd.packages = with pkgs; [ lact ];
   # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
