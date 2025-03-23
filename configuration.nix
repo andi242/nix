@@ -21,10 +21,16 @@
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
   systemd.extraConfig = ''
-    DefaultTimeoutStopSec=30s
+    DefaultTimeoutStopSec=40s
   '';
-  networking.hostName = "nixos-pc";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos-pc";
+    networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      logRefusedConnections = false;
+    };
+  };
 
   time.timeZone = "Europe/Berlin";
 
