@@ -35,13 +35,6 @@
       lutris
       winetricks
       wineWowPackages.stable
-      # (lutris.override {
-      #   extraPkgs = pkgs: [
-      #     winetricks
-      #     wineWowPackages.stable
-      #   ];
-      # })
-      # heroic
       # bottles
       libcamera # wireplumber might want it
       mesa
@@ -59,7 +52,6 @@
     (with pkgs-unstable;
     [
       # add
-      # mesa
     ]);
   # systemd.packages = with pkgs; [ lact ];
   # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
