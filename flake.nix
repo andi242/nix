@@ -45,6 +45,28 @@
             }
           ];
         };
+        nixos-mac = lib.nixosSystem {
+          specialArgs = { inherit inputs system pkgs-unstable; };
+          modules = [
+            ./configuration-mac.nix
+            ./modules/system
+            home-manager.nixosModules.home-manager
+            {
+              # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
+              home-manager =
+                {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  services.obs = false;
+                  users.ad = import ./home.nix;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    inherit pkgs-unstable;
+                  };
+                };
+            }
+          ];
+        };
       };
     };
 }
