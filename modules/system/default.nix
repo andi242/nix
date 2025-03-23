@@ -17,7 +17,7 @@ in
   };
   services.flatpak.enable = true;
   services.journald.extraConfig = ''
-    SystemMaxUse=1G
+    SystemMaxUse=300M
   '';
   xdg.portal = {
     enable = true;
@@ -70,11 +70,15 @@ in
     # ./fprint.nix
   ];
   # garbage collection
-  # nix.gc = {
-  #   automatic = true;
-  #   dates = "daily";
-  #   options = "--delete-older-than 10d";
-  # };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  nix.optimise = {
+    automatic = true;
+    dates = [ "7d" ];
+  };
 
   users.users.ad = {
     isNormalUser = true;
