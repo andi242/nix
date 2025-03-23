@@ -57,7 +57,6 @@
                 {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  services.obs = false;
                   users.ad = import ./home.nix;
                   extraSpecialArgs = {
                     inherit inputs;
