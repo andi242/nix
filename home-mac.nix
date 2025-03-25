@@ -10,6 +10,7 @@
       nh # nix helper
       nix-output-monitor # for nh
       nvd # for nh
+      geist-font
     ];
 
   };
