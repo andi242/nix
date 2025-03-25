@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+{ lib, pkgs, inputs, config, ... }:
 {
   imports = [
     ./obs
@@ -16,5 +16,10 @@
     ffmpeg-full
     ytmdesktop
     streamcontroller
+    home-manager
+    nh # nix helper
+    nix-output-monitor # for nh
+    nvd # for nh
+    duf # du in nice
   ];
 }

@@ -23,6 +23,15 @@
       nixvim = nixvim.legacyPackages.${system};
     in
     {
+      homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs system pkgs-unstable;
+        };
+        modules = [
+          ./home-mac.nix
+        ];
+      };
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable; };
@@ -44,15 +53,6 @@
                   };
                 };
             }
-          ];
-        };
-        homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./home-mac.nix
           ];
         };
         nixos-mac = lib.nixosSystem {

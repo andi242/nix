@@ -11,7 +11,6 @@
       # or with --impure
       # /etc/nixos/hardware-configuration.nix
     ];
-
   boot = {
     loader = {
       systemd-boot.enable = true;
