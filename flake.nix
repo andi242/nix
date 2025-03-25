@@ -36,13 +36,23 @@
                 {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.ad = import ./home.nix;
+                  backupFileExtension = "bak";
+                  users.ad = import ./home-pc.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;
                   };
                 };
             }
+          ];
+        };
+        homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./home-mac.nix
           ];
         };
         nixos-mac = lib.nixosSystem {
@@ -57,7 +67,11 @@
                 {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.ad = import ./home.nix;
+                  backupFileExtension = "bak";
+                  users.ad = {
+                    import = ./home-mac.nix;
+                    userconf = { obs.enable = false; };
+                  };
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;

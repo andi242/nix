@@ -37,14 +37,14 @@ in
     wget
     fzf
     tree
-    nh # nix helper
-    nix-output-monitor # for nh
-    nvd # for nh
-    duf # du in nice
+    # home-manager
+    # nh # nix helper
+    # nix-output-monitor # for nh
+    # nvd # for nh
+    # duf # du in nice
     curl
     zsh
     starship
-    home-manager
     gcc
     bat
     openssl
@@ -53,6 +53,7 @@ in
     lazygit
     kubectl
     usbutils
+    pciutils
   ]) ++
   (with pkgs-unstable;
   [
