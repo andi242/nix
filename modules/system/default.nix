@@ -37,20 +37,11 @@ in
     wget
     fzf
     tree
-    # home-manager
-    # nh # nix helper
-    # nix-output-monitor # for nh
-    # nvd # for nh
-    # duf # du in nice
     curl
-    zsh
-    starship
     gcc
-    bat
     openssl
     neovim
     nfs-utils
-    lazygit
     kubectl
     usbutils
     pciutils

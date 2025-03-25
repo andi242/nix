@@ -1,10 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let
-  cfg = config.mymodule;
+  cfg = config.userconf;
 in
+# https://nixos.wiki/wiki/NixOS_modules
 {
   options = {
-    mymodule = {
+    userconf = {
       text = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -12,9 +13,9 @@ in
     };
   };
   config = lib.mkIf cfg.text {
-    environment.sessionVariables = {
+    home.sessionVariables = {
       BLA = "blubb";
     };
-
+    home.file.".config/test.txt".text = "blafasel";
   };
 }

@@ -6,5 +6,11 @@
 
   userconf = {
     obs.enable = true;
+    userPkgs = with pkgs; [
+      nvtopPackages.amd
+      ytmdesktop
+      streamcontroller
+      discord
+    ];
   };
 }
