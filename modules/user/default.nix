@@ -30,10 +30,6 @@ in
       starship
       zsh
       lazygit
-      home-manager
-      nh # nix helper
-      nix-output-monitor # for nh
-      nvd # for nh
       duf # du in nice
     ] ++ cfg.userPkgs;
   };
