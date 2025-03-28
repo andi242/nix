@@ -68,9 +68,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "bak";
-                  users.ad = {
-                    import = ./home-mac.nix;
-                  };
+                  users.ad = import ./home-mac.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;
