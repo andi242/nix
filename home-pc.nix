@@ -6,6 +6,7 @@
 
   userconf = {
     obs.enable = true;
+    zellij.enable = true;
     userPkgs = with pkgs; [
       nvtopPackages.amd
       ytmdesktop
