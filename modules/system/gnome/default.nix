@@ -11,35 +11,21 @@
     enable = true;
     enable32Bit = true;
   };
-  imports = [
-  ];
-  programs = {
-    steam.enable = true;
-    # programs.steam.gamescopeSession.enable = true; #optional for scaling
-    gamemode.enable = true;
-    evolution.enable = true;
-  };
+  imports = [ ];
+  # programs = {
+  #   steam.enable = true;
+  #   # programs.steam.gamescopeSession.enable = true; #optional for scaling
+  #   gamemode.enable = true;
+  #   evolution.enable = true;
+  # };
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
-  # environment.sessionVariables = {
-  #   NIXOS_OZONE_WL = "1";
-  #   GTK_THEME_VARIANT = "dark";
-  # };
+
   environment.systemPackages =
     (with pkgs; [
       btop
       kitty
       jq
-      steam
-      mangohud
-      lutris
-      winetricks
-      wineWowPackages.stable
-      # bottles
-      libcamera # wireplumber might want it
-      mesa
-      (callPackage ./lact.nix { })
-      furmark
       gnome-tweaks
       gnome-themes-extra
       gnome-extension-manager
@@ -53,19 +39,16 @@
     [
       # add
     ]);
-  # systemd.packages = with pkgs; [ lact ];
-  # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
   # for 0.7.0:
-  systemd.services.lactd = {
-    description = "AMDGPU Control Daemon";
-    enable = true;
-    serviceConfig = {
-      # this path because we don't use pkgs.lact
-      ExecStart = "/run/current-system/sw/bin/lact daemon";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-  # programs.corectrl.enable = true;
+  # systemd.services.lactd = {
+  #   description = "AMDGPU Control Daemon";
+  #   enable = true;
+  #   serviceConfig = {
+  #     # this path because we don't use pkgs.lact
+  #     ExecStart = "/run/current-system/sw/bin/lact daemon";
+  #   };
+  #   wantedBy = [ "multi-user.target" ];
+  # };
   environment.gnome.excludePackages = with pkgs; [
     atomix
     cheese
