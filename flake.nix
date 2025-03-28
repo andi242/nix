@@ -70,7 +70,6 @@
                   backupFileExtension = "bak";
                   users.ad = {
                     import = ./home-mac.nix;
-                    userconf = { obs.enable = false; };
                   };
                   extraSpecialArgs = {
                     inherit inputs;

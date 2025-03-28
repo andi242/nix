@@ -6,13 +6,13 @@
 
   userconf = {
     obs.enable = false;
-    userPkgs = with pkgs; [
-      nh # nix helper
-      nix-output-monitor # for nh
-      nvd # for nh
-      geist-font
-      kitty
-      zsh
-    ];
+    # userPkgs = with pkgs; [
+    #   nh # nix helper
+    #   nix-output-monitor # for nh
+    #   nvd # for nh
+    #   geist-font
+    #   kitty
+    #   zsh
+    # ];
   };
 }

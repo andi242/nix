@@ -31,7 +31,7 @@ in
   documentation.doc.enable = false; # no html docs
   environment.systemPackages = (with pkgs; [
     unzip
-    podman
+    # podman
     fontconfig
     git
     wget
