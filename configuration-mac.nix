@@ -26,7 +26,7 @@
     hostName = "nixos-mac";
     networkmanager.enable = true;
     firewall = {
-      enable = false;
+      enable = true;
       logRefusedConnections = false;
     };
   };
@@ -34,7 +34,7 @@
   time.timeZone = "Europe/Berlin";
 
   security.rtkit.enable = true;
-
+  services.openssh.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

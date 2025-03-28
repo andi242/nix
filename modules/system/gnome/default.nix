@@ -12,12 +12,6 @@
     enable32Bit = true;
   };
   imports = [ ];
-  # programs = {
-  #   steam.enable = true;
-  #   # programs.steam.gamescopeSession.enable = true; #optional for scaling
-  #   gamemode.enable = true;
-  #   evolution.enable = true;
-  # };
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
@@ -39,16 +33,7 @@
     [
       # add
     ]);
-  # for 0.7.0:
-  # systemd.services.lactd = {
-  #   description = "AMDGPU Control Daemon";
-  #   enable = true;
-  #   serviceConfig = {
-  #     # this path because we don't use pkgs.lact
-  #     ExecStart = "/run/current-system/sw/bin/lact daemon";
-  #   };
-  #   wantedBy = [ "multi-user.target" ];
-  # };
+
   environment.gnome.excludePackages = with pkgs; [
     atomix
     cheese
