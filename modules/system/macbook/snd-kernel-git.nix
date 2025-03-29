@@ -41,6 +41,7 @@ stdenv.mkDerivation rec {
     make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build modules "M=$(pwd -P)/build/hda"
   '';
   installPhase = ''
-    cp build/hda/snd-hda-codec-cirrus.ko $out
+    mkdir $out/
+    cp build/hda/snd-hda-codec-cirrus.ko $out/
   '';
 }
