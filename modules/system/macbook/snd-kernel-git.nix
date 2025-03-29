@@ -42,6 +42,6 @@ stdenv.mkDerivation rec {
   '';
   installPhase = ''
     mkdir -p $out/lib/modules/${kernel.modDirVersion}
-    cp build/hda/snd-hda-codec-cirrus.ko $out/lib/modules/${kernel.modDirVersion}/
+    cp build/hda/snd-hda-codec-cirrus.ko $out/lib/modules/${kernel.modDirVersion}/mbp_audio.ko
   '';
 }
