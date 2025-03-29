@@ -1,6 +1,6 @@
 { inputs, config, lib, pkgs, ... }:
 let
-  mbp-audio = pkgs.linuxPackages.callPackage ./modules/system/macbook/snd-kernel-git.nix { };
+  mbp_audio = config.boot.kernelPackages.callPackage ./modules/system/macbook/snd-kernel-git.nix { };
 in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -20,7 +20,7 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
-    extraModulePackages = [ mbp-audio ];
+    extraModulePackages = [ mbp_audio ];
   };
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=40s
