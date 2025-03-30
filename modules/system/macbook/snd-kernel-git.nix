@@ -30,11 +30,11 @@ stdenv.mkDerivation rec {
 
   unpackPhase = ''
     hda_dir=build/hda
-    kernel_version=$(echo $uname_r | cut -d '-' -f1) #ie 6.4.15
-    major_version=$(echo $kernel_version | cut -d '.' -f1)
-    minor_version=$(echo $kernel_version | cut -d '.' -f2)
-    major_minor=$major_version$minor_version
-    kernel_short_version="$major_version.$minor_version" #ie 5.2
+    export kernel_version=$(echo $uname_r | cut -d '-' -f1) #ie 6.4.15
+    export major_version=$(echo $kernel_version | cut -d '.' -f1)
+    export minor_version=$(echo $kernel_version | cut -d '.' -f2)
+    export major_minor=$major_version$minor_version
+    export kernel_short_version="$major_version.$minor_version" #ie 5.2
     mkdir -p $hda_dir
     cp -r ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build/source/sound/pci/hda/* $hda_dir
     cp $src/patch_cirrus/{*.h,*.c,Makefile} $hda_dir
