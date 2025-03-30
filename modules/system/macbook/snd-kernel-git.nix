@@ -30,12 +30,21 @@ stdenv.mkDerivation rec {
 
   unpackPhase = ''
     hda_dir=build/hda
+    kernel_version=$(echo $uname_r | cut -d '-' -f1) #ie 6.4.15
+    major_version=$(echo $kernel_version | cut -d '.' -f1)
+    minor_version=$(echo $kernel_version | cut -d '.' -f2)
+    major_minor=$major_version$minor_version
+    kernel_short_version="$major_version.$minor_version" #ie 5.2
     mkdir -p $hda_dir
     cp -r ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build/source/sound/pci/hda/* $hda_dir
     cp $src/patch_cirrus/{*.h,*.c,Makefile} $hda_dir
     ls -lah $hda_dir
-    sed -i 's/snd_pci_quirk/hda_quirk/' $hda_dir/patch_cirrus.c
-    sed -i 's/SND_PCI_QUIRK\b/HDA_CODEC_QUIRK/' $hda_dir/patch_cirrus.c
+    # sed -i 's/snd_pci_quirk/hda_quirk/' $hda_dir/patch_cirrus.c
+    # sed -i 's/SND_PCI_QUIRK\b/HDA_CODEC_QUIRK/' $hda_dir/patch_cirrus.c
+    if (( major_version > 6 || (major_version == 6 && minor_version >= 12) )); then
+      sed -i 's/snd_pci_quirk/hda_quirk/' $hda_dir/patch_cirrus.c
+      sed -i 's/SND_PCI_QUIRK\b/HDA_CODEC_QUIRK/' $hda_dir/patch_cirrus.c
+    fi
   '';
   buildPhase = ''
     make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build modules "M=$(pwd -P)/build/hda"
