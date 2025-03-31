@@ -39,12 +39,8 @@ stdenv.mkDerivation rec {
     cp -r ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build/source/sound/pci/hda/* $hda_dir
     cp $src/patch_cirrus/{*.h,*.c,Makefile} $hda_dir
     ls -lah $hda_dir
-    # sed -i 's/snd_pci_quirk/hda_quirk/' $hda_dir/patch_cirrus.c
-    # sed -i 's/SND_PCI_QUIRK\b/HDA_CODEC_QUIRK/' $hda_dir/patch_cirrus.c
-    if (( major_version > 6 || (major_version == 6 && minor_version >= 12) )); then
-      sed -i 's/snd_pci_quirk/hda_quirk/' $hda_dir/patch_cirrus.c
-      sed -i 's/SND_PCI_QUIRK\b/HDA_CODEC_QUIRK/' $hda_dir/patch_cirrus.c
-    fi
+    sed -i 's/snd_pci_quirk/hda_quirk/' $hda_dir/patch_cirrus.c
+    sed -i 's/SND_PCI_QUIRK\b/HDA_CODEC_QUIRK/' $hda_dir/patch_cirrus.c
   '';
   buildPhase = ''
     make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build modules "M=$(pwd -P)/build/hda"
