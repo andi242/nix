@@ -17,9 +17,9 @@ in
   boot = {
     loader = {
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = false;
     };
-    kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
+    # kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
     extraModulePackages = [ mbp_audio ];
   };
   systemd.extraConfig = ''
