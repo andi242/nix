@@ -16,8 +16,14 @@ in
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = false;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
+      grub = {
+        efiSupport = true;
+        enable = true;
+        device = "nodev";
+        fontSize = 24;
+      };
     };
     # kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
     extraModulePackages = [ mbp_audio ];
