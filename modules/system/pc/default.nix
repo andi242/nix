@@ -12,7 +12,7 @@
     evolution.enable = true;
   };
   environment.systemPackages = with pkgs; [
-    furmark
+    # furmark
     (callPackage ./lact.nix { })
     steam
     mangohud

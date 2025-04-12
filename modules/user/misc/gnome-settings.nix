@@ -14,7 +14,7 @@
     gnomeExtensions.forge
     gnomeExtensions.space-bar
     gnomeExtensions.tweaks-in-system-menu
-    gnomeExtensions.appindicator
+    # gnomeExtensions.appindicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.clipboard-history
     # gnomeExtensions.just-perfection
@@ -44,7 +44,7 @@
           # "just-perfection-desktop@just-perfection"
           "gamemodeshellextension@trsnaqe.com"
           "Vitals@CoreCoding.com"
-          "appindicatorsupport@rgcjonas.gmail.com"
+          # "appindicatorsupport@rgcjonas.gmail.com"
         ];
       };
       "org/gnome/shell/extensions/appindicator" = {
@@ -116,6 +116,9 @@
         icon-theme = "Nordzy-dark";
         monospace-font-name = "GeistMono Nerd Font Propo Medium 12";
         toolkit-accessibility = false;
+      };
+      "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+        blur = false;
       };
       "shell/extensions/dash-to-dock" = {
         always-center-icons = true;

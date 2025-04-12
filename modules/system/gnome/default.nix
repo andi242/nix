@@ -26,8 +26,8 @@
       nordzy-icon-theme
       bibata-cursors
       wl-clipboard
-      easyeffects
-      helvum
+      # easyeffects
+      # helvum
     ]) ++
     (with pkgs-unstable;
     [
