@@ -73,7 +73,7 @@ in
   };
   nix.optimise = {
     automatic = true;
-    dates = [ "7d" ];
+    dates = [ "Mon *-*-* 00:00:00" ];
   };
 
   users.users.ad = {
