@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, pkgs-unstable, ... }:
 {
   imports = [
     ./hardware.nix
@@ -11,7 +11,8 @@
     gamemode.enable = true;
     evolution.enable = true;
   };
-  environment.systemPackages = with pkgs; [
+  # environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     # furmark
     (callPackage ./lact.nix { })
     steam
@@ -20,9 +21,14 @@
     winetricks
     wineWowPackages.stable
     libcamera # wireplumber might want it
+    vulkan-tools
+  ]) ++
+  (with pkgs-unstable;
+  [
+    # add
     mesa
-  ];
-  # for 0.7.0:
+  ]);
+  # for 0.7.3:
   systemd.services.lactd = {
     description = "AMDGPU Control Daemon";
     enable = true;
