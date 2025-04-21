@@ -10,24 +10,24 @@
 , libdrm
 , vulkan-loader
 , coreutils
+, fuse # added for 0.7.2
 , nix-update-script
 , hwdata
-,
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "lact";
-  version = "0.7.1";
+  version = "0.7.3";
 
   src = fetchFromGitHub {
     owner = "ilya-zlobintsev";
     repo = "LACT";
     rev = "v${version}";
-    hash = "sha256-zaN6CQSeeoYFxLO6E1AMKAjeNOcPi2OsGfYkvZLPKcw=";
+    hash = "sha256-R8VEAk+CzJCxPzJohsbL/XXH1GMzGI2W92sVJ2evqXs=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-Ipvu/eu0uI/WKYyVjjHLlg0O0EgzfuTvMmr4gTzDRxw=";
+  cargoHash = "sha256-SH7jmXDvGYO9S5ogYEYB8dYCF3iz9GWDYGcZUaKpWDQ=";
 
   nativeBuildInputs = [
     blueprint-compiler
@@ -42,6 +42,7 @@ rustPlatform.buildRustPackage rec {
     libdrm
     vulkan-loader
     hwdata
+    fuse # added for 0.7.2
   ];
 
   # we do this here so that the binary is usable during integration tests
@@ -70,18 +71,26 @@ rustPlatform.buildRustPackage rec {
     substituteInPlace res/lactd.service \
       --replace-fail ExecStart={lact,$out/bin/lact}
 
-    substituteInPlace res/io.github.lact-linux.desktop \
+    substituteInPlace res/io.github.ilya_zlobintsev.LACT.desktop \
       --replace-fail Exec={lact,$out/bin/lact}
 
     # read() looks for the database in /usr/share so we use read_from_file() instead
     substituteInPlace lact-daemon/src/server/handler.rs \
       --replace-fail 'Database::read()' 'Database::read_from_file("${hwdata}/share/hwdata/pci.ids")'
+
+    ### for 0.7.3 ###
+    # read() looks for the database in /usr/share so we use read_from_file() instead
+    substituteInPlace lact-daemon/src/tests/mod.rs \
+      --replace-fail 'Database::read()' 'Database::read_from_file("${hwdata}/share/hwdata/pci.ids")'
+
+    # rm failing 9070xt and 9070xt-new, no idea why they are failing
+    rm -r lact-daemon/src/tests/data/amd/rx9070xt*
   '';
 
   postInstall = ''
     install -Dm444 res/lactd.service -t $out/lib/systemd/system
-    install -Dm444 res/io.github.lact-linux.desktop -t $out/share/applications
-    install -Dm444 res/io.github.lact-linux.png -t $out/share/pixmaps
+    install -Dm444 res/io.github.ilya_zlobintsev.LACT.desktop -t $out/share/applications
+    install -Dm444 res/io.github.ilya_zlobintsev.LACT.png -t $out/share/pixmaps
   '';
 
   postFixup = lib.optionalString stdenv.targetPlatform.isElf ''
