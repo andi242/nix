@@ -16,9 +16,19 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
+  boot.kernelPackages = pkgs.linuxPackages_6_13; # 6.x kernel
+  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_12.override {
+  #   argsOverride = rec {
+  #     src = pkgs.fetchurl {
+  #       url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
+  #       sha256 = "sha256-1zvwV77ARDSxadG2FkGTb30Ml865I6KB8y413U3MZTE=";
+  #     };
+  #     version = "6.12.19";
+  #     modDirVersion = "6.12.19";
+  #   };
+  # });
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=40s
   '';

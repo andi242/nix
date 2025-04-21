@@ -11,7 +11,11 @@
       nvtopPackages.amd
       ytmdesktop
       streamcontroller
-      discord
+      #discord
+      (discord.override {
+        withOpenASAR = true;
+        # withVencord = true; # can do this here too
+      })
     ];
   };
 }
