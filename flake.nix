@@ -12,9 +12,10 @@
       url = "github:andi242/nixvim"; # private repo uses .ssh key
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lact-pr.url = "github:cything/nixpkgs?ref=lact";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, lact-pr, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -34,10 +35,22 @@
       };
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
-          specialArgs = { inherit inputs system pkgs-unstable; };
+          specialArgs = { inherit inputs system pkgs-unstable lact-pr; };
           modules = [
             ./configuration.nix
             ./modules/system
+            ######### lact 0.7.3 PR
+            # https://github.com/NixOS/nixpkgs/pull/374771
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  lact = final.callPackage "${lact-pr}/pkgs/by-name/la/lact/package.nix" {
+                    hwdata = final.callPackage "${lact-pr}/pkgs/by-name/hw/hwdata/package.nix" { };
+                  };
+                })
+              ];
+            }
+            #########
             home-manager.nixosModules.home-manager
             {
               # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager

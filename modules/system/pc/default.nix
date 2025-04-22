@@ -11,9 +11,9 @@
     gamemode.enable = true;
     evolution.enable = true;
   };
-  # environment.systemPackages = with pkgs; [
   environment.systemPackages = (with pkgs; [
-    (callPackage ./lact-git.nix { })
+    # (callPackage ./lact-git.nix { })
+    lact
     # furmark
     steam
     mangohud
@@ -28,14 +28,15 @@
     # add
     mesa
   ]);
+
   # for 0.7.3:
-  systemd.services.lactd = {
-    description = "AMDGPU Control Daemon";
-    enable = true;
-    serviceConfig = {
-      # this path because we don't use pkgs.lact
-      ExecStart = "/run/current-system/sw/bin/lact daemon";
-    };
+  systemd.services.lact = {
+    description = "LACT Daemon";
+    after = [ "multi-user.target" ];
     wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+    enable = true;
   };
 }
