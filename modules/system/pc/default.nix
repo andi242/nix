@@ -13,8 +13,8 @@
   };
   # environment.systemPackages = with pkgs; [
   environment.systemPackages = (with pkgs; [
+    (callPackage ./lact-git.nix { })
     # furmark
-    (callPackage ./lact.nix { })
     steam
     mangohud
     lutris

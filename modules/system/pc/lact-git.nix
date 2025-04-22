@@ -2,7 +2,6 @@
 , rustPlatform
 , stdenv
 , fetchFromGitHub
-, blueprint-compiler
 , pkg-config
 , wrapGAppsHook4
 , gdk-pixbuf
@@ -11,10 +10,11 @@
 , vulkan-loader
 , vulkan-tools
 , coreutils
-, fuse3 # added for 0.7.2
 , nix-update-script
 , hwdata
+, fuse3
 , autoAddDriverRunpath
+,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -24,7 +24,7 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "ilya-zlobintsev";
     repo = "LACT";
-    rev = "v${version}";
+    tag = "v${version}";
     hash = "sha256-R8VEAk+CzJCxPzJohsbL/XXH1GMzGI2W92sVJ2evqXs=";
   };
 
@@ -32,11 +32,9 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-SH7jmXDvGYO9S5ogYEYB8dYCF3iz9GWDYGcZUaKpWDQ=";
 
   nativeBuildInputs = [
-    # blueprint-compiler
     pkg-config
     wrapGAppsHook4
     rustPlatform.bindgenHook
-    # added for 0.7.2
     autoAddDriverRunpath
   ];
 
@@ -45,9 +43,8 @@ rustPlatform.buildRustPackage rec {
     gtk4
     libdrm
     vulkan-loader
-    hwdata
-    # added for 0.7.2
     vulkan-tools
+    hwdata
     fuse3
   ];
 
@@ -85,16 +82,12 @@ rustPlatform.buildRustPackage rec {
       lact-daemon/src/server/handler.rs \
       lact-daemon/src/tests/mod.rs \
       --replace-fail 'Database::read()' 'Database::read_from_file("${hwdata}/share/hwdata/pci.ids")'
-
-    ### for 0.7.3 ###
-    # rm failing 9070xt and 9070xt-new, no idea why they are failing
-    rm -r lact-daemon/src/tests/data/amd/rx9070xt*
   '';
 
   postInstall = ''
     install -Dm444 res/lactd.service -t $out/lib/systemd/system
     install -Dm444 res/io.github.ilya_zlobintsev.LACT.desktop -t $out/share/applications
-    install -Dm444 res/io.github.ilya_zlobintsev.LACT.png -t $out/share/pixmaps
+    install -Dm444 res/io.github.ilya_zlobintsev.LACT.svg -t $out/share/pixmaps
   '';
 
   preFixup = ''
