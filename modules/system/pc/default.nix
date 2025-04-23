@@ -12,7 +12,6 @@
     evolution.enable = true;
   };
   environment.systemPackages = (with pkgs; [
-    # (callPackage ./lact-git.nix { })
     lact
     # furmark
     steam
@@ -21,15 +20,12 @@
     winetricks
     wineWowPackages.stable
     libcamera # wireplumber might want it
-    vulkan-tools
   ]) ++
   (with pkgs-unstable;
   [
     # add
-    mesa
   ]);
 
-  # for 0.7.3:
   systemd.services.lact = {
     description = "LACT Daemon";
     after = [ "multi-user.target" ];
