@@ -1,14 +1,17 @@
-{ config, pkgs, lib, ... }:
+{ inputs, ... }:
+let
+  lact-src = inputs.lact-pr;
+  # when PR merged, replace with this
+  # lact-src = inputs.nixpkgs-unstable;
+in
 {
   nixpkgs.overlays = [
-    ######### lact 0.7.3 PR
+    ######### lact 0.7.3 PR until 25.05
     # https://github.com/NixOS/nixpkgs/pull/374771
     (final: prev: {
-      lact = final.callPackage "${lact-pr}/pkgs/by-name/la/lact/package.nix" {
-        hwdata = final.callPackage "${lact-pr}/pkgs/by-name/hw/hwdata/package.nix" { };
+      lact = final.callPackage "${lact-src}/pkgs/by-name/la/lact/package.nix" {
+        hwdata = final.callPackage "${lact-src}/pkgs/by-name/hw/hwdata/package.nix" { };
       };
-
-      # streamcontroller = final.callPackage "${pkgs-unstable}/pkgs/by-name/st/streamcontroller/package.nix";
     })
     #########
   ];
