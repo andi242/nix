@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, config, pkgs-unstable, ... }:
 {
   imports = [
     ./home.nix # standard home-manager settings
@@ -11,7 +11,6 @@
       nvtopPackages.amd
       ytmdesktop
       streamcontroller
-      #discord
       (discord.override {
         withOpenASAR = true;
         # withVencord = true; # can do this here too

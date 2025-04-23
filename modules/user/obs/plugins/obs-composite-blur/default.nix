@@ -14,7 +14,6 @@ stdenv.mkDerivation rec {
     repo = "obs-composite-blur";
     rev = "refs/tags/v${version}";
     hash = "sha256-12wgzZxEoEUKqGGmccZKfcdE0libBJDZ1EzwxRPLURc=";
-    # hash = "sha256-/fGLsbChaxhnBBwVJXEGRcjni80p9lI5no45nrp2csM=";
   };
 
   buildInputs = [

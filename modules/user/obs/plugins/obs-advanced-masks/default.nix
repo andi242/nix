@@ -33,7 +33,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = " Advanced Masking Plugin for OBS.";
-    homepage = "https://github.com/FiniteSingularity/obs-retro-effects";
+    homepage = "https://github.com/FiniteSingularity/obs-advanced-masks";
     license = licenses.gpl2Only;
     maintainers = [ "andi242" ];
     mainProgram = pname;
