@@ -32,6 +32,7 @@
       nordzy-icon-theme
       bibata-cursors
       wl-clipboard
+      deja-dup
       # easyeffects
       # helvum
     ]) ++

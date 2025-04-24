@@ -10,7 +10,14 @@
     # programs.steam.gamescopeSession.enable = true; #optional for scaling
     gamemode.enable = true;
     evolution.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
   };
+
   environment.systemPackages = (with pkgs; [
     lact
     # furmark

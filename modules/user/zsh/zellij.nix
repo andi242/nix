@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs-unstable, ... }:
 let
   cfg = config.userconf;
   plugins = {
@@ -28,6 +28,7 @@ in
       zellij = {
         enable = true;
         enableZshIntegration = false;
+        package = pkgs-unstable.zellij;
       };
     };
     xdg = {
