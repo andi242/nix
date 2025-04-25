@@ -49,6 +49,7 @@ in
     kubectl
     usbutils
     pciutils
+    sops
   ]) ++
   (with pkgs-unstable;
   [

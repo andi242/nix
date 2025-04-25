@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
+      # url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
@@ -13,6 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lact-pr.url = "github:cything/nixpkgs?ref=lact";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, lact-pr, ... }:
@@ -24,15 +28,15 @@
       nixvim = nixvim.legacyPackages.${system};
     in
     {
-      homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs system pkgs-unstable;
-        };
-        modules = [
-          ./home-mac.nix
-        ];
-      };
+      # homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
+      #   inherit pkgs;
+      #   extraSpecialArgs = {
+      #     inherit inputs system pkgs-unstable;
+      #   };
+      #   modules = [
+      #     ./home-mac.nix
+      #   ];
+      # };
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable lact-pr; };
@@ -50,6 +54,51 @@
                   useUserPackages = true;
                   backupFileExtension = "bak";
                   users.ad = import ./home-pc.nix;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    inherit pkgs-unstable;
+                  };
+                };
+            }
+          ];
+        };
+        ###########################################
+        # pi1
+        ###########################################
+        nixos-pi1 = lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system pkgs-unstable;
+          };
+          modules = [
+            ./configuration-pi1.nix
+            { nixpkgs = { inherit nixpkgs-unstable; }; }
+          ];
+        };
+
+        ###########################################
+        # VM
+        ###########################################
+        nixos-vm = lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system pkgs-unstable lact-pr;
+            # pkgs = import pkgs-unstable {
+            #   inherit system;
+            # };
+          };
+          modules = [
+            ./configuration-vm.nix
+            ./modules/system
+            # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
+            (import ./overlays)
+            home-manager.nixosModules.home-manager
+            {
+              # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
+              home-manager =
+                {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "bak";
+                  users.ad = import ./home-vm.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;

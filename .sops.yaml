@@ -1,0 +1,12 @@
+keys:
+  - &pub age1qclnc2pvscjkldf450zq2qhm8zfgr95cuhe9ajqkkvg892snsyustt0qrx
+  - &age age1zw0dc65l5l6rn8upx002sssrx9e5gnfsm67kqp8m9wag5j0s9cdq56cuar
+  - &hosts:
+    - &pi1 age1juv423mvgxx4t8k8t6susnp7mtc0wmsauynkx83jtzxzxcl9qc5sfdt6pl
+creation_rules:
+  - path_regex: secrets/*.*.yaml$
+    key_groups:
+    - age:
+      - *pub
+      - *age
+      - *pi1
