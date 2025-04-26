@@ -32,8 +32,8 @@
         nixos-pc = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable lact-pr; };
           modules = [
-            ./configuration.nix
-            ./modules/system
+            ./hosts/pc
+            # ./modules/system
             # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
             (import ./overlays)
             home-manager.nixosModules.home-manager
@@ -44,7 +44,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "bak";
-                  users.ad = import ./home-pc.nix;
+                  users.ad = import ./modules/home/home-pc.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;
@@ -65,7 +65,7 @@
             nixpkgs-unstable.config.allowUnfree = true;
           };
           modules = [
-            ./configuration-pi1.nix
+            ./hosts/pi1/configuration-pi1.nix
           ];
         };
 
@@ -74,11 +74,14 @@
         ###########################################
         nixos-vm = lib.nixosSystem {
           specialArgs = {
-            inherit inputs system pkgs-unstable lact-pr;
+            inherit inputs system nixpkgs-unstable;
+          };
+          pkgs = import inputs.nixpkgs-unstable {
+            system = "x86_64-linux";
+            nixpkgs-unstable.config.allowUnfree = true;
           };
           modules = [
-            ./configuration-vm.nix
-            ./modules/system
+            ./hosts/vm
             # (import ./overlays)
             home-manager.nixosModules.home-manager
             {
@@ -87,7 +90,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "bak";
-                  users.ad = import ./home-vm.nix;
+                  users.ad = import ./modules/home/home-vm.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;
@@ -102,7 +105,7 @@
         nixos-mac = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable; };
           modules = [
-            ./configuration-mac.nix
+            ./hosts/mac/configuration-mac.nix
             ./modules/system
             home-manager.nixosModules.home-manager
             {
@@ -111,7 +114,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "bak";
-                  users.ad = import ./home-mac.nix;
+                  users.ad = import ./hosts/mac/home-mac.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;

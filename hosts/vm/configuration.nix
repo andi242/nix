@@ -3,22 +3,14 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-  imports =
-    [
-      # ./modules/system/vm # install os first, then copy hardware.nix , then uncomment!
-      ./modules/system/gnome
-      ./modules/system/pc
-      # or with --impure
-      # /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [ ];
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
-  boot.kernelPackages = pkgs.linuxPackages_6_13; # 6.x kernel
+  boot.kernelPackages = pkgs.linuxPackages_6_14; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_12.override {
   #   argsOverride = rec {
   #     src = pkgs.fetchurl {
@@ -33,15 +25,13 @@
     DefaultTimeoutStopSec=40s
   '';
   networking = {
-    hostName = "nixos-pc";
+    hostName = "nixos-vm";
     networkmanager.enable = true;
     firewall = {
       enable = true;
       logRefusedConnections = false;
     };
   };
-
-  time.timeZone = "Europe/Berlin";
 
   security.rtkit.enable = true;
 
@@ -53,5 +43,5 @@
     jack.enable = true;
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

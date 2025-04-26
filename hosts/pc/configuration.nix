@@ -5,18 +5,22 @@
   nixpkgs.config.allowUnfree = true;
   imports =
     [
-      # ./modules/system/vm # install os first, then copy hardware.nix , then uncomment!
-      ./modules/system/gnome
-      ./modules/system/vm
-      # or with --impure
-      # /etc/nixos/hardware-configuration.nix
+      inputs.sops-nix.nixosModules.sops
     ];
+
+  sops.defaultSopsFile = ./secrets/pc.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/ad/.config/sops/age/keys.txt";
+  sops.secrets.wifi_1 = {
+    owner = config.users.users.ad.name;
+  };
+
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    # kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
+    kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
   boot.kernelPackages = pkgs.linuxPackages_6_13; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_12.override {
@@ -30,10 +34,10 @@
   #   };
   # });
   systemd.extraConfig = ''
-    DefaultTimeoutStopSec=40s
+    DefaultTimeoutStopSec=30s
   '';
   networking = {
-    hostName = "nixos-vm";
+    hostName = "nixos-pc";
     networkmanager.enable = true;
     firewall = {
       enable = true;

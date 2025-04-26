@@ -1,7 +1,7 @@
 { pkgs, inputs, config, ... }:
 {
   imports = [
-    ./modules/user
+    ./modules
   ];
 
   home = {
@@ -24,5 +24,4 @@
   programs = {
     home-manager.enable = true;
   };
-  nixpkgs.config.allowUnfree = true;
 }

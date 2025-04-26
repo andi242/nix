@@ -56,6 +56,8 @@ in
     # add
   ]);
 
+  time.timeZone = "Europe/Berlin";
+
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })
@@ -65,6 +67,7 @@ in
 
   imports = [
     # ./fprint.nix
+    ./locale.nix
   ];
   # garbage collection
   nix.gc = {
@@ -81,6 +84,9 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
+    ];
   };
 
   security.sudo.extraRules = [

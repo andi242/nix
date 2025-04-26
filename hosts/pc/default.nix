@@ -3,8 +3,11 @@
   imports = [
     ./hardware.nix
     ./libvirt.nix
-    ./locale.nix
+    ./configuration.nix
+    ../../modules/system
+    ../../modules/gnome
   ];
+
   programs = {
     steam.enable = true;
     # programs.steam.gamescopeSession.enable = true; #optional for scaling
