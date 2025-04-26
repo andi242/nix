@@ -11,7 +11,6 @@ let
 in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
