@@ -56,7 +56,7 @@
         ###########################################
         # pi1
         ###########################################
-        nixos-pi1 = lib.nixosSystem {
+        nixos-pi1 = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
