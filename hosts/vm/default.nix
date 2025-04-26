@@ -1,7 +1,7 @@
 {
   imports = [
     ./hardware.nix
-    ./configuration-vm.nix
+    ./configuration.nix
     ../../modules/system
     ../../modules/gnome
   ];
