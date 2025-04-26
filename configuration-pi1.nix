@@ -59,10 +59,7 @@ in
       enable = true;
       secretsFile = config.sops.secrets.wifi_file.path;
       networks = {
-        home.pskRaw = "ext:psk_home";
-        home.auth = ''
-          password=ext:pass_home
-        '';
+        bnd0233.pskRaw = "ext:psk_home";
       };
       interfaces = [ interface ];
     };
@@ -109,6 +106,9 @@ in
       isNormalUser = true;
       hashedPasswordFile = config.sops.secrets.user_1.path;
       extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
+      ];
     };
   };
   security.sudo.extraRules = [

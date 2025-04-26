@@ -28,15 +28,6 @@
       nixvim = nixvim.legacyPackages.${system};
     in
     {
-      # homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
-      #   inherit pkgs;
-      #   extraSpecialArgs = {
-      #     inherit inputs system pkgs-unstable;
-      #   };
-      #   modules = [
-      #     ./home-mac.nix
-      #   ];
-      # };
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable lact-pr; };
@@ -67,11 +58,14 @@
         ###########################################
         nixos-pi1 = lib.nixosSystem {
           specialArgs = {
-            inherit inputs system pkgs-unstable;
+            inherit inputs;
+          };
+          pkgs = import inputs.nixpkgs-unstable {
+            system = "aarch64-linux";
+            nixpkgs-unstable.config.allowUnfree = true;
           };
           modules = [
             ./configuration-pi1.nix
-            { nixpkgs = { inherit nixpkgs-unstable; }; }
           ];
         };
 
@@ -81,18 +75,13 @@
         nixos-vm = lib.nixosSystem {
           specialArgs = {
             inherit inputs system pkgs-unstable lact-pr;
-            # pkgs = import pkgs-unstable {
-            #   inherit system;
-            # };
           };
           modules = [
             ./configuration-vm.nix
             ./modules/system
-            # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
-            (import ./overlays)
+            # (import ./overlays)
             home-manager.nixosModules.home-manager
             {
-              # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
               home-manager =
                 {
                   useGlobalPkgs = true;
@@ -107,6 +96,9 @@
             }
           ];
         };
+        ###########################################
+        # macbook intel
+        ###########################################
         nixos-mac = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable; };
           modules = [
@@ -114,7 +106,6 @@
             ./modules/system
             home-manager.nixosModules.home-manager
             {
-              # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
               home-manager =
                 {
                   useGlobalPkgs = true;
