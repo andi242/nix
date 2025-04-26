@@ -12,7 +12,7 @@
       inputs.nixvim.packages.${system}.default
     ];
     file = {
-      ".config/nvim/snippets/nix.json".source = ./modules/user/misc/snippets-nix.json;
+      ".config/nvim/snippets/nix.json".source = ./modules/misc/snippets-nix.json;
     };
     sessionVariables = {
       FLAKE = "/home/ad/gits/nix";

@@ -8,10 +8,12 @@
       inputs.sops-nix.nixosModules.sops
     ];
 
-  sops.defaultSopsFile = ./secrets/pc.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/ad/.config/sops/age/keys.txt";
-  sops.secrets.wifi_1 = {
+  sops = {
+    defaultSopsFile = ../../secrets/pc.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/ad/.config/sops/age/keys.txt";
+  };
+  sops.secrets.wifi_file = {
     owner = config.users.users.ad.name;
   };
 

@@ -15,7 +15,7 @@ in
     inputs.sops-nix.nixosModules.sops
   ];
   sops = {
-    defaultSopsFile = ./secrets/pc.yaml;
+    defaultSopsFile = ../../secrets/pc.yaml;
     defaultSopsFormat = "yaml";
     age = {
       # first get with ssh-keyscan, then automatically use this
