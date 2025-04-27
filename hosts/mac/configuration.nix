@@ -15,13 +15,23 @@ in
         efiSupport = true;
         enable = true;
         device = "nodev";
-        #fontSize = 24;
-        #font = "${pkgs.grub}/share/grub/unicode.pf2";
       };
     };
     kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
     extraModulePackages = [ mbp_audio ];
   };
+  boot.loader.grub.theme = pkgs.stdenv.mkDerivation {
+    pname = "distro-grub-themes";
+    version = "3.1";
+    src = pkgs.fetchFromGitHub {
+      owner = "AdisonCavani";
+      repo = "distro-grub-themes";
+      rev = "v3.1";
+      hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+    };
+    installPhase = "cp -r customize/nixos $out";
+  };
+
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=40s
   '';
@@ -33,6 +43,9 @@ in
       logRefusedConnections = false;
     };
   };
+  users.users.ad.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
+  ];
 
   security.rtkit.enable = true;
   services.openssh.enable = true;

@@ -29,7 +29,7 @@
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
           blur-my-shell.extensionUuid
-          system-monitor.extensionUuid
+          # system-monitor.extensionUuid
           dash-to-dock.extensionUuid
           # forge.extensionUuid
           space-bar.extensionUuid
