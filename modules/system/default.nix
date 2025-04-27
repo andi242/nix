@@ -61,8 +61,11 @@ in
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })
+    # todo: if system.nixos.release?
     # in nixos-unstable/25.05:
     # nerd-fonts.geist-mono
+    # nerd-fonts.fira-code
+    # nerd-fonts.droid-sans-mono
   ];
 
   imports = [

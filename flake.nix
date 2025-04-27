@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-ust = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     nixvim = {
       url = "github:andi242/nixvim"; # private repo uses .ssh key
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +22,7 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, lact-pr, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-ust, lact-pr, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -64,14 +68,13 @@
             nixpkgs-unstable.config.allowUnfree = true;
           };
           modules = [
-            ./hosts/pi1/configuration-pi1.nix
+            ./hosts/pi1
           ];
         };
-
         ###########################################
-        # VM
+        # VM 2
         ###########################################
-        nixos-vm = lib.nixosSystem {
+        nixos-vm2 = lib.nixosSystem {
           specialArgs = {
             inherit inputs system nixpkgs-unstable;
           };
@@ -81,7 +84,35 @@
           };
           modules = [
             ./hosts/vm
-            # (import ./overlays)
+            home-manager-ust.nixosModules.home-manager
+            {
+              home-manager =
+                {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "bak";
+                  users.ad = import ./modules/home/home-vm.nix;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    inherit pkgs-unstable;
+                  };
+                };
+            }
+          ];
+        };
+        ###########################################
+        # VM
+        ###########################################
+        nixos-vm = lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system nixpkgs-unstable;
+          };
+          # pkgs = import inputs.nixpkgs-unstable {
+          #   system = "x86_64-linux";
+          #   nixpkgs-unstable.config.allowUnfree = true;
+          # };
+          modules = [
+            ./hosts/vm
             home-manager.nixosModules.home-manager
             {
               home-manager =
@@ -104,8 +135,7 @@
         nixos-mac = lib.nixosSystem {
           specialArgs = { inherit inputs system pkgs-unstable; };
           modules = [
-            ./hosts/mac/configuration-mac.nix
-            ./modules/system
+            ./hosts/mac
             home-manager.nixosModules.home-manager
             {
               home-manager =
@@ -113,7 +143,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "bak";
-                  users.ad = import ./hosts/mac/home-mac.nix;
+                  users.ad = import ./modules/home/home-mac.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;
