@@ -36,7 +36,6 @@
           specialArgs = { inherit inputs system pkgs-unstable lact-pr; };
           modules = [
             ./hosts/pc
-            # ./modules/system
             # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
             (import ./overlays)
             home-manager.nixosModules.home-manager

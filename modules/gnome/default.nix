@@ -23,15 +23,13 @@
 
   environment.systemPackages =
     (with pkgs; [
-      btop
+      wl-clipboard
       kitty
-      jq
       gnome-tweaks
       gnome-themes-extra
       gnome-extension-manager
       nordzy-icon-theme
       bibata-cursors
-      wl-clipboard
       deja-dup
       # easyeffects
       # helvum
@@ -46,7 +44,7 @@
     cheese
     epiphany
     evince
-    # geary
+    geary
     # gnome-calendar
     gnome-characters
     gnome-text-editor

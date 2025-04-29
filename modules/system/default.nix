@@ -44,12 +44,13 @@ in
     nh # nix helper
     nix-output-monitor # for nh
     nvd # for nh
-    neovim
     nfs-utils
     kubectl
     usbutils
     pciutils
     sops
+    btop
+    jq
   ]) ++
   (with pkgs-unstable;
   [
