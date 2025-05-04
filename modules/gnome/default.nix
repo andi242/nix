@@ -47,7 +47,7 @@
     geary
     # gnome-calendar
     gnome-characters
-    gnome-text-editor
+    # gnome-text-editor
     gnome-user-docs
     gnome-music
     gnome-photos

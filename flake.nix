@@ -71,32 +71,18 @@
           ];
         };
         ###########################################
-        # VM 2
+        # VM server
         ###########################################
-        nixos-vm2 = lib.nixosSystem {
+        nixos-srv = lib.nixosSystem {
           specialArgs = {
             inherit inputs system nixpkgs-unstable;
           };
-          pkgs = import inputs.nixpkgs-unstable {
-            system = "x86_64-linux";
-            nixpkgs-unstable.config.allowUnfree = true;
-          };
+          # pkgs = import inputs.nixpkgs-unstable {
+          #   system = "x86_64-linux";
+          #   nixpkgs-unstable.config.allowUnfree = true;
+          # };
           modules = [
-            ./hosts/vm
-            home-manager-ust.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-vm.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    inherit pkgs-unstable;
-                  };
-                };
-            }
+            ./hosts/vm-srv
           ];
         };
         ###########################################

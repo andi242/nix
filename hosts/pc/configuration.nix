@@ -40,7 +40,19 @@
   '';
   networking = {
     hostName = "nixos-pc";
-    networkmanager.enable = true;
+    nameservers = [ "192.168.1.11" ];
+    defaultGateway = "192.168.1.1";
+    enableIPv6 = false;
+    wireless.enable = false;
+    # networkmanager.enable = true;
+    # dhcpd.enable = false;
+    interfaces.enp5s0 = {
+      useDHCP = false;
+      ipv4.addresses = [{
+        address = "192.168.1.48";
+        prefixLength = 24;
+      }];
+    };
     firewall = {
       enable = true;
       logRefusedConnections = false;
