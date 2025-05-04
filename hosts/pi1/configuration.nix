@@ -78,24 +78,24 @@ in
     bat
     starship
   ];
-  environment.shells = with pkgs; [ zsh ];
-  users.defaultUserShell = pkgs.zsh;
-
-  programs = {
-    zsh = {
-      enable = true;
-      shellAliases = aliases;
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-      autosuggestions = {
-        enable = true;
-        strategy = [ "history" ];
-      };
-    };
-  };
-  programs.starship = {
-    enable = true;
-  };
+  # environment.shells = with pkgs; [ zsh ];
+  # users.defaultUserShell = pkgs.zsh;
+  #
+  # programs = {
+  #   zsh = {
+  #     enable = true;
+  #     shellAliases = aliases;
+  #     enableCompletion = true;
+  #     syntaxHighlighting.enable = true;
+  #     autosuggestions = {
+  #       enable = true;
+  #       strategy = [ "history" ];
+  #     };
+  #   };
+  # };
+  # programs.starship = {
+  #   enable = true;
+  # };
 
   services.openssh.enable = true;
 
