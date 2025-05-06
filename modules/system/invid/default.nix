@@ -3,12 +3,12 @@
   sops.secrets = {
     inv_settings = {
       sopsFile = ../../../secrets/invid.yaml;
-      group = "invidious";
       key = "inv_settings";
+      mode = "0444";
     };
     inv_hmac = {
       sopsFile = ../../../secrets/invid.yaml;
-      group = "invidious";
+      mode = "0444";
       key = "inv_hmac";
     };
   };

@@ -9,13 +9,14 @@
     ../../modules/system/blocky
     ../../modules/system/dnsmasq
     ../../modules/system/caddy
-    # ../../modules/system/invid
+    ../../modules/system/invid
     ../../modules/system/psql
     inputs.sops-nix.nixosModules.sops
   ];
   virtualisation.podman.enable = true;
+  nix.settings.trusted-users = [ "ad" ];
   sops = {
-    defaultSopsFile = ../../../secrets/dnsmasq.yaml;
+    # defaultSopsFile = ../../../secrets/dnsmasq.yaml;
     defaultSopsFormat = "yaml";
     age = {
       # first get with ssh-keyscan, then automatically use this
