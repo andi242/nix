@@ -23,6 +23,12 @@
         upstream = "tcp-tls:dns.google";
         ips = [ "8.8.4.4" ]; # google public dns
       };
+      # customDNS = {
+      #   mapping = {
+      #     "blocky.local" = "192.168.1.31";
+      #     "lab.local" = "192.168.122.241";
+      #   };
+      # };
       blocking = {
         loading = { refreshPeriod = "24h"; };
         blockType = "nxDomain";
@@ -31,6 +37,7 @@
           ads = [
             # "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts"
+            "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
           ];
           all = [
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts"
@@ -45,7 +52,8 @@
           ];
         };
         clientGroupsBlock = {
-          default = [ "all" "custom" ];
+          # default = [ ];
+          default = [ "all" "ads" "custom" ];
           "192.168.1.48" = [ "custom" "ads" ];
         };
       };

@@ -10,6 +10,7 @@ neuer versuch...
 - `nh os switch --update` - with env var $FLAKE
 - `nh clean all --keep 5` - gc
 
-## todo
+## todo 25.04
 
-...
+- fonts
+-

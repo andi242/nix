@@ -1,19 +1,17 @@
 { pkgs, inputs, pkgs-unstable, ... }:
 let
-  serverUrl = "192.168.122.241";
+  serverUrl = "andi242.dedyn.io";
 in
 {
   environment.systemPackages = with pkgs; [
     homepage-dashboard
   ];
-  # environment.etc = {
-  #   "homepage-dashboard/services.yaml".source = ./services.yaml;
-  # };
-
   services.homepage-dashboard = {
     enable = true;
     openFirewall = true;
     listenPort = 8082;
+    # allowedHosts = "*"; # for unstable
+    # package = pkgs-unstable.homepage-dashboard;
     # https://gethomepage.dev/configs/
     widgets = [
       {
@@ -26,45 +24,61 @@ in
       {
         search = {
           provider = "custom";
-          url = "http://search.k3s.lan/search?q=";
+          url = "http://search.${serverUrl}/search?q=";
           target = "_blank";
         };
       }
     ];
-    services = [{
-      Home = [
-        {
-          blocky = {
-            description = "ad blocker";
-            icon = "si-adblock";
-            widget = {
-              type = "customapi";
-              url = "http://${serverUrl}:4000/api/blocking/status";
-              method = "GET";
-              headers = "Content-Type: application/json";
-              display = "list";
-              mappings = [
-                {
-                  field = "enabled";
-                  label = "Status";
-                  format = "text";
-                  additionalField = {
-                    field = "autoEnableInSec";
-                    label = "disabled for";
-                    format = "duration";
-                    suffix = "s left";
-                  };
-                  remap = [
-                    { value = true; to = "enabled"; }
-                    { value = false; to = "disabled"; }
-                  ];
-                }
-              ];
+    services = [
+      {
+        "Home" = [
+          {
+            blocky = {
+              description = "ad blocker";
+              icon = "si-adblock";
+              widget = {
+                type = "customapi";
+                url = "http://${serverUrl}:4000/api/blocking/status";
+                method = "GET";
+                headers = "Content-Type: application/json";
+                display = "list";
+                mappings = [
+                  {
+                    field = "enabled";
+                    label = "Status";
+                    format = "text";
+                    additionalField = {
+                      field = "autoEnableInSec";
+                      label = "disabled for";
+                      format = "duration";
+                      suffix = "left";
+                    };
+                    remap = [
+                      { value = true; to = "enabled"; }
+                      { value = false; to = "disabled"; }
+                    ];
+                  }
+                ];
+              };
             };
-          };
-        }
-      ];
-    }];
+          }
+        ];
+      }
+      {
+        "Web" = [
+          {
+            caddy = {
+              icon = "si-caddy";
+              widget = {
+                type = "caddy";
+                url = "http://localhost:2019";
+                fields = [ "upstreams" "requests" "requests_failed" ];
+              };
+            };
+          }
+        ];
+      }
+    ];
     bookmarks = [
       {
         Tools = [

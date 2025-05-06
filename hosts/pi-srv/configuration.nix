@@ -2,8 +2,7 @@
 
 let
   user = "ad";
-  interface = "wlan0";
-  hostname = "nixos-pi1";
+  hostname = "pi-srv";
   aliases = {
     cat = "bat -pp";
     dff = "${pkgs.duf}/bin/duf --hide-fs tmpfs,devtmpfs,efivarfs --hide-mp '/nix/store' --output mountpoint,avail,used,usage --theme ansi";
@@ -54,8 +53,6 @@ in
 
   networking = {
     hostName = hostname;
-
-    nameservers = [ "127.0.0.1" ];
     wireless = {
       enable = true;
       secretsFile = config.sops.secrets.wifi_file.path;
@@ -78,10 +75,28 @@ in
     unzip
     duf
     bat
+    starship
   ];
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
+
+  programs = {
+    zsh = {
+      enable = true;
+      shellAliases = aliases;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+      autosuggestions = {
+        enable = true;
+        strategy = [ "history" ];
+      };
+    };
+  };
+  programs.starship = {
+    enable = true;
+  };
 
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "yes";
 
   users = {
     mutableUsers = false;

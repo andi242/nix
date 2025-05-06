@@ -7,5 +7,9 @@
     ../../modules/system/searxng
     ../../modules/system/blocky
     # ../../modules/system/dnsmasq
+    ../../modules/system/caddy
+    # ../../modules/system/invid
+    # ../../modules/system/psql
+
   ];
 }

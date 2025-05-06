@@ -18,16 +18,17 @@
   networking = {
     hostName = "nixos-srv";
     # nameservers = [ "192.168.1.11" ];
-    # defaultGateway = "192.168.1.1";
+    nameservers = [ "127.0.0.1" ];
+    defaultGateway = "192.168.122.1";
     enableIPv6 = false;
     wireless.enable = false;
-    # interfaces.enp5s0 = {
-    #   useDHCP = false;
-    #   ipv4.addresses = [{
-    #     address = "192.168.1.48";
-    #     prefixLength = 24;
-    #   }];
-    # };
+    interfaces.enp2s0 = {
+      useDHCP = false;
+      ipv4.addresses = [{
+        address = "192.168.122.241";
+        prefixLength = 24;
+      }];
+    };
     networkmanager.enable = true;
     firewall = {
       enable = true;

@@ -75,7 +75,7 @@
         ###########################################
         nixos-srv = lib.nixosSystem {
           specialArgs = {
-            inherit inputs system nixpkgs-unstable;
+            inherit inputs system pkgs-unstable;
           };
           # pkgs = import inputs.nixpkgs-unstable {
           #   system = "x86_64-linux";
