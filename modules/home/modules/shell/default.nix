@@ -1,12 +1,6 @@
 { inputs, config, pkgs, ... }:
 let
   aliases = {
-    d1 = "du -h -d1";
-    ll = "ls -lah";
-    gd = "git diff";
-    gs = "git status";
-    grep = "grep --color";
-    mkdir = "mkdir -p";
     vc = "vi ~/gits/nix";
   };
 in
@@ -20,8 +14,17 @@ in
     userName = "andi242";
     userEmail = "andi242@gmail.com";
   };
+  programs = {
+    fish = {
+      enable = true;
+      shellAliases = aliases;
+      shellInit = ''
+        source (/etc/profiles/per-user/ad/bin/starship init fish --print-full-init | psub)
+      '';
+    };
+  };
   programs.zsh = {
-    enable = true;
+    enable = false;
     shellAliases = aliases;
     enableCompletion = true;
     autosuggestion = {

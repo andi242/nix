@@ -15,7 +15,7 @@ in
 
   imports = [
     ./obs
-    ./zsh
+    ./shell
     ./misc/gnome-settings.nix
     ./misc/kitty.nix
     ./misc/librewolf.nix
