@@ -40,7 +40,7 @@
   '';
   networking = {
     hostName = "nixos-pc";
-    nameservers = [ "192.168.1.11" ];
+    nameservers = [ "192.168.1.10" ];
     defaultGateway = "192.168.1.1";
     enableIPv6 = false;
     wireless.enable = false;

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  dnsServers = "192.168.122.241";
+  dnsServers = "192.168.1.10#53";
 in
 {
   sops.secrets = {
@@ -11,19 +11,25 @@ in
   };
 
   services.dnsmasq = {
-    enable = false;
+    enable = true;
     settings = {
-      dhcp-range = [ "192.168.1.100,192.168.1.150,24h" ];
+      dhcp-range = [ "192.168.1.11,192.168.1.100,24h" ];
       server = [ dnsServers ];
       port = 0;
       conf-file = config.sops.secrets.dnsmasq.path;
       no-resolv = true;
       no-hosts = true;
+      expand-hosts = true;
       bind-interfaces = true;
       domain-needed = true;
       log-dhcp = true;
+      log-queries = true;
       no-poll = true;
       domain = "local";
+      local = "/local/";
     };
   };
+
+  networking.firewall.allowedUDPPorts = [ 67 ];
+  networking.firewall.allowedTCPPorts = [ 53 ];
 }

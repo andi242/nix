@@ -73,7 +73,7 @@
         ###########################################
         # VM server
         ###########################################
-        nixos-srv = lib.nixosSystem {
+        nixos-srv1 = lib.nixosSystem {
           specialArgs = {
             inherit inputs system pkgs-unstable;
           };
@@ -82,7 +82,7 @@
           #   nixpkgs-unstable.config.allowUnfree = true;
           # };
           modules = [
-            ./hosts/vm-srv
+            ./hosts/nixos-srv1
           ];
         };
         ###########################################

@@ -8,13 +8,13 @@
       ports = {
         dns = 53;
         http = 4000;
-        https = 8443;
+        # https = 4443;
       };
       upstreams = {
         groups = {
           default = [
             "https://security.cloudflare-dns.com/dns-query"
-            "https://dns.google/dns-query"
+            # "https://dns.google/dns-query"
             "tcp-tls:dns.quad9.net"
           ];
         };
@@ -23,12 +23,16 @@
         upstream = "tcp-tls:dns.google";
         ips = [ "8.8.4.4" ]; # google public dns
       };
-      # customDNS = {
-      #   mapping = {
-      #     "blocky.local" = "192.168.1.31";
-      #     "lab.local" = "192.168.122.241";
-      #   };
-      # };
+      customDNS = {
+        mapping = {
+          "proxmox.local" = "192.168.1.13";
+        };
+      };
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
+      };
       blocking = {
         loading = { refreshPeriod = "24h"; };
         blockType = "nxDomain";
@@ -55,10 +59,13 @@
           # default = [ ];
           default = [ "all" "ads" "custom" ];
           "192.168.1.48" = [ "custom" "ads" ];
+          "192.168.1.10" = [ ];
+          "192.168.1.13" = [ ];
+          "127.0.0.1" = [ ];
         };
       };
     };
   };
-  networking.firewall.allowedTCPPorts = [ 4000 8443 53 ];
+  networking.firewall.allowedTCPPorts = [ 4000 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 }

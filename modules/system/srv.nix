@@ -35,7 +35,6 @@ in
     fzf
     tree
     curl
-    gcc
     openssl
     nh # nix helper
     nix-output-monitor # for nh
@@ -58,7 +57,6 @@ in
   time.timeZone = "Europe/Berlin";
 
   imports = [
-    # ./fprint.nix
     ./locale.nix
   ];
   # garbage collection
@@ -71,6 +69,7 @@ in
     automatic = true;
     dates = [ "Mon *-*-* 00:00:00" ];
   };
+  nix.settings.trusted-users = [ "ad" ];
 
   users.users.ad = {
     isNormalUser = true;
@@ -80,6 +79,10 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
     ];
   };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
+  ];
+  services.openssh.settings.PermitRootLogin = "prohibit-password"; # default
 
   security.sudo.extraRules = [
     { groups = [ "wheel" ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }

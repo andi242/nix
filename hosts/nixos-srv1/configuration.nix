@@ -2,6 +2,7 @@
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  services.qemuGuest.enable = true;
   nixpkgs.config.allowUnfree = true;
   imports = [ ];
   boot = {
@@ -17,15 +18,14 @@
   '';
   networking = {
     hostName = "nixos-srv";
-    # nameservers = [ "192.168.1.11" ];
     nameservers = [ "127.0.0.1" ];
-    defaultGateway = "192.168.122.1";
+    defaultGateway = "192.168.1.1";
     enableIPv6 = false;
     wireless.enable = false;
-    interfaces.enp2s0 = {
+    interfaces.enp6s18 = {
       useDHCP = false;
       ipv4.addresses = [{
-        address = "192.168.122.241";
+        address = "192.168.1.10";
         prefixLength = 24;
       }];
     };
