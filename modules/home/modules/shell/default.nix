@@ -19,6 +19,7 @@ in
       enable = true;
       shellAliases = aliases;
       shellInit = ''
+        set -g fish_greeting
         source (/etc/profiles/per-user/ad/bin/starship init fish --print-full-init | psub)
       '';
     };
