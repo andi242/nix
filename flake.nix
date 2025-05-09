@@ -20,7 +20,10 @@
     lact-pr.url = "github:cything/nixpkgs?ref=lact";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
+    nix-secrets = {
+      url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-ust, lact-pr, ... }:

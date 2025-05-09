@@ -13,6 +13,6 @@ neuer versuch...
 ## todo
 
 - <https://nixos.org/manual/nixos/stable/#module-services-firefox-syncserver>
-- forgejo
+- linkding
 - paperless
 - <https://colmena.cli.rs/unstable/> ?

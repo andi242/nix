@@ -1,8 +1,11 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
+let
+  secretspath = builtins.toString inputs.nix-secrets;
+in
 {
   sops.secrets = {
     db-sql = {
-      sopsFile = ../../../secrets/git.yaml;
+      sopsFile = "${secretspath}/secrets/git.yaml";
       key = "db-sql";
       group = "postgres";
       owner = "postgres";

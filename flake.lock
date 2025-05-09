@@ -146,6 +146,24 @@
         "type": "github"
       }
     },
+    "nix-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746807413,
+        "narHash": "sha256-QpkgbOmdYwFM7GJbQQ8ZGeQb0dfAUNWHALT3oF7CToM=",
+        "ref": "main",
+        "rev": "671bfded9d30d7a2d892e40b8bdfc7a36f74f001",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1746557022,
@@ -278,6 +296,7 @@
         "home-manager": "home-manager",
         "home-manager-ust": "home-manager-ust",
         "lact-pr": "lact-pr",
+        "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",

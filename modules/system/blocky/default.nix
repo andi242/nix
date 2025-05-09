@@ -9,7 +9,6 @@
       ports = {
         dns = 53;
         http = 4000;
-        # https = 4443;
       };
       upstreams = {
         groups = {
@@ -53,6 +52,10 @@
           custom = [
             ./blacklist.txt
           ];
+          fullblock = [
+            ./fullblock.txt
+          ];
+
         };
         allowlists = {
           custom = [
@@ -65,6 +68,7 @@
           "192.168.1.48" = [ "custom" "ads" ];
           "192.168.1.10" = [ ];
           "192.168.1.13" = [ ];
+          "192.168.1.1" = [ "fullblock" ];
           "127.0.0.1" = [ ];
         };
       };

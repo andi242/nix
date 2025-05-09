@@ -1,11 +1,12 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
   dnsServers = "192.168.1.10#53";
+  secretspath = builtins.toString inputs.nix-secrets;
 in
 {
   sops.secrets = {
     dnsmasq = {
-      sopsFile = ../../../secrets/dnsmasq.yaml;
+      sopsFile = "${secretspath}/secrets/dnsmasq.yaml";
       key = "dnsmasq";
     };
   };

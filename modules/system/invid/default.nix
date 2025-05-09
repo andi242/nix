@@ -1,13 +1,16 @@
-{ config, ... }:
+{ config, inputs, ... }:
+let
+  secretspath = builtins.toString inputs.nix-secrets;
+in
 {
   sops.secrets = {
     inv_settings = {
-      sopsFile = ../../../secrets/invid.yaml;
+      sopsFile = "${secretspath}/secrets/invid.yaml";
       key = "inv_settings";
       mode = "0444";
     };
     inv_hmac = {
-      sopsFile = ../../../secrets/invid.yaml;
+      sopsFile = "${secretspath}/secrets/invid.yaml";
       mode = "0444";
       key = "inv_hmac";
     };

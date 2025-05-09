@@ -3,11 +3,12 @@ let
   serverUrl = "andi242.dedyn.io";
 in
 {
-  environment.systemPackages = with pkgs; [
-    homepage-dashboard
-  ];
+  # environment.systemPackages = with pkgs-unstable; [
+  #   homepage-dashboard
+  # ];
   services.homepage-dashboard = {
     enable = true;
+    package = pkgs-unstable.homepage-dashboard;
     openFirewall = true;
     listenPort = 8082;
     # package = pkgs-unstable.homepage-dashboard;

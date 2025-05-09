@@ -1,8 +1,11 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
+let
+  secretspath = builtins.toString inputs.nix-secrets;
+in
 {
   sops.secrets = {
     dns = {
-      sopsFile = ../../../secrets/dnsmasq.yaml;
+      sopsFile = "${secretspath}/secrets/dnsmasq.yaml";
       key = "dns";
     };
   };
@@ -42,10 +45,8 @@
       # interferes with letsencrypt!
       # "andi242.dedyn.io".extraConfig = ''
       #   respond "OK"
-      #   tls /var/lib/acme/desec/cert.pem /var/lib/acme/desec/key.pem {
-      #     protocols tls1.3
-      #   }
       # '';
+
       "vid.andi242.dedyn.io".extraConfig = ''
         import desec
         reverse_proxy http://127.0.0.1:3000
