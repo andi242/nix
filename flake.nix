@@ -2,6 +2,7 @@
   description = "config";
 
   inputs = {
+    # nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
@@ -73,16 +74,25 @@
         ###########################################
         # VM server
         ###########################################
-        nixos-srv1 = lib.nixosSystem {
+        nixos-srv1 = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs system pkgs-unstable;
           };
-          # pkgs = import inputs.nixpkgs-unstable {
+          # pkgs = import inputs.nixpkgs-stable {
           #   system = "x86_64-linux";
-          #   nixpkgs-unstable.config.allowUnfree = true;
+          #   nixpkgs-stable.config.allowUnfree = true;
           # };
           modules = [
             ./hosts/nixos-srv1
+          ];
+        };
+        ###########################################
+        nixos-git = lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system pkgs-unstable;
+          };
+          modules = [
+            ./hosts/nixos-git
           ];
         };
         ###########################################

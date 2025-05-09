@@ -16,14 +16,16 @@
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=30s
   '';
+
   networking = {
+    usePredictableInterfaceNames = false;
     hostName = "nixos-srv";
     nameservers = [ "127.0.0.1" ];
     defaultGateway = "192.168.1.1";
     enableIPv6 = false;
     wireless.enable = false;
-    interfaces.enp6s18 = {
-      useDHCP = false;
+    useDHCP = false;
+    interfaces.eth0 = {
       ipv4.addresses = [{
         address = "192.168.1.10";
         prefixLength = 24;

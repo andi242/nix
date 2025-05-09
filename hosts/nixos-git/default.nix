@@ -1,19 +1,12 @@
 { inputs, config, ... }:
 {
   imports = [
-    ./hw-proxmox.nix
     ./configuration.nix
+    ./hw-lxc.nix
     ../../modules/system/srv.nix
-    ../../modules/system/homepage
-    ../../modules/system/searxng
-    ../../modules/system/blocky
-    ../../modules/system/dnsmasq
-    ../../modules/system/caddy
-    # ../../modules/system/invid
-    ../../modules/system/psql
+    ../../modules/system/forgejo
     inputs.sops-nix.nixosModules.sops
   ];
-  virtualisation.podman.enable = true;
   sops = {
     defaultSopsFormat = "yaml";
     age = {

@@ -10,7 +10,9 @@ neuer versuch...
 - `nh os switch --update` - with env var $FLAKE
 - `nh clean all --keep 5` - gc
 
-## todo 25.04
+## todo
 
-- fonts
--
+- <https://nixos.org/manual/nixos/stable/#module-services-firefox-syncserver>
+- forgejo
+- paperless
+- <https://colmena.cli.rs/unstable/> ?

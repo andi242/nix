@@ -10,8 +10,8 @@ in
     enable = true;
     openFirewall = true;
     listenPort = 8082;
-    # allowedHosts = "*"; # for unstable
     # package = pkgs-unstable.homepage-dashboard;
+    # allowedHosts = "*"; # for unstable
     # https://gethomepage.dev/configs/
     widgets = [
       {
@@ -25,6 +25,8 @@ in
         search = {
           provider = "custom";
           url = "http://search.${serverUrl}/search?q=";
+          suggestionUrl = "https://search.andi242.dedyn.io/autocompleter?q=";
+          showSearchSuggestions = true;
           target = "_blank";
         };
       }
@@ -65,7 +67,7 @@ in
         ];
       }
       {
-        "Web" = [
+        "Servers" = [
           {
             caddy = {
               icon = "si-caddy";
@@ -85,47 +87,22 @@ in
           { "disable Blocky 1m" = [{ abbr = "BLK"; href = "http://${serverUrl}:4000/api/blocking/disable?duration=60s"; }]; }
           { "disable Blocky 5m" = [{ abbr = "BLK"; href = "http://${serverUrl}:4000/api/blocking/disable?duration=300s"; }]; }
           { "enable Blocky" = [{ abbr = "BLK"; href = "http://${serverUrl}:4000/api/blocking/enable"; }]; }
+          { "Home Assistant" = [{ abbr = "HA"; href = "http://192.168.1.22:8123/"; }]; }
         ];
       }
       {
         Developer = [
-          {
-            Github = [
-              {
-                abbr = "GH";
-                href = "https://github.com/";
-              }
-            ];
-          }
+          { Github = [{ abbr = "GH"; href = "https://github.com/"; }]; }
+          { Forgejo = [{ abbr = "FJ"; href = "https://git.andi242.dedyn.io"; }]; }
+          { nixSearch = [{ abbr = "NXS"; href = "https://search.nixos.org/packages"; }]; }
+          { Proxmox = [{ abbr = "PX"; href = "https://proxmox.local:8006/"; }]; }
         ];
       }
       {
         Entertainment = [
-          {
-            Twitch = [
-              {
-                abbr = "TW";
-                href = "https://twitch.com/";
-              }
-            ];
-          }
-          {
-            YouTube = [
-              {
-                abbr = "YT";
-                href = "https://youtube.com/";
-              }
-            ];
-          }
-
-          {
-            YouTubeMusic = [
-              {
-                abbr = "YTM";
-                href = "https://music.youtube.com/";
-              }
-            ];
-          }
+          { Twitch = [{ abbr = "TW"; href = "https://twitch.com/"; }]; }
+          { YouTube = [{ abbr = "YT"; href = "https://youtube.com/"; }]; }
+          { YouTubeMusic = [{ abbr = "YTM"; href = "https://music.youtube.com/"; }]; }
         ];
       }
     ];

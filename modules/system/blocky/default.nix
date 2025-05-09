@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs-unstable, ... }:
 {
   services.blocky = {
     enable = true;
+    package = pkgs-unstable.blocky;
     # https://0xerr0r.github.io/blocky/latest/configuration/
     settings = {
 
@@ -14,7 +15,6 @@
         groups = {
           default = [
             "https://security.cloudflare-dns.com/dns-query"
-            # "https://dns.google/dns-query"
             "tcp-tls:dns.quad9.net"
           ];
         };
@@ -23,6 +23,7 @@
         upstream = "tcp-tls:dns.google";
         ips = [ "8.8.4.4" ]; # google public dns
       };
+      # howto local host fqdn
       customDNS = {
         mapping = {
           "proxmox.local" = "192.168.1.13";
@@ -37,11 +38,14 @@
         loading = { refreshPeriod = "24h"; };
         blockType = "nxDomain";
         # https://github.com/StevenBlack/hosts
+        # https://github.com/hagezi/dns-blocklists
         denylists = {
           ads = [
             # "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts"
             "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/popupads.txt"
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.plus.txt"
           ];
           all = [
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts"
