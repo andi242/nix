@@ -3,19 +3,7 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-  imports =
-    [
-      inputs.sops-nix.nixosModules.sops
-    ];
-
-  sops = {
-    defaultSopsFile = ../../secrets/pc.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/ad/.config/sops/age/keys.txt";
-  };
-  sops.secrets.wifi_file = {
-    owner = config.users.users.ad.name;
-  };
+  imports = [ ];
 
   boot = {
     loader = {
@@ -44,8 +32,8 @@
     defaultGateway = "192.168.1.1";
     enableIPv6 = false;
     wireless.enable = false;
-    # networkmanager.enable = true;
-    # dhcpd.enable = false;
+    # usePredictableInterfaceNames = false;
+    # interfaces.eth0 = {
     interfaces.enp5s0 = {
       useDHCP = false;
       ipv4.addresses = [{

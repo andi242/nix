@@ -20,6 +20,10 @@
     lact-pr.url = "github:cything/nixpkgs?ref=lact";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim-loc = {
+      url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixvim.git?shallow=1&ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-secrets = {
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
       flake = false;
@@ -51,74 +55,6 @@
                   useUserPackages = true;
                   backupFileExtension = "bak";
                   users.ad = import ./modules/home/home-pc.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    inherit pkgs-unstable;
-                  };
-                };
-            }
-          ];
-        };
-        ###########################################
-        # pi1
-        ###########################################
-        nixos-pi1 = nixpkgs-unstable.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          pkgs = import inputs.nixpkgs-unstable {
-            system = "aarch64-linux";
-            nixpkgs-unstable.config.allowUnfree = true;
-          };
-          modules = [
-            ./hosts/pi1
-          ];
-        };
-        ###########################################
-        # VM server
-        ###########################################
-        nixos-srv1 = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system pkgs-unstable;
-          };
-          # pkgs = import inputs.nixpkgs-stable {
-          #   system = "x86_64-linux";
-          #   nixpkgs-stable.config.allowUnfree = true;
-          # };
-          modules = [
-            ./hosts/nixos-srv1
-          ];
-        };
-        ###########################################
-        nixos-git = lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system pkgs-unstable;
-          };
-          modules = [
-            ./hosts/nixos-git
-          ];
-        };
-        ###########################################
-        # VM
-        ###########################################
-        nixos-vm = lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system nixpkgs-unstable;
-          };
-          # pkgs = import inputs.nixpkgs-unstable {
-          #   system = "x86_64-linux";
-          #   nixpkgs-unstable.config.allowUnfree = true;
-          # };
-          modules = [
-            ./hosts/vm
-            home-manager.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-vm.nix;
                   extraSpecialArgs = {
                     inherit inputs;
                     inherit pkgs-unstable;

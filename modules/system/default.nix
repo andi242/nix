@@ -55,6 +55,7 @@ in
     usbutils
     pciutils
     sops
+    colmena
     btop
     jq
   ]) ++
