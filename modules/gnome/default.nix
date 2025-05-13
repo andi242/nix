@@ -43,7 +43,7 @@
     atomix
     cheese
     epiphany
-    evince
+    # evince
     geary
     # gnome-calendar
     gnome-characters

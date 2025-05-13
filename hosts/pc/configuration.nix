@@ -28,19 +28,11 @@
   '';
   networking = {
     hostName = "nixos-pc";
-    nameservers = [ "192.168.1.10" ];
-    defaultGateway = "192.168.1.1";
+    nameservers = [ "10.1.1.100" ];
+    defaultGateway = "10.1.1.1";
     enableIPv6 = false;
     wireless.enable = false;
-    # usePredictableInterfaceNames = false;
-    # interfaces.eth0 = {
-    interfaces.enp5s0 = {
-      useDHCP = false;
-      ipv4.addresses = [{
-        address = "192.168.1.48";
-        prefixLength = 24;
-      }];
-    };
+    usePredictableInterfaceNames = false;
     firewall = {
       enable = true;
       logRefusedConnections = false;
