@@ -7,7 +7,7 @@
     ../../modules/system
     ../../modules/gnome
   ];
-
+  programs.nix-ld.enable = true;
   programs = {
     steam.enable = true;
     # programs.steam.gamescopeSession.enable = true; #optional for scaling

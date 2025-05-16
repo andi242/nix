@@ -27,9 +27,8 @@
     DefaultTimeoutStopSec=30s
   '';
   networking = {
+    networkmanager.enable = false;
     hostName = "nixos-pc";
-    nameservers = [ "10.1.1.100" ];
-    defaultGateway = "10.1.1.1";
     enableIPv6 = false;
     wireless.enable = false;
     usePredictableInterfaceNames = false;

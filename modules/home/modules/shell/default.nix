@@ -20,7 +20,7 @@ in
       shellAliases = aliases;
       shellInit = ''
         set -g fish_greeting
-        source (/etc/profiles/per-user/ad/bin/starship init fish --print-full-init | psub)
+        source (${pkgs.starship}/bin/starship init fish --print-full-init | psub)
         function gall -a msg
           echo "commit message: $msg"
           git pull && git add --all && git commit -m $msg && git push && git log --oneline --decorate -n5
