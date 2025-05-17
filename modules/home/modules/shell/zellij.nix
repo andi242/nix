@@ -28,7 +28,7 @@ in
       zellij = {
         enable = true;
         enableZshIntegration = false;
-        package = pkgs-unstable.zellij;
+        # package = pkgs-unstable.zellij;
       };
     };
     xdg = {

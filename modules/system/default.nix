@@ -1,4 +1,4 @@
-{ pkgs, inputs, pkgs-unstable, ... }:
+{ pkgs, inputs, pkgs-stable, ... }:
 let
   aliases = {
     cat = "bat -pp";
@@ -59,7 +59,7 @@ in
     btop
     jq
   ]) ++
-  (with pkgs-unstable;
+  (with pkgs-stable;
   [
     # add
   ]);

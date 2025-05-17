@@ -4,14 +4,14 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     # nixpkgs.url = "nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-ust = {
+    home-manager-stbl = {
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nixvim = {
       url = "github:andi242/nixvim";
@@ -32,18 +32,18 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-ust, lact-pr, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stbl, lact-pr, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
       nixvim = nixvim.legacyPackages.${system};
     in
     {
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
-          specialArgs = { inherit inputs system pkgs-unstable lact-pr; };
+          specialArgs = { inherit inputs system pkgs-stable lact-pr; };
           modules = [
             ./hosts/pc
             # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
@@ -59,7 +59,7 @@
                   users.ad = import ./modules/home/home-pc.nix;
                   extraSpecialArgs = {
                     inherit inputs;
-                    inherit pkgs-unstable;
+                    inherit pkgs-stable;
                   };
                 };
             }
@@ -69,7 +69,7 @@
         # macbook intel
         ###########################################
         nixos-mac = lib.nixosSystem {
-          specialArgs = { inherit inputs system pkgs-unstable; };
+          specialArgs = { inherit inputs system pkgs-stable; };
           modules = [
             ./hosts/mac
             home-manager.nixosModules.home-manager
@@ -82,7 +82,7 @@
                   users.ad = import ./modules/home/home-mac.nix;
                   extraSpecialArgs = {
                     inherit inputs;
-                    inherit pkgs-unstable;
+                    inherit pkgs-stable;
                   };
                 };
             }

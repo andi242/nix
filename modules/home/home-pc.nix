@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, pkgs-unstable, ... }:
+{ pkgs, inputs, config, pkgs-stable, ... }:
 {
   imports = [
     ./home.nix # standard home-manager settings

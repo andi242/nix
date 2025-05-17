@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, config, pkgs-unstable, ... }:
+{ inputs, lib, pkgs, config, pkgs-stable, ... }:
 {
   services.xserver = {
     enable = false;
@@ -34,7 +34,7 @@
       # easyeffects
       # helvum
     ]) ++
-    (with pkgs-unstable;
+    (with pkgs-stable;
     [
       # add
     ]);

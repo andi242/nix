@@ -12,6 +12,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
+    gnomeExtensions.user-themes
     gnomeExtensions.space-bar
     gnomeExtensions.tweaks-in-system-menu
     # gnomeExtensions.appindicator
