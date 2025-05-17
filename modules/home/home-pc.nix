@@ -9,7 +9,7 @@
     zellij.enable = true;
     userPkgs = with pkgs; [
       nvtopPackages.amd
-      ytmdesktop
+      # ytmdesktop
       streamcontroller
       (discord.override {
         withOpenASAR = true;
