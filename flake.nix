@@ -14,12 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixvim = {
-      url = "github:andi242/nixvim"; # private repo uses .ssh key
+      url = "github:andi242/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lact-pr.url = "github:cything/nixpkgs?ref=lact";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # private repo uses .ssh key
     nixvim-loc = {
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixvim.git?shallow=1&ref=main";
       inputs.nixpkgs.follows = "nixpkgs";

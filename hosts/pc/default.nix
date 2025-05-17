@@ -7,6 +7,9 @@
     ../../modules/system
     ../../modules/gnome
   ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-33.4.11"
+  ];
   programs.nix-ld.enable = true;
   programs = {
     steam.enable = true;

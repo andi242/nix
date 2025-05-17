@@ -7,7 +7,7 @@
   home = {
     username = "ad";
     homeDirectory = "/home/ad";
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     packages = with pkgs; [
       inputs.nixvim.packages.${system}.default
     ];
