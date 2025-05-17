@@ -99,8 +99,5 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
     ];
   };
-
-  security.sudo.extraRules = [
-    { groups = [ "wheel" ]; commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }]; }
-  ];
+  security.sudo.wheelNeedsPassword = false;
 }
