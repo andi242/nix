@@ -7,10 +7,7 @@
     ../../modules/system
     ../../modules/gnome
   ];
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-33.4.11"
-  ];
-  programs.nix-ld.enable = true;
+  programs.nix-ld.enable = true; # for precompiled binaries
   programs = {
     steam.enable = true;
     # programs.steam.gamescopeSession.enable = true; #optional for scaling
