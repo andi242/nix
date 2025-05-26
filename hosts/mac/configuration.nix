@@ -37,10 +37,12 @@ in
   '';
   networking = {
     hostName = "nixos-mac";
+    enableIPv6 = false;
+    usePredictableInterfaceNames = false;
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      logRefusedConnections = false;
+      logRefusedConnections = true;
     };
   };
 
