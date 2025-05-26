@@ -1,7 +1,6 @@
 { inputs, config, lib, pkgs, ... }:
 let
   mbp_audio = config.boot.kernelPackages.callPackage ./snd-kernel-git.nix { };
-  wireguard = config.boot.kernelPackages.wireguard;
 in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -19,7 +18,7 @@ in
       };
     };
     kernelPackages = pkgs.linuxPackages_6_12; # 6.12 kernel
-    extraModulePackages = [ mbp_audio wireguard ];
+    extraModulePackages = [ mbp_audio ];
   };
   boot.loader.grub.theme = pkgs.stdenv.mkDerivation {
     pname = "distro-grub-themes";
