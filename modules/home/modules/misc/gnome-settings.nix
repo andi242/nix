@@ -10,6 +10,7 @@
   };
   home.packages = with pkgs; [
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.dash-to-panel
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
     gnomeExtensions.user-themes
@@ -31,7 +32,8 @@
         enabled-extensions = with pkgs.gnomeExtensions; [
           blur-my-shell.extensionUuid
           # system-monitor.extensionUuid
-          dash-to-dock.extensionUuid
+          # dash-to-dock.extensionUuid
+          "dash-to-panel@jderose9.github.com"
           # forge.extensionUuid
           space-bar.extensionUuid
           tweaks-in-system-menu.extensionUuid
@@ -120,6 +122,71 @@
       };
       "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
         blur = false;
+      };
+      "org/gnome/shell/extensions/dash-to-panel" = {
+        animate-appicon-hover = true;
+        animate-appicon-hover-animation-convexity = {
+          RIPPLE = 2.0;
+          PLANK = 1.0;
+          SIMPLE = 0.0;
+        };
+        animate-appicon-hover-animation-extent = {
+          RIPPLE = 4;
+          PLANK = 4;
+          SIMPLE = 1;
+        };
+        animate-appicon-hover-animation-travel = {
+          SIMPLE = 0.2;
+          RIPPLE = 0.4;
+          PLANK = 0.0;
+        };
+        animate-appicon-hover-animation-type = "SIMPLE";
+        animate-appicon-hover-animation-zoom = {
+          SIMPLE = 1.1;
+          RIPPLE = 1.25;
+          PLANK = 2.0;
+        };
+        appicon-margin = 4;
+        appicon-style = "NORMAL";
+        context-menu-entries = "[{\"title\":\"System monitor\",\"cmd\":\"gnome-system-monitor\"},{\"title\":\"Files\",\"cmd\":\"nautilus\"},{\"title\":\"Extensions\",\"cmd\":\"gnome-extensions-app\"}]";
+        dot-position = "BOTTOM";
+        dot-style-focused = "SEGMENTED";
+        dot-style-unfocused = "DASHES";
+        extension-version = 68;
+        global-border-radius = 0;
+        hide-overview-on-startup = true;
+        highlight-appicon-hover = true;
+        hotkeys-overlay-combo = "TEMPORARILY";
+        intellihide = true;
+        intellihide-hide-from-windows = true;
+        isolate-monitors = true;
+        multi-monitors = true;
+        panel-anchors = ''
+          {"GSM-103NTABBY872":"MIDDLE","IVM-1130760524536":"MIDDLE"}
+        '';
+        panel-element-positions = ''
+          {"GSM-103NTABBY872":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}],"IVM-1130760524536":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
+        '';
+        panel-element-positions-monitors-sync = false;
+        panel-lengths = ''
+          {}
+        '';
+        panel-positions = ''
+          {"IVM-1130760524536":"BOTTOM"}
+        '';
+        panel-sizes = ''
+          {"IVM-1130760524536":40,"GSM-103NTABBY872":48}
+        '';
+        prefs-opened = false;
+        primary-monitor = "GSM-103NTABBY872";
+        stockgs-keep-top-panel = true;
+        trans-bg-color = "#3d3846";
+        trans-panel-opacity = 0.35000000000000003;
+        trans-use-custom-bg = false;
+        trans-use-custom-gradient = false;
+        trans-use-custom-opacity = true;
+        trans-use-dynamic-opacity = false;
+        window-preview-title-position = "TOP";
       };
       "shell/extensions/dash-to-dock" = {
         always-center-icons = true;

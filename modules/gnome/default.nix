@@ -1,11 +1,11 @@
 { inputs, lib, pkgs, config, pkgs-stable, ... }:
 {
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
   services.xserver = {
     enable = false;
     videoDrivers = [ "amdgpu" ];
     excludePackages = [ pkgs.xterm ];
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
   };
   hardware.graphics = {
     enable = true;
