@@ -10,6 +10,7 @@
     stateVersion = "24.11";
     packages = with pkgs; [
       inputs.nixvim.packages.${system}.default
+      obsidian
     ];
     file = {
       ".config/nvim/snippets/nix.json".source = ./modules/misc/snippets-nix.json;

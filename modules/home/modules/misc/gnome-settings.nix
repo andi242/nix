@@ -125,27 +125,35 @@
       };
       "org/gnome/shell/extensions/dash-to-panel" = {
         animate-appicon-hover = true;
-        animate-appicon-hover-animation-convexity = {
-          RIPPLE = 2.0;
-          PLANK = 1.0;
-          SIMPLE = 0.0;
-        };
-        animate-appicon-hover-animation-extent = {
-          RIPPLE = 4;
-          PLANK = 4;
-          SIMPLE = 1;
-        };
-        animate-appicon-hover-animation-travel = {
-          SIMPLE = 0.2;
-          RIPPLE = 0.4;
-          PLANK = 0.0;
-        };
+        animate-appicon-hover-animation-convexity = ''
+            {
+            RIPPLE = 2.0;
+            PLANK = 1.0;
+            SIMPLE = 0.0;
+          }
+        '';
+        animate-appicon-hover-animation-extent = ''
+          {
+            RIPPLE = 4;
+            PLANK = 4;
+            SIMPLE = 1;
+          }
+        '';
+        animate-appicon-hover-animation-travel = ''
+          {
+            SIMPLE = 0.2;
+            RIPPLE = 0.4;
+            PLANK = 0.0;
+          }
+        '';
         animate-appicon-hover-animation-type = "SIMPLE";
-        animate-appicon-hover-animation-zoom = {
-          SIMPLE = 1.1;
-          RIPPLE = 1.25;
-          PLANK = 2.0;
-        };
+        animate-appicon-hover-animation-zoom = ''
+          {
+            SIMPLE = 1.1;
+            RIPPLE = 1.25;
+            PLANK = 2.0;
+          }
+        '';
         appicon-margin = 4;
         appicon-style = "NORMAL";
         context-menu-entries = "[{\"title\":\"System monitor\",\"cmd\":\"gnome-system-monitor\"},{\"title\":\"Files\",\"cmd\":\"nautilus\"},{\"title\":\"Extensions\",\"cmd\":\"gnome-extensions-app\"}]";
