@@ -17,7 +17,6 @@
       url = "github:andi242/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lact-pr.url = "github:cything/nixpkgs?ref=lact";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -32,7 +31,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stbl, lact-pr, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stbl, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -49,7 +48,7 @@
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
           inherit pkgs;
-          specialArgs = { inherit inputs system pkgs-stable lact-pr; };
+          specialArgs = { inherit inputs system pkgs-stable; };
           modules = [
             ./hosts/pc
             # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays

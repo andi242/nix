@@ -1,9 +1,6 @@
 { inputs, ... }:
-let
-  lact-src = inputs.lact-pr;
-  # when PR merged, replace with this
-  # lact-src = inputs.nixpkgs-unstable;
-in
+# let
+# in
 {
   nixpkgs.overlays = [
     ######### lact 0.7.3 PR until 25.05

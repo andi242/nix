@@ -9,20 +9,20 @@
     '';
   };
   home.packages = with pkgs; [
-    gnomeExtensions.dash-to-dock
     gnomeExtensions.dash-to-panel
     gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
     gnomeExtensions.user-themes
     gnomeExtensions.space-bar
     gnomeExtensions.tweaks-in-system-menu
-    # gnomeExtensions.appindicator
+    gnomeExtensions.appindicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.clipboard-history
-    # gnomeExtensions.just-perfection
     gnomeExtensions.gamemode-shell-extension
     gnomeExtensions.vitals
     gnomeExtensions.streamcontroller-integration
+    # gnomeExtensions.just-perfection
+    # gnomeExtensions.dash-to-dock
   ];
   dconf = {
     enable = true;
@@ -30,24 +30,24 @@
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
-          blur-my-shell.extensionUuid
           # system-monitor.extensionUuid
           # dash-to-dock.extensionUuid
-          "dash-to-panel@jderose9.github.com"
+          # "just-perfection-desktop@just-perfection"
           # forge.extensionUuid
+          # launch-new-instance.extensionUuid
+          blur-my-shell.extensionUuid
+          "dash-to-panel@jderose9.github.com"
           space-bar.extensionUuid
           tweaks-in-system-menu.extensionUuid
           clipboard-history.extensionUuid
           "user-theme@gnome-shell-extensions.gcampax.github.com"
-          # launch-new-instance.extensionUuid
           status-icons.extensionUuid
           quick-settings-audio-panel.extensionUuid
           launch-new-instance.extensionUuid
           streamcontroller-integration.extensionUuid
-          # "just-perfection-desktop@just-perfection"
           "gamemodeshellextension@trsnaqe.com"
           "Vitals@CoreCoding.com"
-          # "appindicatorsupport@rgcjonas.gmail.com"
+          "appindicatorsupport@rgcjonas.gmail.com"
         ];
       };
       "org/gnome/shell/extensions/appindicator" = {
