@@ -93,6 +93,26 @@
             }
           ];
         };
+        nixos-vm = lib.nixosSystem {
+          specialArgs = { inherit inputs system pkgs-stable; };
+          modules = [
+            ./hosts/vm
+            home-manager.nixosModules.home-manager
+            {
+              home-manager =
+                {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "bak";
+                  users.ad = import ./modules/home/home-vm.nix;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    inherit pkgs-stable;
+                  };
+                };
+            }
+          ];
+        };
       };
     };
 }
