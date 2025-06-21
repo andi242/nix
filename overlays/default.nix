@@ -1,6 +1,7 @@
 { inputs, ... }:
-# let
-# in
+let
+  sc-src = inputs.sc-pr;
+in
 {
   nixpkgs.overlays = [
     ######### lact 0.7.3 PR until 25.05
@@ -11,5 +12,11 @@
     #   };
     # })
     #########
+    # (final: prev: {
+    #   streamcontroller = final.callPackage "${sc-src}/pkgs/by-name/st/streamcontroller/package.nix" {
+    #     python3Packages = final.callPackage "${sc-src}/pkgs/top-level/python-packages.nix" { };
+    #   };
+    # })
+
   ];
 }

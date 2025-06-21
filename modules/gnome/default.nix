@@ -31,6 +31,7 @@
       nordzy-icon-theme
       bibata-cursors
       deja-dup
+      dconf-editor
       # easyeffects
       # helvum
     ]) ++

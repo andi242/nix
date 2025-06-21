@@ -120,118 +120,123 @@
         monospace-font-name = "GeistMono Nerd Font Propo Medium 12";
         toolkit-accessibility = false;
       };
-      "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
-        blur = false;
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
+        mic-mute = [ "F12" ];
+        volume-step = 2;
       };
-      "org/gnome/shell/extensions/dash-to-panel" = {
-        animate-appicon-hover = true;
-        animate-appicon-hover-animation-convexity = ''
-            {
-            RIPPLE = 2.0;
-            PLANK = 1.0;
-            SIMPLE = 0.0;
-          }
-        '';
-        animate-appicon-hover-animation-extent = ''
-          {
-            RIPPLE = 4;
-            PLANK = 4;
-            SIMPLE = 1;
-          }
-        '';
-        animate-appicon-hover-animation-travel = ''
-          {
-            SIMPLE = 0.2;
-            RIPPLE = 0.4;
-            PLANK = 0.0;
-          }
-        '';
-        animate-appicon-hover-animation-type = "SIMPLE";
-        animate-appicon-hover-animation-zoom = ''
-          {
-            SIMPLE = 1.1;
-            RIPPLE = 1.25;
-            PLANK = 2.0;
-          }
-        '';
-        appicon-margin = 4;
-        appicon-style = "NORMAL";
-        context-menu-entries = "[{\"title\":\"System monitor\",\"cmd\":\"gnome-system-monitor\"},{\"title\":\"Files\",\"cmd\":\"nautilus\"},{\"title\":\"Extensions\",\"cmd\":\"gnome-extensions-app\"}]";
-        dot-position = "BOTTOM";
-        dot-style-focused = "SEGMENTED";
-        dot-style-unfocused = "DASHES";
-        extension-version = 68;
-        global-border-radius = 0;
-        hide-overview-on-startup = true;
-        highlight-appicon-hover = true;
-        hotkeys-overlay-combo = "TEMPORARILY";
-        intellihide = true;
-        intellihide-hide-from-windows = true;
-        isolate-monitors = true;
-        multi-monitors = true;
-        panel-anchors = ''
-          {"GSM-103NTABBY872":"MIDDLE","IVM-1130760524536":"MIDDLE"}
-        '';
-        panel-element-positions = ''
-          {"GSM-103NTABBY872":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}],"IVM-1130760524536":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
-        '';
-        panel-element-positions-monitors-sync = false;
-        panel-lengths = ''
-          {}
-        '';
-        panel-positions = ''
-          {"IVM-1130760524536":"BOTTOM"}
-        '';
-        panel-sizes = ''
-          {"IVM-1130760524536":40,"GSM-103NTABBY872":48}
-        '';
-        prefs-opened = false;
-        primary-monitor = "GSM-103NTABBY872";
-        stockgs-keep-top-panel = true;
-        trans-bg-color = "#3d3846";
-        trans-panel-opacity = 0.35000000000000003;
-        trans-use-custom-bg = false;
-        trans-use-custom-gradient = false;
-        trans-use-custom-opacity = true;
-        trans-use-dynamic-opacity = false;
-        window-preview-title-position = "TOP";
-      };
-      "shell/extensions/dash-to-dock" = {
-        always-center-icons = true;
-        apply-custom-theme = false;
-        background-color = "rgb(0,0,0)";
-        background-opacity = 0.0;
-        click-action = "cycle-windows";
-        custom-background-color = false;
-        custom-theme-running-dots-border-color = "rgb(255,255,255)";
-        custom-theme-running-dots-color = "rgb(255,255,255)";
-        custom-theme-shrink = true;
-        dash-max-icon-size = 48;
-        dock-position = "BOTTOM";
-        extend-height = false;
-        height-fraction = 0.9;
-        hot-keys = false;
-        icon-size-fixed = false;
-        intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
-        isolate-monitors = true;
-        isolate-workspaces = false;
-        middle-click-action = "launch";
-        multi-monitor = true;
-        # preferred-monitor = -2;
-        # preferred-monitor-by-connector = "DP-3";
-        preview-size-scale = 8.0e-2;
-        running-indicator-dominant-color = true;
-        running-indicator-style = "DASHES";
-        scroll-action = "switch-workspace";
-        shift-click-action = "minimize";
-        shift-middle-click-action = "launch";
-        show-favorites = true;
-        show-mounts = false;
-        # show-mounts-only-mounted = true;
-        show-running = true;
-        transparency-mode = "DEFAULT";
-        unity-backlit-items = false;
-      };
+      # "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+      #   blur = false;
+      # };
+      # "org/gnome/shell/extensions/dash-to-panel" = {
+      #   animate-appicon-hover = true;
+      #   animate-appicon-hover-animation-convexity = ''
+      #       {
+      #       RIPPLE = 2.0;
+      #       PLANK = 1.0;
+      #       SIMPLE = 0.0;
+      #     }
+      #   '';
+      #   animate-appicon-hover-animation-extent = ''
+      #     {
+      #       RIPPLE = 4;
+      #       PLANK = 4;
+      #       SIMPLE = 1;
+      #     }
+      #   '';
+      #   animate-appicon-hover-animation-travel = ''
+      #     {
+      #       SIMPLE = 0.2;
+      #       RIPPLE = 0.4;
+      #       PLANK = 0.0;
+      #     }
+      #   '';
+      #   animate-appicon-hover-animation-type = "SIMPLE";
+      #   animate-appicon-hover-animation-zoom = ''
+      #     {
+      #       SIMPLE = 1.1;
+      #       RIPPLE = 1.25;
+      #       PLANK = 2.0;
+      #     }
+      #   '';
+      #   appicon-margin = 4;
+      #   appicon-style = "NORMAL";
+      #   context-menu-entries = "[{\"title\":\"System monitor\",\"cmd\":\"gnome-system-monitor\"},{\"title\":\"Files\",\"cmd\":\"nautilus\"},{\"title\":\"Extensions\",\"cmd\":\"gnome-extensions-app\"}]";
+      #   dot-position = "BOTTOM";
+      #   dot-style-focused = "SEGMENTED";
+      #   dot-style-unfocused = "DASHES";
+      #   extension-version = 68;
+      #   global-border-radius = 0;
+      #   hide-overview-on-startup = true;
+      #   highlight-appicon-hover = true;
+      #   hotkeys-overlay-combo = "TEMPORARILY";
+      #   intellihide = true;
+      #   intellihide-hide-from-windows = true;
+      #   isolate-monitors = true;
+      #   multi-monitors = true;
+      #   panel-anchors = ''
+      #     {"GSM-103NTABBY872":"MIDDLE","IVM-1130760524536":"MIDDLE"}
+      #   '';
+      #   panel-element-positions = ''
+      #     {"GSM-103NTABBY872":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}],"IVM-1130760524536":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":false,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
+      #   '';
+      #   panel-element-positions-monitors-sync = false;
+      #   panel-lengths = ''
+      #     {}
+      #   '';
+      #   panel-positions = ''
+      #     {"IVM-1130760524536":"BOTTOM"}
+      #   '';
+      #   panel-sizes = ''
+      #     {"IVM-1130760524536":40,"GSM-103NTABBY872":48}
+      #   '';
+      #   prefs-opened = false;
+      #   primary-monitor = "GSM-103NTABBY872";
+      #   stockgs-keep-top-panel = true;
+      #   trans-bg-color = "#3d3846";
+      #   trans-panel-opacity = 0.35000000000000003;
+      #   trans-use-custom-bg = false;
+      #   trans-use-custom-gradient = false;
+      #   trans-use-custom-opacity = true;
+      #   trans-use-dynamic-opacity = false;
+      #   window-preview-title-position = "TOP";
+      # };
+      # "shell/extensions/dash-to-dock" = {
+      #   always-center-icons = true;
+      #   apply-custom-theme = false;
+      #   background-color = "rgb(0,0,0)";
+      #   background-opacity = 0.0;
+      #   click-action = "cycle-windows";
+      #   custom-background-color = false;
+      #   custom-theme-running-dots-border-color = "rgb(255,255,255)";
+      #   custom-theme-running-dots-color = "rgb(255,255,255)";
+      #   custom-theme-shrink = true;
+      #   dash-max-icon-size = 48;
+      #   dock-position = "BOTTOM";
+      #   extend-height = false;
+      #   height-fraction = 0.9;
+      #   hot-keys = false;
+      #   icon-size-fixed = false;
+      #   intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
+      #   isolate-monitors = true;
+      #   isolate-workspaces = false;
+      #   middle-click-action = "launch";
+      #   multi-monitor = true;
+      #   # preferred-monitor = -2;
+      #   # preferred-monitor-by-connector = "DP-3";
+      #   preview-size-scale = 8.0e-2;
+      #   running-indicator-dominant-color = true;
+      #   running-indicator-style = "DASHES";
+      #   scroll-action = "switch-workspace";
+      #   shift-click-action = "minimize";
+      #   shift-middle-click-action = "launch";
+      #   show-favorites = true;
+      #   show-mounts = false;
+      #   # show-mounts-only-mounted = true;
+      #   show-running = true;
+      #   transparency-mode = "DEFAULT";
+      #   unity-backlit-items = false;
+      # };
       "org/gnome/desktop/wm/preferences" = {
         action-double-click-titlebar = "toggle-maximize";
         auto-raise = true;

@@ -29,6 +29,7 @@
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
       flake = false;
     };
+    # sc-pr.url = "github:sifmelcara/nixpkgs?ref=streamcontroller-1-5-0-beta-11";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stbl, ... }:
