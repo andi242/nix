@@ -4,14 +4,9 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     # nixpkgs.url = "nixpkgs/nixos-24.11";
-    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager-stbl = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nixvim = {
       url = "github:andi242/nixvim";
@@ -29,10 +24,9 @@
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
       flake = false;
     };
-    # sc-pr.url = "github:sifmelcara/nixpkgs?ref=streamcontroller-1-5-0-beta-11";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stbl, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -40,8 +34,6 @@
         inherit system;
         config = { allowUnfree = true; };
       };
-      #nixpkgs.legacyPackages.${system};
-      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
       nixvim = nixvim.legacyPackages.${system};
       # specialArgs = { inherit inputs; };
     in
@@ -49,7 +41,7 @@
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
           inherit pkgs;
-          specialArgs = { inherit inputs system pkgs-stable; };
+          specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/pc
             # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
@@ -65,7 +57,6 @@
                   users.ad = import ./modules/home/home-pc.nix;
                   extraSpecialArgs = {
                     inherit inputs;
-                    inherit pkgs-stable;
                   };
                 };
             }
@@ -75,7 +66,7 @@
         # macbook intel
         ###########################################
         nixos-mac = lib.nixosSystem {
-          specialArgs = { inherit inputs system pkgs-stable; };
+          specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/mac
             home-manager.nixosModules.home-manager
@@ -88,14 +79,13 @@
                   users.ad = import ./modules/home/home-mac.nix;
                   extraSpecialArgs = {
                     inherit inputs;
-                    inherit pkgs-stable;
                   };
                 };
             }
           ];
         };
         nixos-vm = lib.nixosSystem {
-          specialArgs = { inherit inputs system pkgs-stable; };
+          specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/vm
             home-manager.nixosModules.home-manager
@@ -108,7 +98,6 @@
                   users.ad = import ./modules/home/home-vm.nix;
                   extraSpecialArgs = {
                     inherit inputs;
-                    inherit pkgs-stable;
                   };
                 };
             }

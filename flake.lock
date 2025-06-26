@@ -123,36 +123,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1750304462,
-        "narHash": "sha256-Mj5t4yX05/rXnRqJkpoLZTWqgStB88Mr/fegTRqyiWc=",
+        "lastModified": 1750798083,
+        "narHash": "sha256-DTCCcp6WCFaYXWKFRA6fiI2zlvOLCf5Vwx8+/0R8Wc4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "863842639722dd12ae9e37ca83bcb61a63b36f6c",
+        "rev": "ff31a4677c1a8ae506aa7e003a3dba08cb203f82",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager-stbl": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-stable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1749154018,
-        "narHash": "sha256-gjN3j7joRvT3a8Zgcylnd4NFsnXeDBumqiu4HmY1RIg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "7aae0ee71a17b19708b93b3ed448a1a0952bf111",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "release-25.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -220,10 +199,10 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1750058249,
-        "narHash": "sha256-xJwzW6TaS33IbzHjNA8nLSNmV5MFyIdHcM2ZfM1A5WM=",
+        "lastModified": 1750417225,
+        "narHash": "sha256-uW9netH6nM/LqaOR7SmWjZIWDJCyPVkSzHFcMgTlHgI=",
         "ref": "main",
-        "rev": "ecac7e7b1310103ca5f1c95287a485603b09fcad",
+        "rev": "8919daf57679e111bc6eeb14f1dcad34985cf7d7",
         "shallow": true,
         "type": "git",
         "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git"
@@ -237,11 +216,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1750134718,
-        "narHash": "sha256-v263g4GbxXv87hMXMCpjkIxd/viIF7p3JpJrwgKdNiI=",
+        "lastModified": 1750741721,
+        "narHash": "sha256-Z0djmTa1YmnGMfE9jEe05oO4zggjDmxOGKwt844bUhE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9e83b64f727c88a7711a2c463a7b16eedb69a84c",
+        "rev": "4b1164c3215f018c4442463a27689d973cffd750",
         "type": "github"
       },
       "original": {
@@ -278,21 +257,6 @@
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "type": "github"
-      }
-    },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1750133334,
-        "narHash": "sha256-urV51uWH7fVnhIvsZIELIYalMYsyr2FCalvlRTzqWRw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "36ab78dab7da2e4e27911007033713bab534187b",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-25.05",
-        "type": "indirect"
       }
     },
     "nixpkgs_2": {
@@ -465,10 +429,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "home-manager-stbl": "home-manager-stbl",
         "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "nixvim-loc": "nixvim-loc",
         "sops-nix": "sops-nix"

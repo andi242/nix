@@ -11,7 +11,7 @@
     };
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
-  boot.kernelPackages = pkgs.linuxPackages_6_13; # 6.x kernel
+  boot.kernelPackages = pkgs.linuxPackages_6_14; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_12.override {
   #   argsOverride = rec {
   #     src = pkgs.fetchurl {

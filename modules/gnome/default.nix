@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, config, pkgs-stable, ... }:
+{ inputs, lib, pkgs, config, ... }:
 {
   services.desktopManager.gnome.enable = true;
   services.displayManager.gdm.enable = true;
@@ -22,7 +22,7 @@
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
   environment.systemPackages =
-    (with pkgs; [
+    with pkgs; [
       wl-clipboard
       kitty
       gnome-tweaks
@@ -32,13 +32,10 @@
       bibata-cursors
       deja-dup
       dconf-editor
-      # easyeffects
+      easyeffects
       # helvum
-    ]) ++
-    (with pkgs-stable;
-    [
-      # add
-    ]);
+    ];
+
 
   environment.gnome.excludePackages = with pkgs; [
     atomix
