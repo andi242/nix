@@ -80,6 +80,7 @@ in
   imports = [
     # ./fprint.nix
     ./locale.nix
+    # ./clamav.nix
   ];
   # garbage collection
   nix.gc = {
