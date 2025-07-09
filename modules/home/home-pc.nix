@@ -5,7 +5,7 @@
   ];
 
   userconf = {
-    obs.enable = true;
+    obs.enable = false;
     zellij.enable = true;
     userPkgs = with pkgs; [
       nvtopPackages.amd
