@@ -6,10 +6,8 @@
 
   userconf = {
     obs.enable = false;
-    zellij.enable = true;
+    zellij.enable = false;
     userPkgs = with pkgs; [
-      nvtopPackages.amd
-      streamcontroller
       (discord.override {
         withOpenASAR = true;
         # withVencord = true; # can do this here too

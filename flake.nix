@@ -84,6 +84,29 @@
             }
           ];
         };
+        ###########################################
+        # T530
+        ###########################################
+        t530 = lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+          modules = [
+            ./hosts/t530
+            home-manager.nixosModules.home-manager
+            {
+              home-manager =
+                {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "bak";
+                  users.ad = import ./modules/home/home-t530.nix;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                  };
+                };
+            }
+          ];
+        };
+        ###########################################
         nixos-vm = lib.nixosSystem {
           specialArgs = { inherit inputs system; };
           modules = [
