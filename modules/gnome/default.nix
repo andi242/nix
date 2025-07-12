@@ -24,7 +24,6 @@
   environment.systemPackages =
     with pkgs; [
       wl-clipboard
-      kitty
       gnome-tweaks
       gnome-themes-extra
       gnome-extension-manager
@@ -34,6 +33,7 @@
       dconf-editor
       easyeffects
       # helvum
+      # kitty
     ];
 
 

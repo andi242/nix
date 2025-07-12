@@ -6,7 +6,9 @@
 
   userconf = {
     obs.enable = false;
-    zellij.enable = true;
+    zellij.enable = false;
+    kitty.enable = false;
+    ghostty.enable = true;
     userPkgs = with pkgs; [
       nvtopPackages.amd
       streamcontroller

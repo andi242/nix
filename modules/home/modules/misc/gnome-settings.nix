@@ -91,7 +91,8 @@
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "kitty zellij";
+        # command = "kitty zellij";
+        command = "ghostty";
         name = "Open Terminal";
       };
       "org/gnome/shell/extensions/system-monitor" = {

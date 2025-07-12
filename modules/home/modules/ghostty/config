@@ -1,0 +1,10 @@
+cursor-color = f5e0dc
+cursor-text = 1e1e2e
+# selection-background = 353749
+# selection-foreground = cdd6f4
+theme = catppuccin-macchiato
+font-family = GeistMono NFP
+font-size = 15
+window-save-state = always
+focus-follows-mouse = true
+maximize = true

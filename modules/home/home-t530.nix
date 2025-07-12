@@ -6,7 +6,9 @@
 
   userconf = {
     obs.enable = false;
+    kitty.enable = false;
     zellij.enable = false;
+    ghostty.enable = true;
     userPkgs = with pkgs; [
       (discord.override {
         withOpenASAR = true;
