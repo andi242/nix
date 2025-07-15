@@ -32,20 +32,14 @@
       deja-dup
       dconf-editor
       easyeffects
-      # helvum
-      # kitty
     ];
-
 
   environment.gnome.excludePackages = with pkgs; [
     atomix
     cheese
     epiphany
-    # evince
     geary
-    # gnome-calendar
     gnome-characters
-    # gnome-text-editor
     gnome-user-docs
     gnome-music
     gnome-photos

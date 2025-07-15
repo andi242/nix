@@ -37,7 +37,6 @@ in
   documentation.doc.enable = false; # no html docs
   environment.systemPackages = (with pkgs; [
     unzip
-    # podman
     fontconfig
     git
     wget
@@ -50,8 +49,6 @@ in
     nh # nix helper
     nix-output-monitor # for nh
     nvd # for nh
-    # nfs-utils
-    # kubectl
     usbutils
     pciutils
     sops
@@ -68,9 +65,6 @@ in
 
   fonts.fontconfig.useEmbeddedBitmaps = true;
   fonts.packages = with pkgs; [
-    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "GeistMono" ]; })
-    # todo: if system.nixos.release?
-    # in nixos-unstable/25.05:
     nerd-fonts.geist-mono
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono

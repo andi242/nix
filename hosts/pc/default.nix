@@ -1,4 +1,4 @@
-{ pkgs, config, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -21,7 +21,7 @@
     };
   };
 
-  environment.systemPackages = (with pkgs; [
+  environment.systemPackages = with pkgs; [
     lact
     # furmark
     steam
@@ -30,11 +30,7 @@
     winetricks
     wineWowPackages.stable
     libcamera # wireplumber might want it
-  ]) ++
-  (with pkgs-unstable;
-  [
-    # add
-  ]);
+  ];
 
   systemd.services.lact = {
     description = "LACT Daemon";
