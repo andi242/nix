@@ -32,7 +32,9 @@
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
       nixvim = nixvim.legacyPackages.${system};
       # specialArgs = { inherit inputs; };
