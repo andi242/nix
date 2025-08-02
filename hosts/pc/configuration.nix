@@ -12,7 +12,7 @@
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
   boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
-  systemd.extraConfig = ''
+  systemd.user.extraConfig = ''
     DefaultTimeoutStopSec=30s
   '';
   networking = {

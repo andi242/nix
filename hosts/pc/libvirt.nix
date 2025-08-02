@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   virtualisation.libvirtd = {
-    enable = true;
+    enable = false;
     qemu = {
       package = pkgs.qemu_kvm;
       runAsRoot = true;
@@ -20,6 +20,6 @@
   };
 
   programs = {
-    virt-manager.enable = true;
+    virt-manager.enable = false;
   };
 }
