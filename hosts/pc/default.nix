@@ -4,6 +4,7 @@
     ./hardware.nix
     ./libvirt.nix
     ./configuration.nix
+    ./pipewire.nix
     ../../modules/system
     ../../modules/gnome
   ];

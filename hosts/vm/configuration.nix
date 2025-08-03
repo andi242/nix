@@ -21,9 +21,9 @@
   #     modDirVersion = "6.12.19";
   #   };
   # });
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=40s
-  '';
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "30s";
+  };
   networking = {
     hostName = "nixos-vm";
     networkmanager.enable = true;

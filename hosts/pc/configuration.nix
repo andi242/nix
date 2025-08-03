@@ -11,8 +11,8 @@
     };
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
-  boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
-  # systemd.user.extraConfig = ''
+  # boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest; # latest kernel
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "30s";
   };
@@ -31,14 +31,6 @@
   time.timeZone = "Europe/Berlin";
 
   security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 
   system.stateVersion = "24.11";
 }

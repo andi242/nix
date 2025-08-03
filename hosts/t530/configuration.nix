@@ -12,10 +12,12 @@
       efi.canTouchEfiVariables = true;
     };
   };
-
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=40s
-  '';
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "30s";
+  };
+  # systemd.extraConfig = ''
+  #   DefaultTimeoutStopSec=40s
+  # '';
   networking = {
     hostName = "t530";
     enableIPv6 = false;
