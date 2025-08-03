@@ -31,10 +31,12 @@ in
     };
     installPhase = "cp -r customize/nixos $out";
   };
-
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=40s
-  '';
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "30s";
+  };
+  # systemd.extraConfig = ''
+  #   DefaultTimeoutStopSec=40s
+  # '';
   networking = {
     hostName = "nixos-mac";
     enableIPv6 = false;

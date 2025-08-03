@@ -12,9 +12,10 @@
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
   boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
-  systemd.user.extraConfig = ''
-    DefaultTimeoutStopSec=30s
-  '';
+  # systemd.user.extraConfig = ''
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "30s";
+  };
   networking = {
     networkmanager.enable = false;
     hostName = "nixos-pc";
