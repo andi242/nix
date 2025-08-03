@@ -6,7 +6,7 @@
   userconf = {
     obs.enable = false;
     zellij.enable = false;
-    kitty.enable = true;
+    kitty.enable = false;
     ghostty.enable = true;
   };
 }
