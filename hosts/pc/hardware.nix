@@ -24,13 +24,13 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/29f48a52-32a2-44bd-83d7-fef76a6ae61c";
-      fsType = "ext4";
-    };
+  # fileSystems."/home" =
+  #   {
+  #     device = "/dev/disk/by-uuid/29f48a52-32a2-44bd-83d7-fef76a6ae61c";
+  #     fsType = "ext4";
+  #   };
 
-  fileSystems."/home/ad/data" =
+  fileSystems."/home" =
     {
       device = "/dev/disk/by-uuid/b01a3100-d51f-4a85-970b-e6555219b3ca";
       fsType = "ext4";
