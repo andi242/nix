@@ -45,6 +45,7 @@
           quick-settings-audio-panel.extensionUuid
           launch-new-instance.extensionUuid
           streamcontroller-integration.extensionUuid
+          "multi-monitors-add-on@spin83"
           "gamemodeshellextension@trsnaqe.com"
           "Vitals@CoreCoding.com"
           "appindicatorsupport@rgcjonas.gmail.com"

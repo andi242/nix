@@ -11,7 +11,15 @@
     kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
   };
   # boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest; # latest kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest; # latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen; # latest kernel
+  # would work, but build errors...
+  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
+  #   argsOverride = {
+  #     version = "6.16";
+  #     sha256 = "1ckysnshlrhfycz0yppna6jrnvgc9k49wr5srvl15wj1hck84p7d";
+  #   };
+  # });
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "30s";
   };

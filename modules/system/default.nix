@@ -54,6 +54,7 @@ in
     sops
     colmena
     btop
+    psmisc
     jq
   ]) ++
   (with pkgs-stable;

@@ -32,6 +32,9 @@
       deja-dup
       dconf-editor
       easyeffects
+      whitesur-gtk-theme
+      whitesur-cursors
+      whitesur-icon-theme
     ];
 
   environment.gnome.excludePackages = with pkgs; [

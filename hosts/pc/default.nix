@@ -5,6 +5,7 @@
     ./libvirt.nix
     ./configuration.nix
     ./pipewire.nix
+    # ./prometheus.nix
     ../../modules/system
     ../../modules/gnome
   ];
