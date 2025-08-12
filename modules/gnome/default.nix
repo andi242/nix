@@ -35,8 +35,8 @@
       whitesur-gtk-theme
       whitesur-cursors
       whitesur-icon-theme
+      pika-backup
     ];
-
   environment.gnome.excludePackages = with pkgs; [
     atomix
     cheese
@@ -58,5 +58,8 @@
     iagno
     tali
     totem
+    yelp # help viewer
+    snapshot # camera
+    decibels # audio player
   ];
 }
