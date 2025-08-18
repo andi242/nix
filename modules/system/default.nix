@@ -75,6 +75,8 @@ in
   imports = [
     # ./fprint.nix
     ./locale.nix
+    ./openrgb.nix
+    ./keychron_udev.nix
     # ./clamav.nix
   ];
   # garbage collection
