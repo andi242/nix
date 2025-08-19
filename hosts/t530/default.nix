@@ -4,7 +4,7 @@
     ./hardware.nix
     ./configuration.nix
     ../../modules/system
-    # ../../modules/gnome
-    ../../modules/kde
+    ../../modules/gnome
+    # ../../modules/kde
   ];
 }

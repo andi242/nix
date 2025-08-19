@@ -8,7 +8,7 @@
     obs.enable = false;
     kitty.enable = false;
     zellij.enable = false;
-    gnomesettings.enable = false;
+    gnomesettings.enable = true;
     ghostty.enable = true;
     userPkgs = with pkgs; [
       (discord.override {
