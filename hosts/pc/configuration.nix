@@ -8,12 +8,17 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ]; # lact fan ctrl
+    kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" "acpi_enforce_resources=lax" ]; # lact fan ctrl
+    extraModulePackages = [ config.boot.kernelPackages.it87 ];
+    kernelModules = [ "coretemp" "it87" ];
+    extraModprobeConfig = ''
+      options it87 force_id=0x8628
+    '';
   };
+  boot.kernelPackages = pkgs.linuxPackages_lqx; # latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest; # latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen; # latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_lqx; # latest kernel
   # would work, but build errors...
   # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
   #   argsOverride = {

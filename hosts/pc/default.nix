@@ -6,6 +6,8 @@
     ./configuration.nix
     ./pipewire.nix
     ./prometheus.nix
+    ./tempctl.nix
+    ./keychron_udev.nix
     ../../modules/system
     ../../modules/gnome
   ];

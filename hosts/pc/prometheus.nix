@@ -17,7 +17,7 @@
     ];
   };
   systemd.services.prometheus-node-exporter.serviceConfig.ProtectHome = pkgs.lib.mkForce "read-only";
-  environment.systemPackages = with pkgs; [
-    lm_sensors
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   lm_sensors
+  # ];
 }
