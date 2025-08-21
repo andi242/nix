@@ -8,6 +8,7 @@
     ./prometheus.nix
     ./tempctl.nix
     ./keychron_udev.nix
+    ./printing.nix
     ../../modules/system
     ../../modules/gnome
   ];

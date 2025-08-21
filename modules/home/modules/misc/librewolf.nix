@@ -13,6 +13,8 @@
       DisableFirefoxScreenshots = true;
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "always";
+      setDefaultSearchEngine = "homelab";
+      removeSearchEngines = [ "Google" "Bing" "Amazon.com" "eBay" "Twitter" ];
       ExtensionSettings = with builtins;
         let
           extension = shortId: uuid: {
@@ -28,6 +30,34 @@
           (extension "betterttv" "firefox@betterttv.net")
           (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
         ];
+      SearchEngines = {
+        Add = [
+          {
+            Alias = "@np";
+            Description = "Search in NixOS Packages";
+            IconURL = "https://nixos.org/favicon.png";
+            Method = "GET";
+            Name = "NixOS Packages";
+            URLTemplate = "https://search.nixos.org/packages?from=0&size=200&sort=relevance&type=packages&query={searchTerms}";
+          }
+          # {
+          #   Alias = "@no";
+          #   Description = "Search in NixOS Options";
+          #   IconURL = "https://nixos.org/favicon.png";
+          #   Method = "GET";
+          #   Name = "NixOS Options";
+          #   URLTemplate = "https://search.nixos.org/options?from=0&size=200&sort=relevance&type=packages&query={searchTerms}";
+          # }
+          {
+            Alias = "@sx";
+            Description = "homelab";
+            IconURL = "";
+            Method = "GET";
+            Name = "homelab";
+            URLTemplate = "https://search.andi242.dedyn.io/search?q={searchTerms}";
+          }
+        ];
+      };
     };
     profiles."ad" = {
       settings = {
@@ -45,7 +75,7 @@
           }
           {
             title = "nixos search";
-            url = "https://mynixos.com";
+            url = "https://search.nixos.org";
           }
         ];
       };

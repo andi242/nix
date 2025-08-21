@@ -8,7 +8,8 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" "acpi_enforce_resources=lax" ]; # lact fan ctrl
+    # kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" "acpi_enforce_resources=lax" ]; # lact fan ctrl
+    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "acpi_enforce_resources=lax" ]; # lact fan ctrl
     extraModulePackages = [ config.boot.kernelPackages.it87 ];
     kernelModules = [ "coretemp" "it87" ];
     extraModprobeConfig = ''
