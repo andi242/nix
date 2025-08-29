@@ -16,10 +16,10 @@
       options it87 force_id=0x8628
     '';
   };
-  boot.kernelPackages = pkgs.linuxPackages_lqx; # latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_6_15; # 6.x kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest; # latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen; # latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_lqx; # latest kernel
+  # boot.kernelPackages = pkgs.linuxPackages_6_16; # 6.x kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest; # latest kernel
   # would work, but build errors...
   # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_zen.override {
   #   argsOverride = {
@@ -31,9 +31,9 @@
     DefaultTimeoutStopSec = "30s";
   };
   networking = {
-    networkmanager.enable = false;
+    networkmanager.enable = true;
+    # enableIPv6 = false;
     hostName = "nixos-pc";
-    enableIPv6 = false;
     wireless.enable = false;
     usePredictableInterfaceNames = false;
     firewall = {

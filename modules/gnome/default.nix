@@ -29,7 +29,7 @@
       gnome-extension-manager
       nordzy-icon-theme
       bibata-cursors
-      deja-dup
+      # deja-dup
       dconf-editor
       easyeffects
       whitesur-gtk-theme

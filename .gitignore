@@ -1,1 +1,4 @@
 .env
+nixos-pc.qcow2
+result/
+result

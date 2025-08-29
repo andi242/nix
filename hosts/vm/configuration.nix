@@ -1,26 +1,83 @@
 { inputs, config, lib, pkgs, ... }:
-
+let
+  # gvfs = pkgs.gvfs.override { googleSupport = true; gnomeSupport = true; };
+in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
   imports = [ ];
+  environment.systemPackages = [
+    # gvfs
+  ];
+
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
   };
-  boot.kernelPackages = pkgs.linuxPackages_6_14; # 6.x kernel
-  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_12.override {
-  #   argsOverride = rec {
-  #     src = pkgs.fetchurl {
-  #       url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-  #       sha256 = "sha256-1zvwV77ARDSxadG2FkGTb30Ml865I6KB8y413U3MZTE=";
-  #     };
-  #     version = "6.12.19";
-  #     modDirVersion = "6.12.19";
-  #   };
-  # });
+  # boot.kernelPackages = pkgs.linuxPackages_lqx; # 6.x kernel
+  boot.kernelPackages = pkgs.linuxPackages_6_12; # 6.x kernel
+  virtualisation.vmVariant = {
+    virtualisation = {
+      qemu.options = [ "-device virtio-vga" ];
+      memorySize = 6000;
+      cores = 6;
+      diskSize = 20000;
+      # graphics = ;
+    };
+  };
+
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome = {
+    enable = true;
+    debug = true;
+    extraGSettingsOverrides = ''
+
+    '';
+  };
+  environment.variables = {
+    GVFS_DEBUG = "all";
+    GVFS_SMB_DEBUG = 10;
+  };
+
+  users.users.ad = {
+    isNormalUser = true;
+    password = "12345";
+    extraGroups = [ "wheel" "libvirtd" "audio" ];
+    uid = 1000;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
+    ];
+  };
+  security.sudo.wheelNeedsPassword = false;
+  # pkgs.gvfs.override = {googleSupport = true;};
+  nixpkgs.overlays = [
+    (final: prev: {
+      gnome = prev.gnome.overrideScope (gfinal: gprev: {
+        gvfs = gprev.gvfs.override {
+          googleSupport = true;
+          gnomeSupport = true;
+        };
+      });
+    })
+    # (final: prev: {
+    #   gvfs = prev.gvfs.override {
+    #     googleSupport = true;
+    #     gnomeSupport = true;
+    #   };
+    # })
+
+    # (final: prev: {
+    #   gnome-online-accounts = prev.gnome-online-accounts.overrideAttrs (old: {
+    #     src = prev.fetchurl {
+    #       url = "mirror://gnome/sources/gnome-online-accounts/3.54.3/gnome-online-accounts-3.54.3.tar.xz";
+    #       hash = "sha256-vPZV3R3cIrwleTtoQNoZ9crXugtyJ/+WntnCUvA2qsU=";
+    #     };
+    #   });
+    # })
+  ];
+
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "30s";
   };

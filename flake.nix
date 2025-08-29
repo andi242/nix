@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs.url = "nixpkgs/nixos-24.11";
+    # nixpkgs.url = "nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +34,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "libsoup-2.74.3"
+          ];
         };
       };
       nixvim = nixvim.legacyPackages.${system};
@@ -111,21 +114,22 @@
         ###########################################
         nixos-vm = lib.nixosSystem {
           specialArgs = { inherit inputs system; };
+          inherit pkgs;
           modules = [
             ./hosts/vm
-            home-manager.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-vm.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-            }
+            # home-manager.nixosModules.home-manager
+            # {
+            #   home-manager =
+            #     {
+            #       useGlobalPkgs = true;
+            #       useUserPackages = true;
+            #       backupFileExtension = "bak";
+            #       users.ad = import ./modules/home/home-vm.nix;
+            #       extraSpecialArgs = {
+            #         inherit inputs;
+            #       };
+            #     };
+            # }
           ];
         };
       };

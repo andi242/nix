@@ -1,8 +1,8 @@
 {
   imports = [
-    ./hardware.nix
+    # ./hardware.nix
     ./configuration.nix
-    ../../modules/system
-    ../../modules/gnome
+    # ../../modules/system
+    # ../../modules/gnome
   ];
 }

@@ -37,6 +37,8 @@ in
   documentation.doc.enable = false; # no html docs
   environment.systemPackages = (with pkgs; [
     unzip
+    bat
+    duf # du in nice
     fontconfig
     git
     wget

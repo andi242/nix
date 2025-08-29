@@ -6,7 +6,10 @@
 
   userconf = {
     obs.enable = false;
-    zellij.enable = true;
+    gnomesettings.enable = false;
+    zellij.enable = false;
+    kitty.enable = false;
+    ghostty.enable = true;
     userPkgs = with pkgs; [
     ];
   };

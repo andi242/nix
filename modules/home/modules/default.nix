@@ -27,11 +27,8 @@ in
     home.packages = with pkgs; [
       dconf2nix
       ffmpeg-full
-      bat
       starship
-      zsh
       lazygit
-      duf # du in nice
     ] ++ cfg.userPkgs;
   };
 }
