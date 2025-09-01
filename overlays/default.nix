@@ -4,20 +4,22 @@ let
 in
 {
   nixpkgs.overlays = [
-    (final: prev: {
-      gnome = prev.gnome.overrideScope (gfinal: gprev: {
-        gvfs = gprev.gvfs.override {
-          googleSupport = true;
-          gnomeSupport = true;
-        };
-      });
-    })
+    # ##################
+    # google drive enablement for gnome
+    # (final: prev: {
+    #   gnome = prev.gnome.overrideScope (gfinal: gprev: {
+    #     gvfs = gprev.gvfs.override {
+    #       googleSupport = true;
+    #       gnomeSupport = true;
+    #     };
+    #   });
+    # })
+    # ##################
     # (final: prev: {
     #   lact = final.callPackage "${lact-src}/pkgs/by-name/la/lact/package.nix" {
     #     hwdata = final.callPackage "${lact-src}/pkgs/by-name/hw/hwdata/package.nix" { };
     #   };
     # })
-    #################
     # (self: super: {
     #   openrgb = (super.openrgb.override { }).overrideAttrs (oldAttrs: {
     #     src = pkgs.fetchFromGitLab {

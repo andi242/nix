@@ -60,6 +60,6 @@
     totem
     yelp # help viewer
     snapshot # camera
-    decibels # audio player
+    # decibels # audio player
   ];
 }
