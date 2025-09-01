@@ -81,10 +81,20 @@ in
     # ./clamav.nix
   ];
   # garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 7d";
+  # };
+  # gc replacement
+  programs.nh = {
+    enable = true;
+    flake = "/home/ad/gits/nix"; # sets NH_OS_FLAKE variable for you
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 5d --keep 5";
+      dates = "Mon *-*-* 00:00:00";
+    };
   };
   nix.optimise = {
     automatic = true;
@@ -93,6 +103,7 @@ in
 
   users.users.ad = {
     isNormalUser = true;
+    password = "12345"; # VM testing
     extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
     openssh.authorizedKeys.keys = [

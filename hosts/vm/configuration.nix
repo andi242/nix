@@ -43,7 +43,7 @@ in
 
   users.users.ad = {
     isNormalUser = true;
-    password = "12345";
+    password = "12345"; # for VM testing
     extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
     openssh.authorizedKeys.keys = [
@@ -51,7 +51,6 @@ in
     ];
   };
   security.sudo.wheelNeedsPassword = false;
-  # pkgs.gvfs.override = {googleSupport = true;};
   nixpkgs.overlays = [
     (final: prev: {
       gnome = prev.gnome.overrideScope (gfinal: gprev: {
