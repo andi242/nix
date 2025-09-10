@@ -11,6 +11,7 @@
     packages = with pkgs; [
       inputs.nixvim.packages.${system}.default
       obsidian
+      joplin-desktop
     ];
     file = {
       ".config/nvim/snippets/nix.json".source = ./modules/misc/snippets-nix.json;

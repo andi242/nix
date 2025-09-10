@@ -22,7 +22,6 @@ in
     home.packages = with pkgs; [
       gnomeExtensions.dash-to-panel
       gnomeExtensions.blur-my-shell
-      gnomeExtensions.forge
       gnomeExtensions.user-themes
       gnomeExtensions.space-bar
       gnomeExtensions.tweaks-in-system-menu
@@ -32,9 +31,11 @@ in
       gnomeExtensions.gamemode-shell-extension
       gnomeExtensions.vitals
       gnomeExtensions.streamcontroller-integration
+      gnomeExtensions.tiling-shell
       # gnomeExtensions.another-window-session-manager # still v49
       # gnomeExtensions.just-perfection
       # gnomeExtensions.dash-to-dock
+      # gnomeExtensions.forge
     ];
     dconf = {
       enable = true;
@@ -62,6 +63,7 @@ in
             "Vitals@CoreCoding.com"
             "appindicatorsupport@rgcjonas.gmail.com"
             "another-window-session-manager@gmail.com"
+            "tilingshell@ferrarodomenico.com"
           ];
         };
         "org/gnome/shell/extensions/appindicator" = {

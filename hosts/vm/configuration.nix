@@ -1,15 +1,20 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, modulesPath, ... }:
 let
   # gvfs = pkgs.gvfs.override { googleSupport = true; gnomeSupport = true; };
+  # linuxPackages_zenH = pkgs.linux_zen.override {
+  #   structuredExtraConfig = with lib.kernel; {
+  #     HZ = "1000";
+  #     HZ_1000 = yes;
+  #   };
+  #   ignoreConfigErrors = true;
+  #   autoModules = false;
+  #   kernelPreferBuiltin = true;
+  # };
+  # linuxZenHZ = pkgs.linuxPackagesFor linuxPackages_zenH;
 in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # nixpkgs.config.allowUnfree = true;
   imports = [ ];
-  environment.systemPackages = [
-    # gvfs
-  ];
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -17,7 +22,22 @@ in
     };
   };
   # boot.kernelPackages = pkgs.linuxPackages_lqx; # 6.x kernel
+  # boot.kernelPackages = pkgs.linuxPackages_zen; # 6.x kernel
+  # boot.kernelPackages = linuxZenHZ;
   boot.kernelPackages = pkgs.linuxPackages_6_12; # 6.x kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  # nixpkgs.config.packageOverrides =
+  #   pkgs:
+  #   pkgs.lib.recursiveUpdate pkgs {
+  #     linuxKernel.kernels.linux_zen = pkgs.linuxKernel.kernels.linux_zen.override {
+  #       extraConfig = ''
+  #         HZ_1000 y
+  #         HZ 1000
+  #       '';
+  #     };
+  #   };
+  nixpkgs.overlays = [
+  ];
   virtualisation.vmVariant = {
     virtualisation = {
       qemu.options = [ "-device virtio-vga" ];
@@ -27,18 +47,23 @@ in
       # graphics = ;
     };
   };
+  environment.systemPackages = with pkgs; [
+    ghostty
+    fastfetch
+  ];
 
+  services.xserver.desktopManager.cinnamon.enable = true;
+  services.cinnamon.apps.enable = true;
   services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome = {
-    enable = true;
-    debug = true;
-    extraGSettingsOverrides = ''
 
-    '';
-  };
+  # services.desktopManager.gnome = {
+  #   enable = true;
+  #   debug = true;
+  #   extraGSettingsOverrides = ''
+  #   '';
+  # };
   environment.variables = {
-    GVFS_DEBUG = "all";
-    GVFS_SMB_DEBUG = 10;
+    # NIXOS_OZONE_WL = "1";
   };
 
   users.users.ad = {
@@ -51,31 +76,7 @@ in
     ];
   };
   security.sudo.wheelNeedsPassword = false;
-  nixpkgs.overlays = [
-    (final: prev: {
-      gnome = prev.gnome.overrideScope (gfinal: gprev: {
-        gvfs = gprev.gvfs.override {
-          googleSupport = true;
-          gnomeSupport = true;
-        };
-      });
-    })
-    # (final: prev: {
-    #   gvfs = prev.gvfs.override {
-    #     googleSupport = true;
-    #     gnomeSupport = true;
-    #   };
-    # })
 
-    # (final: prev: {
-    #   gnome-online-accounts = prev.gnome-online-accounts.overrideAttrs (old: {
-    #     src = prev.fetchurl {
-    #       url = "mirror://gnome/sources/gnome-online-accounts/3.54.3/gnome-online-accounts-3.54.3.tar.xz";
-    #       hash = "sha256-vPZV3R3cIrwleTtoQNoZ9crXugtyJ/+WntnCUvA2qsU=";
-    #     };
-    #   });
-    # })
-  ];
 
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "30s";
