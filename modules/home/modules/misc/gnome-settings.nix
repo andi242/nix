@@ -1,7 +1,7 @@
 { lib, pkgs, config, inputs, ... }:
 let
   cfg = config.userconf;
-  multi-monitors-add-on = pkgs.callPackage ./multi-monitors-add-on.nix { };
+  multi-monitors-add-on = pkgs.callPackage ./multi-monitor { };
 in
 {
   options = {
@@ -36,15 +36,16 @@ in
       multi-monitors-add-on
       (gnomeExtensions.another-window-session-manager.overrideAttrs (oldAttrs: {
         version = "50";
+        # direct dl link
         # https://extensions.gnome.org/extension-data/another-window-session-managergmail.com.v50.shell-extension.zip
         src = fetchzip {
           url = "https://extensions.gnome.org/extension-data/another-window-session-managergmail.com.v50.shell-extension.zip";
           hash = "sha256-SdBfs/yXALVQklCmb4K7hZfUkCP2uzIp9Gg40fp/DJQ=";
           stripRoot = false;
         };
-        # patches = [ ];
       }))
       (gnomeExtensions.arcmenu.overrideAttrs (oldAttrs: {
+        # https://gitlab.com/arcmenu/ArcMenu
         version = "67.1";
         src = pkgs.fetchFromGitLab {
           owner = "arcmenu";
@@ -52,7 +53,11 @@ in
           rev = "v67.1";
           hash = "sha256-AauFc27zHvxc6hGFwP5LuyjmnYQ9DWysKiWhEheancI=";
         };
-        patches = [ ];
+        patches = [
+          (replaceVars ./arcmenu/fix_gmenu.patch {
+            gmenu_path = "${gnome-menus}/lib/girepository-1.0";
+          })
+        ];
       }))
       # gnomeExtensions.just-perfection
       # gnomeExtensions.dash-to-dock
