@@ -1,6 +1,7 @@
 { lib, pkgs, config, inputs, ... }:
 let
   cfg = config.userconf;
+  multi-monitors-add-on = pkgs.callPackage ./multi-monitors-add-on.nix { };
 in
 {
   options = {
@@ -32,7 +33,27 @@ in
       gnomeExtensions.vitals
       gnomeExtensions.streamcontroller-integration
       gnomeExtensions.tiling-shell
-      # gnomeExtensions.another-window-session-manager # still v49
+      multi-monitors-add-on
+      (gnomeExtensions.another-window-session-manager.overrideAttrs (oldAttrs: {
+        version = "50";
+        # https://extensions.gnome.org/extension-data/another-window-session-managergmail.com.v50.shell-extension.zip
+        src = fetchzip {
+          url = "https://extensions.gnome.org/extension-data/another-window-session-managergmail.com.v50.shell-extension.zip";
+          hash = "sha256-SdBfs/yXALVQklCmb4K7hZfUkCP2uzIp9Gg40fp/DJQ=";
+          stripRoot = false;
+        };
+        # patches = [ ];
+      }))
+      (gnomeExtensions.arcmenu.overrideAttrs (oldAttrs: {
+        version = "67.1";
+        src = pkgs.fetchFromGitLab {
+          owner = "arcmenu";
+          repo = "ArcMenu";
+          rev = "v67.1";
+          hash = "sha256-AauFc27zHvxc6hGFwP5LuyjmnYQ9DWysKiWhEheancI=";
+        };
+        patches = [ ];
+      }))
       # gnomeExtensions.just-perfection
       # gnomeExtensions.dash-to-dock
       # gnomeExtensions.forge
@@ -64,6 +85,7 @@ in
             "appindicatorsupport@rgcjonas.gmail.com"
             "another-window-session-manager@gmail.com"
             "tilingshell@ferrarodomenico.com"
+            "multi-monitors-add-on@spin83"
           ];
         };
         "org/gnome/shell/extensions/appindicator" = {

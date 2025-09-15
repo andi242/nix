@@ -1,33 +1,22 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, glib
-, gettext
-, replaceVars
-, gnome-menus
-,
 }:
 
 stdenv.mkDerivation rec {
   pname = "gnome-shell-extension-multi-monitors-add-on";
-  version = "48";
+  version = "48.0";
 
   src = fetchFromGitHub {
     owner = "Lemagex";
     repo = "multi-monitors-add-on";
     rev = "v${version}";
-    hash = "";
+    hash = "sha256-f5i14gTwAGaak7XnJaNEkFtc2FoqO4ICMqoLYN9dQEw=";
   };
-
-  patches = [
-  ];
-
-  buildInputs = [
-    glib
-    gettext
-  ];
-
-  makeFlags = [ "INSTALLBASE=${placeholder "out"}/share/gnome-shell/extensions" ];
+  installPhase = ''
+    mkdir -p "$out/share/gnome-shell/extensions"
+    cp -a multi-monitors-add-on@spin83 "$out/share/gnome-shell/extensions"
+  '';
 
   passthru = {
     extensionUuid = "multi-monitors-add-on@spin83";
@@ -35,7 +24,7 @@ stdenv.mkDerivation rec {
   };
 
   meta = with lib; {
-    description = "Application menu for GNOME Shell, designed to provide a more traditional user experience and workflow";
+    description = "Add multiple monitors overview and panel for gnome-shell.";
     license = licenses.gpl2Plus;
     maintainers = "andi242";
     homepage = "https://github.com/Lemagex/multi-monitors-add-on";
