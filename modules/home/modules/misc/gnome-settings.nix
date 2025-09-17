@@ -64,7 +64,7 @@ in
       # gnomeExtensions.forge
     ];
     dconf = {
-      enable = true;
+      enable = false;
       settings = {
         "org/gnome/shell" = {
           disable-user-extensions = false;
