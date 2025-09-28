@@ -1,10 +1,13 @@
-cursor-color = f5e0dc
-cursor-text = 1e1e2e
 # selection-background = 353749
 # selection-foreground = cdd6f4
-theme = catppuccin-macchiato
+clipboard-trim-trailing-spaces = true
+cursor-color = f5e0dc
+cursor-text = 1e1e2e
+focus-follows-mouse = true
 font-family = JetBrainsMono NF
 font-size = 15
-window-save-state = always
-focus-follows-mouse = true
+link-url = true
 maximize = true
+theme = Catppuccin Macchiato
+window-save-state = always
+

@@ -23,43 +23,40 @@
 
   environment.systemPackages =
     with pkgs; [
-      wl-clipboard
-      gnome-tweaks
-      gnome-themes-extra
-      gnome-extension-manager
-      nordzy-icon-theme
       bibata-cursors
-      # deja-dup
       dconf-editor
       easyeffects
-      whitesur-gtk-theme
-      whitesur-cursors
-      whitesur-icon-theme
+      fluent-icon-theme
+      gnome-extension-manager
+      gnome-themes-extra
+      gnome-tweaks
+      nordzy-icon-theme
       pika-backup
+      wl-clipboard
     ];
   environment.gnome.excludePackages = with pkgs; [
+    # decibels # audio player
     atomix
     cheese
     epiphany
     geary
     gnome-characters
-    gnome-user-docs
-    gnome-music
-    gnome-photos
-    gnome-terminal
-    gnome-console
-    gnome-weather
-    gnome-remote-desktop
     gnome-connections
+    gnome-console
     gnome-contacts
     gnome-maps
+    gnome-music
+    gnome-photos
+    gnome-remote-desktop
+    gnome-terminal
     gnome-tour
+    gnome-user-docs
+    gnome-weather
     hitori
     iagno
+    snapshot # camera
     tali
     totem
     yelp # help viewer
-    snapshot # camera
-    # decibels # audio player
   ];
 }
