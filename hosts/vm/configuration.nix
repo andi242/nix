@@ -50,11 +50,40 @@ in
   environment.systemPackages = with pkgs; [
     ghostty
     fastfetch
+    euphonica
+    sonixd
+    firefox
+    # jellyfin-media-player
   ];
 
-  services.xserver.desktopManager.cinnamon.enable = true;
-  services.cinnamon.apps.enable = true;
-  services.displayManager.gdm.enable = true;
+  # users.extraUsers.kodi.isNormalUser = true;
+  # users.users.kodi.extraGroups = [ "data" "video" "audio" "input" ];
+  # services.cage.user = "kodi";
+  # services.cage.program = "${pkgs.jellyfin-media-player}/bin/jellyfinmediaplayer";
+  # services.cage.enable = true;
+
+  # hardware.opengl = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [ libva ];
+  # };
+
+
+  # services.xserver.desktopManager.cinnamon.enable = true;
+  # services.cinnamon.apps.enable = true;
+  # services.xserver.desktopManager.kodi.enable = true;
+
+  services.desktopManager.pantheon.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.enable = true;
+
+  services.displayManager.autoLogin.user = "ad";
+  # services.displayManager.gdm.enable = true;
+  # services.displayManager.gdm.autoSuspend = false;
+  # services.displayManager.gdm.banner = ''
+  #   bla
+  #   fasel
+  #   blubb
+  # '';
 
   # services.desktopManager.gnome = {
   #   enable = true;
@@ -92,12 +121,15 @@ in
 
   security.rtkit.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+  services = {
+    mpd.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
 
   system.stateVersion = "25.05";

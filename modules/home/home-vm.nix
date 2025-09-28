@@ -5,7 +5,7 @@
   ];
 
   userconf = {
-    obs.enable = false;
+    obs.enable = true;
     gnomesettings.enable = false;
     zellij.enable = false;
     kitty.enable = false;
