@@ -34,6 +34,7 @@
     winetricks
     wineWowPackages.stable
     libcamera # wireplumber might want it
+    sonixd
   ];
 
   systemd.services.lact = {
