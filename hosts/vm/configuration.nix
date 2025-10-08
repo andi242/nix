@@ -1,20 +1,12 @@
 { inputs, config, lib, pkgs, modulesPath, ... }:
 let
-  # gvfs = pkgs.gvfs.override { googleSupport = true; gnomeSupport = true; };
-  # linuxPackages_zenH = pkgs.linux_zen.override {
-  #   structuredExtraConfig = with lib.kernel; {
-  #     HZ = "1000";
-  #     HZ_1000 = yes;
-  #   };
-  #   ignoreConfigErrors = true;
-  #   autoModules = false;
-  #   kernelPreferBuiltin = true;
-  # };
-  # linuxZenHZ = pkgs.linuxPackagesFor linuxPackages_zenH;
+
 in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  imports = [ ];
+  imports = [
+    ./nvim.nix
+  ];
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -23,7 +15,6 @@ in
   };
   # boot.kernelPackages = pkgs.linuxPackages_lqx; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen; # 6.x kernel
-  # boot.kernelPackages = linuxZenHZ;
   boot.kernelPackages = pkgs.linuxPackages_6_12; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # nixpkgs.config.packageOverrides =
@@ -40,7 +31,7 @@ in
   ];
   virtualisation.vmVariant = {
     virtualisation = {
-      qemu.options = [ "-device virtio-vga" ];
+      qemu.options = [ "-device virtio-vga -audio model=hda,driver=pipewire" ];
       memorySize = 6000;
       cores = 6;
       diskSize = 20000;
@@ -50,12 +41,15 @@ in
   environment.systemPackages = with pkgs; [
     ghostty
     fastfetch
-    euphonica
-    sonixd
     firefox
-    # jellyfin-media-player
   ];
-
+  environment.shells = with pkgs; [ fish ];
+  users.defaultUserShell = pkgs.fish;
+  programs = {
+    fish = {
+      enable = true;
+    };
+  };
   # users.extraUsers.kodi.isNormalUser = true;
   # users.users.kodi.extraGroups = [ "data" "video" "audio" "input" ];
   # services.cage.user = "kodi";
@@ -72,25 +66,25 @@ in
   # services.cinnamon.apps.enable = true;
   # services.xserver.desktopManager.kodi.enable = true;
 
-  services.desktopManager.pantheon.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.enable = true;
-
+  # services.desktopManager.pantheon.enable = true;
+  # services.xserver.displayManager.lightdm.enable = true;
+  # services.xserver.enable = true;
+  # services.getty.autologinUser = "ad";
   services.displayManager.autoLogin.user = "ad";
-  # services.displayManager.gdm.enable = true;
-  # services.displayManager.gdm.autoSuspend = false;
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.autoSuspend = false;
   # services.displayManager.gdm.banner = ''
   #   bla
   #   fasel
   #   blubb
   # '';
 
-  # services.desktopManager.gnome = {
-  #   enable = true;
-  #   debug = true;
-  #   extraGSettingsOverrides = ''
-  #   '';
-  # };
+  services.desktopManager.gnome = {
+    enable = true;
+    # debug = true;
+    extraGSettingsOverrides = ''
+    '';
+  };
   environment.variables = {
     # NIXOS_OZONE_WL = "1";
   };
