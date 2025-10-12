@@ -10,16 +10,8 @@
     };
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # nixvim = {
-    #   url = "github:andi242/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # private repo uses .ssh key
-    # nixvim-loc = {
-    #   url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixvim.git?shallow=1&ref=main";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nix-secrets = {
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
       flake = false;
@@ -40,7 +32,6 @@
           ];
         };
       };
-      # nixvim = nixvim.legacyPackages.${system};
       # specialArgs = { inherit inputs; };
     in
     {

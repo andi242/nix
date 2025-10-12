@@ -2,12 +2,8 @@
 {
   services.desktopManager.gnome.enable = true;
   services.displayManager.gdm.enable = true;
-  services.xserver = {
-    enable = false;
-    videoDrivers = [ "amdgpu" ];
-    excludePackages = [ pkgs.xterm ];
-  };
-  hardware.graphics = {
+
+	hardware.graphics = {
     enable = true;
     enable32Bit = true;
 

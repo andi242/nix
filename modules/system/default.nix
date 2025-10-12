@@ -10,8 +10,7 @@ let
     grep = "grep --color";
     mkdir = "mkdir -p";
   };
-in
-{
+in {
   environment.shells = with pkgs; [ fish ];
   users.defaultUserShell = pkgs.fish;
 
@@ -27,10 +26,7 @@ in
   '';
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
-    ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gnome xdg-desktop-portal-gtk ];
   };
 
   # system packages
@@ -48,6 +44,10 @@ in
     gcc
     openssl
     home-manager
+    nodejs # neovim plugins req.
+    ripgrep # for neovim telescope
+    imagemagick # image preview in vim
+    ghostscript # doc converter
     nh # nix helper
     nix-output-monitor # for nh
     nvd # for nh
@@ -58,11 +58,10 @@ in
     btop
     psmisc
     jq
-  ]) ++
-  (with pkgs-stable;
-  [
-    # add
-  ]);
+  ]) ++ (with pkgs-stable;
+    [
+      # add
+    ]);
 
   time.timeZone = "Europe/Berlin";
 
@@ -107,9 +106,7 @@ in
     password = "12345"; # VM testing
     extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
-    ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad" ];
   };
   security.sudo.wheelNeedsPassword = false;
 }
