@@ -12,10 +12,10 @@
     userPkgs = with pkgs; [
       nvtopPackages.amd
       # streamcontroller # nix pkg is broken due to python dep, use flatpak
-      (discord.override {
-        withOpenASAR = true;
-        # withVencord = true; # can do this here too
-      })
+      # (discord.override {
+      #   withOpenASAR = true;
+      #   # withVencord = true; # can do this here too
+      # })
     ];
   };
 }
