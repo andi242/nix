@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs.url = "nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +15,10 @@
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
       flake = false;
     };
+    nix-dotfiles = {
+      url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git?shallow=1&ref=main";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -26,102 +29,28 @@
         inherit system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            # google drive enablement for gnome --> overlays
-            # "libsoup-2.74.3"
-          ];
+          # permittedInsecurePackages = [ ];
         };
       };
-      # specialArgs = { inherit inputs; };
-    in
-    {
+    in {
       nixosConfigurations = {
         nixos-pc = lib.nixosSystem {
           inherit pkgs;
           specialArgs = { inherit inputs system; };
           modules = [
-            ./hosts/pc
-            # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
+            ./modules.nix   # import all the OS modules
+            ./hosts/pc      # activate OS modules here
             (import ./overlays)
             home-manager.nixosModules.home-manager
             {
-              # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-pc.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "bak";
+                users.ad = import ./home-pc.nix;
+                extraSpecialArgs = { inherit inputs; };
+              };
             }
-          ];
-        };
-        ###########################################
-        # macbook intel
-        ###########################################
-        nixos-mac = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/mac
-            home-manager.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-mac.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-            }
-          ];
-        };
-        ###########################################
-        # T530
-        ###########################################
-        t530 = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/t530
-            home-manager.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-t530.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-            }
-          ];
-        };
-        ###########################################
-        nixos-vm = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          inherit pkgs;
-          modules = [
-            ./hosts/vm
-            # home-manager.nixosModules.home-manager
-            # {
-            #   home-manager =
-            #     {
-            #       useGlobalPkgs = true;
-            #       useUserPackages = true;
-            #       backupFileExtension = "bak";
-            #       users.ad = import ./modules/home/home-vm.nix;
-            #       extraSpecialArgs = {
-            #         inherit inputs;
-            #       };
-            #     };
-            # }
           ];
         };
       };

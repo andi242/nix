@@ -1,49 +1,41 @@
-{ pkgs, ... }:
-{
-  imports = [
-    ./hardware.nix
-    ./libvirt.nix
+{ pkgs, config, ... }: {
+  imports = [ 
+    ./hardware.nix 
     ./configuration.nix
-    ./pipewire.nix
-    ./prometheus.nix
-    ./tempctl.nix
     ./keychron_udev.nix
-    ./printing.nix
-    ../../modules/system
-    ../../modules/gnome
+    ./packages.nix
   ];
-  programs.nix-ld.enable = true; # for precompiled binaries
-  programs = {
-    steam.enable = true;
-    gamemode.enable = true;
-    evolution.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
+  sysconf = {
+    fish.enable = true;
+    flatpak.enable = true;
+    fonts.enable = true;
+    gaming.enable = true;
+    gnome.enable = true;
+    lact.enable = true;
+    nh.enable = true;
+    node-exporter.enable = true;
+    nvim.enable = true;
+    pipewire.enable = true;
+    printing.enable = true;
+    tempctl.enable = true;
+  };
+  virtualisation.vmVariant = {
+    virtualisation = {
+      qemu.options = [ "-device virtio-vga -audio model=hda,driver=pipewire" ];
+      memorySize = 6000;
+      cores = 6;
+      diskSize = 20000;
+      # graphics = ;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    lact
-    # furmark
-    steam
-    mangohud
-    lutris
-    winetricks
-    wineWowPackages.stable
-    libcamera # wireplumber might want it
-    sonixd
-  ];
-
-  systemd.services.lact = {
-    description = "LACT Daemon";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
-    enable = true;
+  users.users.ad = {
+    isNormalUser = true;
+    password = "12345"; # VM testing
+    extraGroups = [ "wheel" "libvirtd" "audio" ];
+    uid = 1000;
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad" ];
   };
+  security.sudo.wheelNeedsPassword = false;
+
+  system.stateVersion = "24.11";
 }
