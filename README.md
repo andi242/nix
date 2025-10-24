@@ -5,5 +5,4 @@
 - [x] 1 file/folder per module
 - [x] module activate per option
 - [ ] package diff
-- [ ]
-- [ ]
+- [ ] flatpak init flathub config
