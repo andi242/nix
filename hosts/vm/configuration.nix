@@ -1,21 +1,21 @@
-{ inputs, config, lib, pkgs, modulesPath, ... }:
+{ inputs, config, lib, pkgs, modulesPath, callPackage, qt6Packages,... }:
 let
 
-in
-{
+in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports = [
-    ./nvim.nix
+    # ./nvim.nix
+    ../../modules/kde
   ];
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
+  # boot = {
+  #   loader = {
+  #     systemd-boot.enable = true;
+  #     efi.canTouchEfiVariables = true;
+  #   };
+  # };
   # boot.kernelPackages = pkgs.linuxPackages_lqx; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen; # 6.x kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_12; # 6.x kernel
+  # boot.kernelPackages = pkgs.linuxPackages_6_12; # 6.x kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # nixpkgs.config.packageOverrides =
   #   pkgs:
@@ -27,8 +27,7 @@ in
   #       '';
   #     };
   #   };
-  nixpkgs.overlays = [
-  ];
+  nixpkgs.overlays = [ ];
   virtualisation.vmVariant = {
     virtualisation = {
       qemu.options = [ "-device virtio-vga -audio model=hda,driver=pipewire" ];
@@ -42,14 +41,20 @@ in
     ghostty
     fastfetch
     firefox
+    (pkgs.callPackage ./eve.nix {})
+    # foot
+    # nwg-bar
+    # nwg-menu
+    # nwg-look
+    # nwg-dock
+    # nwg-hello
+    # nwg-launchers
+    # nwg-displays
+    # nwg-clipman
   ];
   environment.shells = with pkgs; [ fish ];
   users.defaultUserShell = pkgs.fish;
-  programs = {
-    fish = {
-      enable = true;
-    };
-  };
+  programs = { fish = { enable = true; }; };
   # users.extraUsers.kodi.isNormalUser = true;
   # users.users.kodi.extraGroups = [ "data" "video" "audio" "input" ];
   # services.cage.user = "kodi";
@@ -61,7 +66,6 @@ in
   #   extraPackages = with pkgs; [ libva ];
   # };
 
-
   # services.xserver.desktopManager.cinnamon.enable = true;
   # services.cinnamon.apps.enable = true;
   # services.xserver.desktopManager.kodi.enable = true;
@@ -69,22 +73,23 @@ in
   # services.desktopManager.pantheon.enable = true;
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.enable = true;
+
   # services.getty.autologinUser = "ad";
-  services.displayManager.autoLogin.user = "ad";
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.autoSuspend = false;
+
+  # services.displayManager.autoLogin.user = "ad";
+  # services.displayManager.gdm.enable = true;
+  # services.displayManager.gdm.autoSuspend = false;
   # services.displayManager.gdm.banner = ''
   #   bla
   #   fasel
   #   blubb
   # '';
 
-  services.desktopManager.gnome = {
-    enable = true;
-    # debug = true;
-    extraGSettingsOverrides = ''
-    '';
-  };
+  # services.desktopManager.gnome = {
+  #   enable = true;
+  #   # debug = true;
+  #   extraGSettingsOverrides = "";
+  # };
   environment.variables = {
     # NIXOS_OZONE_WL = "1";
   };
@@ -94,16 +99,11 @@ in
     password = "12345"; # for VM testing
     extraGroups = [ "wheel" "libvirtd" "audio" ];
     uid = 1000;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad"
-    ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2bj+JgXVQ+9r8UA0zpBn2cx1DhffMIJXb3tF8ClSm1 ad" ];
   };
   security.sudo.wheelNeedsPassword = false;
 
-
-  systemd.settings.Manager = {
-    DefaultTimeoutStopSec = "30s";
-  };
+  systemd.settings.Manager = { DefaultTimeoutStopSec = "30s"; };
   networking = {
     hostName = "nixos-vm";
     networkmanager.enable = true;
