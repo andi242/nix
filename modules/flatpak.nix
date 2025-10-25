@@ -11,6 +11,13 @@ in {
   };
   config = lib.mkIf cfg.${thisOption}.enable {
     services.flatpak.enable = true;
+    systemd.services.flatpak-repo = {
+      wantedBy = [ "network.target" ];
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+      '';
+    };
   };
 }
 
