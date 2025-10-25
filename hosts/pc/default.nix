@@ -15,6 +15,7 @@
     nh.enable = true;
     node-exporter.enable = true;
     nvim.enable = true;
+    office.enable = true;
     pipewire.enable = true;
     printing.enable = true;
     tempctl.enable = true;

@@ -4,8 +4,12 @@ let
   thisOption = "gnome-settings";
   multi-monitors-add-on = pkgs.callPackage ./multimonitor.nix { };
 in {
-  options.userconf = {
-    ${thisOption}.enable = lib.mkOption {
+  options.userconf.${thisOption} = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+    dconf.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
@@ -49,7 +53,7 @@ in {
       }))
     ];
     dconf = {
-      enable = true;
+      enable = cfg.${thisOption}.dconf.enable; # false;
       settings = {
         "org/gnome/shell" = {
           disable-user-extensions = false;
