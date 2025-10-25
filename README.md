@@ -6,3 +6,4 @@
 - [x] module activate per option
 - [ ] package diff
 - [ ] flatpak init flathub config
+- [ ] check old hosts
