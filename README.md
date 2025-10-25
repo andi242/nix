@@ -24,4 +24,4 @@ neuer versuch...
 - [x] module activate per option
 - [ ] package diff
 - [ ] flatpak init flathub config
-=31;OK- [ ] check old hosts
+- [x] check old hosts
