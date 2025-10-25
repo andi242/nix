@@ -1,4 +1,4 @@
-{ inputs, system, home-manager, ... }:
+{ inputs, home-manager, ... }:
 let
   system = "x86_64-linux";
   lib = inputs.nixpkgs.lib;
@@ -11,13 +11,13 @@ let
   };
 in {
   # Create a VM app from a nixos config
-  mkAppVM = name: {
+  mkVM = name: {
     type = "app";
-    program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-nixos-vm";
+    program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-${name}-vm";
   };
-
+  # make a function to avoid duplication
   mkSystem = { modules, home-cfg, username ? "ad" }:
-    inputs.nixpkgs.lib.nixosSystem {
+    lib.nixosSystem {
       inherit pkgs;
       specialArgs = { inherit inputs system; };
       modules = [

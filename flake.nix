@@ -23,48 +23,19 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          # permittedInsecurePackages = [ ];
-        };
-      };
       # utility functions
-      inherit (import ./utils.nix { inherit inputs system home-manager; }) mkAppVM mkSystem;
+      inherit (import ./utils.nix { inherit inputs home-manager; }) mkVM mkSystem;
     in {
-      # apps = rec {
-      #   default = nixos-pc;
-      #   # VM tests: `nix run .#apps.<name>`
-      #   nixos-pc = mkAppVM "nixos-pc";
-      # };
+      apps."x86_64-linux" = rec {
+        default = nixos-pc;
+        # VM tests: `nix run .#apps.<name>`
+        nixos-pc = mkVM "nixos-pc";
+      };
       nixosConfigurations = {
         nixos-pc = mkSystem {
           modules = [ ./hosts/pc (import ./overlays) ];
           home-cfg = ./home-pc.nix;
-          # username = "ad";
         };
-        # nixos-pc = lib.nixosSystem {
-        #   inherit pkgs;
-        #   specialArgs = { inherit inputs system; };
-        #   modules = [
-        #     ./modules.nix # import all the OS modules
-        #     ./hosts/pc # activate OS modules here
-        #     (import ./overlays)
-        #     home-manager.nixosModules.home-manager
-        #     {
-        #       home-manager = {
-        #         useGlobalPkgs = true;
-        #         useUserPackages = true;
-        #         backupFileExtension = "bak";
-        #         users.ad = import ./home-pc.nix;
-        #         extraSpecialArgs = { inherit inputs; };
-        #       };
-        #     }
-        #   ];
-        # };
       };
     };
 }
