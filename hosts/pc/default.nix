@@ -22,8 +22,8 @@
   };
   virtualisation.vmVariant = {
     virtualisation = {
-      qemu.options = [ "-device virtio-vga -audio model=hda,driver=pipewire" ];
-      memorySize = 6000;
+      qemu.options = [ "-device virtio-vga -audio model=hda,driver=pipewire -full-screen" ];
+      memorySize = 8000;
       cores = 6;
       diskSize = 20000;
       # graphics = ;
