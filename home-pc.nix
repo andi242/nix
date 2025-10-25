@@ -1,5 +1,10 @@
-{ pkgs, inputs, config, ... }: {
-  imports = [ ./home-modules.nix ];
+# { pkgs, inputs, config, ... }: 
+{ username, ...}:
+{
+  imports = [ 
+    # ./home-modules.nix 
+    (import ./home-modules.nix { inherit username; }) 
+  ];
   userconf = {
     ghostty.enable = true;
     librewolf.enable = true;

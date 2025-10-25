@@ -19,7 +19,7 @@ in {
   mkSystem = { modules, home-cfg, username ? "ad" }:
     lib.nixosSystem {
       inherit pkgs;
-      specialArgs = { inherit inputs system; };
+      specialArgs = { inherit inputs system username; };
       modules = [
         ./modules.nix # import all the OS modules
         home-manager.nixosModules.home-manager
@@ -28,7 +28,8 @@ in {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "bak";
-            users.${username} = import home-cfg;
+            # users.${username} = import home-cfg;
+            users.${username} = (import home-cfg { inherit username; });
             extraSpecialArgs = { inherit inputs; };
           };
         }
