@@ -2,9 +2,6 @@
 
 neuer versuch...
 
-`nix flake update` - update flake.lock
-`sudo nixos-rebuild switch --upgrade --flake ./nix/system#nixos-pc`
-
 ## nh
 
 - `nh os switch --update` - with env var $FLAKE
@@ -12,8 +9,7 @@ neuer versuch...
 
 ## vm
 
-- `nixos-rebuild build-vm --flake .#nixos-vm`
-- `./result/bin/run-nixos-vm-vm`
+- `nix run` to run default vm (or `nix run .#<name>`)
 - `rm result nixos-vm.qcow2`
 
 ## todo
@@ -22,7 +18,6 @@ neuer versuch...
 - [x] config options per host
 - [x] 1 file/folder per module
 - [x] module activate per option
-- [ ] package diff
 - [x] flatpak init flathub config
 - [x] check old hosts
 - [ ] HA parameterman
