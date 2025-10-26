@@ -3,14 +3,17 @@ let
   cfg = config.userconf;
   thisOption = lib.removeSuffix ".nix" "${builtins.baseNameOf (__curPos.file)}";
 in {
-  options.userconf = {
-    ${thisOption}.enable = lib.mkOption {
+  options.userconf.${thisOption} = {
+    enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
+    # flatpak-update.enable = lib.mkOption {
+    #   type = lib.types.bool;
+    #   default = true;
+    # };
   };
   config = lib.mkIf cfg.${thisOption}.enable {
-    # services.flatpak.enable = true;
     systemd.user.timers."flatpak-update" = {
       Unit.Description = "daily flatpak-update";
       Timer = {

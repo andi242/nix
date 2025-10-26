@@ -23,5 +23,7 @@ neuer versuch...
 - [x] 1 file/folder per module
 - [x] module activate per option
 - [ ] package diff
-- [ ] flatpak init flathub config
+- [x] flatpak init flathub config
 - [x] check old hosts
+- [ ] HA parameterman
+=31;OK

@@ -12,9 +12,12 @@ in {
   config = lib.mkIf cfg.${thisOption}.enable {
     services.flatpak.enable = true;
     systemd.services.flatpak-repo = {
-      wantedBy = [ "network.target" ];
+      after = [ "network.target" "resolvconf.service"];
+      wants = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ]; # to enable it
       path = [ pkgs.flatpak ];
       script = ''
+        sleep 10
         flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
       '';
     };

@@ -15,7 +15,7 @@ in {
       gamemode.enable = true;
     };
     environment.systemPackages = with pkgs; [
-      furmark
+      # furmark
       steam
       mangohud
       lutris
