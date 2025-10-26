@@ -1,49 +1,35 @@
-{ pkgs, ... }:
-{
-  imports = [
-    ./hardware.nix
-    ./libvirt.nix
+{ pkgs, config, username, ... }: {
+  imports = [ 
+    ../common.nix
+    ./hardware.nix 
     ./configuration.nix
-    ./pipewire.nix
-    ./prometheus.nix
-    ./tempctl.nix
     ./keychron_udev.nix
-    ./printing.nix
-    ../../modules/system
-    ../../modules/gnome
+    ./packages.nix
   ];
-  programs.nix-ld.enable = true; # for precompiled binaries
-  programs = {
-    steam.enable = true;
-    gamemode.enable = true;
-    evolution.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
+  sysconf = {
+    fish.enable = true;
+    flatpak.enable = true;
+    fonts.enable = true;
+    gaming.enable = true;
+    gnome.enable = true;
+    lact.enable = true;
+    nh.enable = true;
+    node-exporter.enable = true;
+    nvim.enable = true;
+    office.enable = true;
+    pipewire.enable = true;
+    printing.enable = true;
+    tempctl.enable = true;
+  };
+  virtualisation.vmVariant = {
+    virtualisation = {
+      qemu.options = [ "-device virtio-vga -audio model=hda,driver=pipewire -full-screen" ];
+      memorySize = 8000;
+      cores = 6;
+      diskSize = 20000;
+      # graphics = ;
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    lact
-    # furmark
-    steam
-    mangohud
-    lutris
-    winetricks
-    wineWowPackages.stable
-    libcamera # wireplumber might want it
-    sonixd
-  ];
-
-  systemd.services.lact = {
-    description = "LACT Daemon";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
-    enable = true;
-  };
+  system.stateVersion = "24.11";
 }

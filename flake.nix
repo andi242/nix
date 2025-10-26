@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs.url = "nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,113 +15,30 @@
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
       flake = false;
     };
+    nix-dotfiles = {
+      url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git?shallow=1&ref=main";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [
-            # google drive enablement for gnome --> overlays
-            # "libsoup-2.74.3"
-          ];
-        };
+      # utility functions
+      inherit (import ./utils.nix { inherit inputs home-manager; }) mkVM mkSystem;
+    in {
+      apps."x86_64-linux" = rec {
+        default = nixos-pc;
+        # VM tests: `nix run .#apps.<name>`
+        nixos-pc = mkVM "nixos-pc";
       };
-      # specialArgs = { inherit inputs; };
-    in
-    {
       nixosConfigurations = {
-        nixos-pc = lib.nixosSystem {
-          inherit pkgs;
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/pc
-            # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
-            (import ./overlays)
-            home-manager.nixosModules.home-manager
-            {
-              # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-pc.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-            }
-          ];
+        nixos-pc = mkSystem {
+          modules = [ ./hosts/pc (import ./overlays) ];
+          home-cfg = ./home-pc.nix;
         };
-        ###########################################
-        # macbook intel
-        ###########################################
-        nixos-mac = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/mac
-            home-manager.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-mac.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-            }
-          ];
-        };
-        ###########################################
-        # T530
-        ###########################################
-        t530 = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/t530
-            home-manager.nixosModules.home-manager
-            {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "bak";
-                  users.ad = import ./modules/home/home-t530.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                };
-            }
-          ];
-        };
-        ###########################################
-        nixos-vm = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          inherit pkgs;
-          modules = [
-            ./hosts/vm
-            # home-manager.nixosModules.home-manager
-            # {
-            #   home-manager =
-            #     {
-            #       useGlobalPkgs = true;
-            #       useUserPackages = true;
-            #       backupFileExtension = "bak";
-            #       users.ad = import ./modules/home/home-vm.nix;
-            #       extraSpecialArgs = {
-            #         inherit inputs;
-            #       };
-            #     };
-            # }
-          ];
+        mac = mkSystem {
+          modules = [ ./hosts/mac (import ./overlays) ];
+          home-cfg = ./home-mac.nix;
         };
       };
     };

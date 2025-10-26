@@ -20,6 +20,24 @@
         "type": "github"
       }
     },
+    "nix-dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761249852,
+        "narHash": "sha256-0EBwk9303zbmV0y1W7y23VmwItjImSN3FTeumvMVrpA=",
+        "ref": "main",
+        "rev": "f9afd64dc60be2173a63c8037bac7aec9e226aff",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git"
+      }
+    },
     "nix-secrets": {
       "flake": false,
       "locked": {
@@ -56,6 +74,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nix-dotfiles": "nix-dotfiles",
         "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"

@@ -34,9 +34,7 @@ in
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "30s";
   };
-  # systemd.extraConfig = ''
-  #   DefaultTimeoutStopSec=40s
-  # '';
+
   networking = {
     hostName = "nixos-mac";
     enableIPv6 = false;
@@ -59,6 +57,4 @@ in
     pulse.enable = true;
     jack.enable = true;
   };
-
-  system.stateVersion = "24.11";
 }
