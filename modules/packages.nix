@@ -25,5 +25,4 @@
     wget
   ];
   programs.nix-ld.enable = true; # for precompiled binaries
-  documentation.doc.enable = false; # no html docs
 }

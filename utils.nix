@@ -28,7 +28,6 @@ in {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "bak";
-            # users.${username} = import home-cfg;
             users.${username} = (import home-cfg { inherit username; });
             extraSpecialArgs = { inherit inputs; };
           };

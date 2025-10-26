@@ -26,4 +26,3 @@ neuer versuch...
 - [x] flatpak init flathub config
 - [x] check old hosts
 - [ ] HA parameterman
-=31;OK
