@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, osConfig, ... }:
 let
   cfg = config.userconf;
   thisOption = "gnome-settings";
@@ -7,15 +7,14 @@ in {
   options.userconf.${thisOption} = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = osConfig.sysconf.gnome.enable;
     };
-    dconf.enable = lib.mkOption {
+    dconf-settings.enable = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = osConfig.sysconf.gnome.enable;
     };
   };
   config = lib.mkIf cfg.${thisOption}.enable {
-
     home.packages = with pkgs; [
       gnomeExtensions.dash-to-panel
       gnomeExtensions.blur-my-shell
@@ -53,7 +52,7 @@ in {
       }))
     ];
     dconf = {
-      enable = cfg.${thisOption}.dconf.enable; # false;
+      enable = cfg.${thisOption}.dconf-settings.enable;
       settings = {
         "org/gnome/shell" = {
           disable-user-extensions = false;

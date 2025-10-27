@@ -1,5 +1,6 @@
 { inputs, home-manager, ... }:
 let
+  # hostname = inherit (config.networking) hostName;
   system = "x86_64-linux";
   lib = inputs.nixpkgs.lib;
   pkgs = import inputs.nixpkgs {
@@ -16,19 +17,21 @@ in {
     program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-${name}-vm";
   };
   # make a function to avoid duplication
-  mkSystem = { modules, home-cfg, username ? "ad" }:
+  mkSystem = { modules ? [ ./hosts/common.nix ], home-cfg ? false, username ? "ad" }:
     lib.nixosSystem {
       inherit pkgs;
       specialArgs = { inherit inputs system username; };
       modules = [
-        ./modules.nix # import all the OS modules
+        # import all the OS modules
+        ./modules.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "bak";
-            users.${username} = (import home-cfg { inherit username; });
+            # if this is false HM will skip completely
+            users = lib.mkIf (builtins.isPath home-cfg) { ${username} = (import home-cfg { inherit username; }); };
             extraSpecialArgs = { inherit inputs; };
           };
         }

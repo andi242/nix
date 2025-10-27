@@ -28,14 +28,16 @@
     in {
       apps."x86_64-linux" = rec {
         default = nixos-pc;
-        # VM tests: `nix run .#apps.<name>`
+        # VM tests: `nix run .#<name>`
         nixos-pc = mkVM "nixos-pc";
+        mini = mkVM "mini";
       };
       nixosConfigurations = {
         nixos-pc = mkSystem {
           modules = [ ./hosts/pc (import ./overlays) ];
           home-cfg = ./home-pc.nix;
         };
+        mini = mkSystem { };
         mac = mkSystem {
           modules = [ ./hosts/mac (import ./overlays) ];
           home-cfg = ./home-mac.nix;

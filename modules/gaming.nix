@@ -12,7 +12,7 @@ in {
   config = lib.mkIf cfg.${thisOption}.enable {
     programs = {
       steam.enable = true;
-      gamemode.enable = true;
+      gamemode.enable = false;
     };
     environment.systemPackages = with pkgs; [
       # furmark

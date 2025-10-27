@@ -1,6 +1,4 @@
-# { pkgs, inputs, config, ... }: 
-{ username, ...}:
-{
+{ username, ... }: {
   imports = map (f: ./home/${f}) (builtins.attrNames (builtins.readDir ./home));
   home = {
     username = username;

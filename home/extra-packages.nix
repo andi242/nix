@@ -11,8 +11,9 @@ in {
   };
   config = lib.mkIf cfg.${thisOption}.enable { 
     home.packages = with pkgs; [ 
-      discord
+      # discord # flat pakking for now
       sonixd # jellyfin audio player
     ];
   };
+
 }
