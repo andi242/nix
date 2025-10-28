@@ -10,5 +10,9 @@
     };
   };
   programs = { home-manager.enable = true; };
+  userconf = {
+    shell.enable = true;
+    git.enable = true;
+  };
 }
 

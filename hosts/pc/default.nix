@@ -7,15 +7,12 @@
     ./packages.nix
   ];
   sysconf = {
-    fish.enable = true;
     flatpak.enable = true;
     fonts.enable = true;
     gaming.enable = true;
     gnome.enable = true;
     lact.enable = true;
-    nh.enable = true;
     node-exporter.enable = true;
-    nvim.enable = true;
     office.enable = true;
     pipewire.enable = true;
     printing.enable = true;

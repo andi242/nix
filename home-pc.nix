@@ -7,8 +7,6 @@
   userconf = {
     ghostty.enable = true;
     librewolf.enable = true;
-    shell.enable = true;
-    git.enable = true;
     services = { flatpak-update.enable = true; };
     gnome-settings = {
       enable = true;
