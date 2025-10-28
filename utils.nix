@@ -15,7 +15,9 @@ in {
   # Create a VM app from a nixos config
   mkVM = name: {
     type = "app";
-    program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-${inputs.self.nixosConfigurations.${name}.config.networking.hostName}-vm";
+    program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-${
+        inputs.self.nixosConfigurations.${name}.config.networking.hostName
+      }-vm";
   };
   # make a function to avoid duplication
   mkSystem = { modules ? [ ./hosts/common.nix ], home-cfg ? false, username ? "ad" }:
@@ -24,7 +26,7 @@ in {
       specialArgs = { inherit inputs system username; };
       modules = [
         # import all the OS modules
-        ./modules.nix
+        { imports = map (f: ./modules/${f}) (builtins.attrNames (builtins.readDir ./modules)); }
         home-manager.nixosModules.home-manager
         {
           home-manager = {
