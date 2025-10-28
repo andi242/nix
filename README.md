@@ -14,10 +14,5 @@ neuer versuch...
 
 ## todo
 
-- [x] flake
-- [x] config options per host
-- [x] 1 file/folder per module
-- [x] module activate per option
-- [x] flatpak init flathub config
-- [x] check old hosts
-- [x] HA parameterman
+- [ ] ...
+
