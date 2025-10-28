@@ -3,6 +3,7 @@ let
   # hostname = inherit (config.networking) hostName;
   system = "x86_64-linux";
   lib = inputs.nixpkgs.lib;
+  # hostname = (nixos-system configuration).config.networking.hostName;
   pkgs = import inputs.nixpkgs {
     inherit system;
     config = {
@@ -14,7 +15,7 @@ in {
   # Create a VM app from a nixos config
   mkVM = name: {
     type = "app";
-    program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-${name}-vm";
+    program = "${inputs.self.nixosConfigurations.${name}.config.system.build.vm}/bin/run-${inputs.self.nixosConfigurations.${name}.config.networking.hostName}-vm";
   };
   # make a function to avoid duplication
   mkSystem = { modules ? [ ./hosts/common.nix ], home-cfg ? false, username ? "ad" }:
