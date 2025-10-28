@@ -4,13 +4,13 @@ neuer versuch...
 
 ## nh
 
-- `nh os switch --update` - with env var $FLAKE
+- `nh os switch --update` - with env var `$NH_OS_FLAKE`
 - `nh clean all --keep 5` - gc
 
 ## vm
 
 - `nix run` to run default vm (or `nix run .#<name>`)
-- `rm result nixos-vm.qcow2`
+- `rm result nixos-vm.qcow2` for cleanup
 
 ## todo
 
@@ -20,4 +20,4 @@ neuer versuch...
 - [x] module activate per option
 - [x] flatpak init flathub config
 - [x] check old hosts
-- [ ] HA parameterman
+- [x] HA parameterman
