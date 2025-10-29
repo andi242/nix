@@ -17,7 +17,7 @@ in {
       wantedBy = [ "multi-user.target" ]; # to enable it
       path = [ pkgs.flatpak ];
       script = ''
-        sleep 10
+        sleep 10 # this is needed since name resolving is coming up too slow
         flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
       '';
     };

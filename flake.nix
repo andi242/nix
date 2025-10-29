@@ -7,15 +7,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # private repo uses .ssh key
-    nix-secrets = {
-      url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
-      flake = false;
-    };
+    # currently not used
+    # sops-nix.url = "github:Mic92/sops-nix";
+    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    #
+    # # private repo uses .ssh key
+    # nix-secrets = {
+    #   url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git?shallow=1&ref=main";
+    #   flake = false;
+    # };
     nix-dotfiles = {
+      # points to 10.1.1.100 to spare the research. :p
       url = "git+ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git?shallow=1&ref=main";
       flake = false;
     };

@@ -38,24 +38,6 @@
         "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git"
       }
     },
-    "nix-secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1756227042,
-        "narHash": "sha256-uwKwTAAwEzN/CzQHV2YAr6IdwbcivxIuHjCZ/YB0adA=",
-        "ref": "main",
-        "rev": "559baf0f618306d5160b21ad9d8fb97cf548cc1a",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git"
-      },
-      "original": {
-        "ref": "main",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/nixos-secrets.git"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1761373498,
@@ -75,29 +57,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nix-dotfiles": "nix-dotfiles",
-        "nix-secrets": "nix-secrets",
-        "nixpkgs": "nixpkgs",
-        "sops-nix": "sops-nix"
-      }
-    },
-    "sops-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1760998189,
-        "narHash": "sha256-ee2e1/AeGL5X8oy/HXsZQvZnae6XfEVdstGopKucYLY=",
-        "owner": "Mic92",
-        "repo": "sops-nix",
-        "rev": "5a7d18b5c55642df5c432aadb757140edfeb70b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "sops-nix",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
