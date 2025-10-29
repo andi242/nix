@@ -13,8 +13,6 @@
     home-manager
     jq
     lazygit
-    lazygit
-    nvtopPackages.amd
     openssl
     pciutils
     psmisc

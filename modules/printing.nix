@@ -10,7 +10,7 @@ in {
     };
   };
   config = lib.mkIf cfg.${thisOption}.enable {
-    services.printing.enable = false;
+    services.printing.enable = true;
     # services.avahi = {
     #   enable = true;
     #   nssmdns4 = true;

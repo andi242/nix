@@ -15,7 +15,6 @@
     node-exporter.enable = true;
     office.enable = true;
     pipewire.enable = true;
-    printing.enable = true;
     tempctl.enable = true;
   };
   virtualisation.vmVariant = {
