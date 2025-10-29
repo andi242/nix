@@ -10,9 +10,9 @@ neuer versuch...
 ## vm
 
 - `nix run` to run default vm (or `nix run .#<name>`)
-- `rm result nixos-vm.qcow2` for cleanup
+- `rm result *.qcow2` for cleanup
 
 ## todo
 
-- [ ] ...
+- [ ] adapt mac/t530 config
 
