@@ -15,4 +15,6 @@ neuer versuch...
 ## todo
 
 - [ ] adapt mac/t530 config
+- [ ] how to template modules with options, let-ins, ...
+
 
