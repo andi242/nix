@@ -14,14 +14,6 @@ let
     mkdir = "mkdir -p";
   };
 in {
-  options = {
-    sysconf = {
-      ${thisOption}.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-      };
-    };
-  };
   config = lib.mkIf cfg.${thisOption}.enable {
     environment.shells = with pkgs; [ fish ];
     users.defaultUserShell = pkgs.fish;

@@ -4,14 +4,6 @@ let
   thisOption = lib.removeSuffix ".nix" "${builtins.baseNameOf (__curPos.file)}";
   # this transforms the filename.nix to filename so we can use it as config.sysconf.filename.enable = true;
 in {
-  options = {
-    sysconf = {
-      ${thisOption}.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-      };
-    };
-  };
   config = lib.mkIf cfg.${thisOption}.enable {
     xdg.portal = {
       enable = true;

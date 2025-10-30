@@ -1,4 +1,4 @@
-{ inputs, home-manager, ... }:
+{ inputs ? false, home-manager ? false, ... }:
 let
   # hostname = inherit (config.networking) hostName;
   system = "x86_64-linux";
@@ -11,7 +11,7 @@ let
       # permittedInsecurePackages = [ ];
     };
   };
-in {
+in rec {
   # Create a VM app from a nixos config
   mkVM = name: {
     type = "app";
@@ -26,7 +26,8 @@ in {
       specialArgs = { inherit inputs system username; };
       modules = [
         # import all the OS modules
-        { imports = map (f: ./modules/${f}) (builtins.attrNames (builtins.readDir ./modules)); }
+        # { imports = map (f: ./modules/${f}) (builtins.attrNames (builtins.readDir ./modules)); }
+        (mkOpts ./modules "sysconf")
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -39,5 +40,25 @@ in {
           };
         }
       ] ++ modules;
+    };
+  # the most complicated crap to spare a few lines
+  # generates config.options.optName from filenames in path
+  # TODO template the lib.mkIf as well
+  mkOpts = path: optName:
+    let
+      files = map (f: f) (builtins.attrNames (builtins.readDir path));
+      filenames = map (a: lib.removeSuffix ".nix" a) files;
+      # https://nix.dev/tutorials/module-system/a-basic-module/
+    in {
+      options.${optName} = builtins.listToAttrs (builtins.map (u: {
+        name = u;
+        value = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+          };
+        };
+      }) filenames);
+      imports = map (f: path + "/${f}") files;
     };
 }

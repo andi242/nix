@@ -39,9 +39,7 @@
           modules = [ ./hosts/pc (import ./overlays) ];
           home-cfg = ./home-pc.nix;
         };
-        mini = mkSystem { 
-          modules = [ ./hosts/mini ];
-        };
+        mini = mkSystem { modules = [ ./hosts/mini ]; };
         mac = mkSystem {
           modules = [ ./hosts/mac (import ./overlays) ];
           home-cfg = ./home-mac.nix;
