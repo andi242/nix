@@ -10,7 +10,7 @@
     services = { flatpak-update.enable = true; };
     gnome-settings = {
       enable = true;
-      dconf-settings.enable = false;
+      dconf-settings.enable = true;
     };
   };
 }
