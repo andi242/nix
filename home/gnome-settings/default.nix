@@ -15,7 +15,7 @@ in {
     };
   };
   config = lib.mkIf cfg.${thisOption}.enable {
-    # TODO rework the thing
+    # TODO: rework the thing
     home.packages = with pkgs; [
       gnomeExtensions.dash-to-panel
       gnomeExtensions.blur-my-shell

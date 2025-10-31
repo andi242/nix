@@ -41,9 +41,10 @@ in rec {
         }
       ] ++ modules;
     };
+  # HACK:
   # the most complicated crap to spare a few lines
   # generates config.options.optName from filenames in path
-  # TODO template the lib.mkIf as well
+  # TODO: template the lib.mkIf as well and just readFileContents the rest
   mkOpts = path: optName:
     let
       files = map (f: f) (builtins.attrNames (builtins.readDir path));
