@@ -5,10 +5,6 @@ let
   multi-monitors-add-on = pkgs.callPackage ./multimonitor.nix { };
 in {
   options.userconf.${thisOption} = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = osConfig.sysconf.gnome.enable;
-    };
     dconf-settings.enable = lib.mkOption {
       type = lib.types.bool;
       default = osConfig.sysconf.gnome.enable;

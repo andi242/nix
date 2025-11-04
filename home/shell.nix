@@ -5,12 +5,6 @@ let
   aliases = { vc = "vi ~/gits/nix"; };
   # dotspath = builtins.toString inputs.nix-dotfiles;
 in {
-  options.userconf = {
-    ${thisOption}.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-  };
   config = lib.mkIf cfg.${thisOption}.enable {
     home.packages = with pkgs; [ starship ];
     programs.starship = {

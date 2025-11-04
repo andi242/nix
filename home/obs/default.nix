@@ -1,16 +1,6 @@
 { pkgs, config, lib, ... }:
-let
-  cfg = config.userconf;
-in
-{
-  options = {
-    userconf = {
-      obs.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-      };
-    };
-  };
+let cfg = config.userconf;
+in {
   config = lib.mkIf cfg.obs.enable {
     programs.obs-studio = {
       enable = true;

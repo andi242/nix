@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # currently not used
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +27,7 @@
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       # utility functions
+      # let's rework again https://github.com/LuNeder/nixos-config/blob/strawberry/flake.nix
       inherit (import ./utils.nix { inherit inputs home-manager; }) mkVM mkSystem;
     in {
       apps."x86_64-linux" = rec {
@@ -35,15 +37,9 @@
         mini = mkVM "mini";
       };
       nixosConfigurations = {
-        nixos-pc = mkSystem {
-          modules = [ ./hosts/pc (import ./overlays) ];
-          home-cfg = ./home-pc.nix;
-        };
+        nixos-pc = mkSystem { modules = [ ./hosts/pc (import ./overlays) ]; };
         mini = mkSystem { modules = [ ./hosts/mini ]; };
-        mac = mkSystem {
-          modules = [ ./hosts/mac (import ./overlays) ];
-          home-cfg = ./home-mac.nix;
-        };
+        mac = mkSystem { modules = [ ./hosts/mac ]; };
       };
     };
 }

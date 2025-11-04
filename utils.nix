@@ -2,7 +2,7 @@
 let
   # hostname = inherit (config.networking) hostName;
   system = "x86_64-linux";
-  lib = inputs.nixpkgs.lib;
+  lib = inputs.nixpkgs.lib // inputs.home-manager.lib;
   # hostname = (nixos-system configuration).config.networking.hostName;
   pkgs = import inputs.nixpkgs {
     inherit system;
@@ -11,6 +11,8 @@ let
       # permittedInsecurePackages = [ ];
     };
   };
+  hm-path = ./home;
+  sys-path = ./modules;
 in rec {
   # Create a VM app from a nixos config
   mkVM = name: {
@@ -20,14 +22,14 @@ in rec {
       }-vm";
   };
   # make a function to avoid duplication
-  mkSystem = { modules ? [ ./hosts/common.nix ], home-cfg ? false, username ? "ad" }:
+  mkSystem = { modules ? [ ./hosts/common.nix ], username ? "ad" }:
     lib.nixosSystem {
       inherit pkgs;
       specialArgs = { inherit inputs system username; };
       modules = [
         # import all the OS modules
         # { imports = map (f: ./modules/${f}) (builtins.attrNames (builtins.readDir ./modules)); }
-        (mkOpts ./modules "sysconf")
+        (mkOpts sys-path "sysconf")
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -35,7 +37,16 @@ in rec {
             useUserPackages = true;
             backupFileExtension = "bak";
             # if this is false HM will skip completely
-            users = lib.mkIf (builtins.isPath home-cfg) { ${username} = (import home-cfg { inherit username; }); };
+            # users = lib.mkIf (builtins.isPath home-cfg) { ${username} = (import home-cfg { inherit username; }); };
+            users.${username} = {
+              imports = [ (mkOpts hm-path "userconf") ];
+              programs = { home-manager.enable = true; };
+              home = {
+                stateVersion = "24.11";
+                username = username;
+                homeDirectory = "/home/${username}";
+              };
+            };
             extraSpecialArgs = { inherit inputs; };
           };
         }
