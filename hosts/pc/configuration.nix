@@ -25,6 +25,5 @@
       logRefusedConnections = false;
     };
   };
-
   security.rtkit.enable = true;
 }

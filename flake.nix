@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/928ecc3c71ef85227c25cf0ff3bfba1efd9b1930";
     # currently not used
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
