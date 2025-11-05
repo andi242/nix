@@ -2,7 +2,10 @@
 let
   cfg = config.userconf;
   thisOption = lib.removeSuffix ".nix" "${builtins.baseNameOf (__curPos.file)}";
-  aliases = { vc = "vi ~/gits/nix"; };
+  aliases = {
+    vc = "vi ~/gits/nix"; 
+    pkgs = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
+  };
   # dotspath = builtins.toString inputs.nix-dotfiles;
 in {
   config = lib.mkIf cfg.${thisOption}.enable {

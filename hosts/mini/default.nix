@@ -11,7 +11,8 @@
     };
     home-manager = { 
       users.${username} = { 
-        userconf = { shell.enable = true; }; 
+        userconf = { shell.enable = true; };
+        # nvim-nightly config
         home.file.".config/nvim/init.lua".text = ''
           local set = vim.opt
           set.number = true

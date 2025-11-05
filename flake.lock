@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762266885,
-        "narHash": "sha256-THnfl16UGSjMXdDQZwIuFuDJj+tYjUHAl9w/DNpkuAw=",
+        "lastModified": 1762351818,
+        "narHash": "sha256-0ptUDbYwxv1kk/uzEX4+NJjY2e16MaAhtzAOJ6K0TG0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c39c07bf31dc080851377c04352fa06f197f0c1c",
+        "rev": "b959c67241cae17fc9e4ee7eaf13dfa8512477ea",
         "type": "github"
       },
       "original": {
@@ -81,10 +81,10 @@
     "nix-dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1761850495,
-        "narHash": "sha256-BbqdQ1+4tFq8k/oGdfP0+0Zn4hF2WOEZ5tjyizROdPk=",
+        "lastModified": 1762284178,
+        "narHash": "sha256-Q8ZC1/3lJZkqvQamsA8uaQnzewHCDFs09N0fkwuq7+w=",
         "ref": "main",
-        "rev": "b5084e2d8af1e289ccf99eaa96b62635002c9024",
+        "rev": "e6ca84927601e730f5f86cc76575728f7b06ec53",
         "shallow": true,
         "type": "git",
         "url": "ssh://forgejo@git.andi242.dedyn.io:2222/ad/dotfiles.git"
